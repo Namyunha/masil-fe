@@ -1,5 +1,5 @@
 import { addComma } from './addComma';
-import { delay } from './delay';
 import { convertTime } from './convertTime';
+import { delay } from './delay';
 
-export { addComma, delay, convertTime };
+export { addComma, convertTime, delay };
