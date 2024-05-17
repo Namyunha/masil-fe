@@ -1,1 +1,0 @@
-icon, image 등의 asset은 public 폴더 내 위치
