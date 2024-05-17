@@ -9,7 +9,8 @@ export default function ButtonWrapper() {
         value="로그인"
         onClick={() => {
           console.log('로그인');
-        }}></Button>
+        }}
+      />
     </>
   );
 }

@@ -1,3 +1,9 @@
+import ButtonWrapper from '@/components/SignUp/ButtonWrapper';
+
 export default function SignUp() {
-  return <>회원가입</>;
+  return (
+    <>
+      <ButtonWrapper />
+    </>
+  );
 }
