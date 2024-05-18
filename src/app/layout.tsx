@@ -1,5 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { MockProvider } from '@/mocks/MockProvider';
+import QueryProvider from '@/store/QueryProvider';
 
 export const metadata: Metadata = {
   title: 'masil',
@@ -13,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <QueryProvider>
+          <MockProvider>{children}</MockProvider>
+        </QueryProvider>
+      </body>
     </html>
   );
 }
