@@ -2,12 +2,9 @@
 
 import { useForm } from 'react-hook-form';
 import { useSignUpQuery } from '@/api/sign/queries';
-import useResponsive from '@/hooks/useResponsive';
 import Button from '../Button';
 
-export default function ButtonWrapper() {
-  const isMobile = useResponsive();
-
+export default function SignUpForm() {
   const { register, watch, handleSubmit } = useForm();
 
   const { mutate: onRegister } = useSignUpQuery({
@@ -18,19 +15,13 @@ export default function ButtonWrapper() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(() => onRegister())}>
+      <form
+        className="flex flex-col gap-2"
+        onSubmit={handleSubmit(() => onRegister())}>
         <input {...register('email')} />
         <input {...register('nickName')} />
         <input {...register('password')} />
         <Button type="submit">회원가입</Button>
-        {isMobile && (
-          <Button
-            value="취소"
-            onClick={() => {
-              console.log('취소');
-            }}
-          />
-        )}
       </form>
     </>
   );

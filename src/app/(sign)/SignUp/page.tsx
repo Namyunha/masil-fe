@@ -1,9 +1,9 @@
-import ButtonWrapper from '@/components/SignUp/ButtonWrapper';
+import SignUpForm from '@/components/SignUp/SignUpForm';
 
 export default function SignUp() {
   return (
     <>
-      <ButtonWrapper />
+      <SignUpForm />
     </>
   );
 }
