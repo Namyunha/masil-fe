@@ -1,6 +1,5 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import Header from '@/components/Header/Header';
 import { MockProvider } from '@/mocks/MockProvider';
 import QueryProvider from '@/store/QueryProvider';
@@ -18,14 +17,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Suspense fallback={<p>Loading...</p>}>
-          <QueryProvider>
-            <MockProvider>
-              <Header />
-              {children}
-            </MockProvider>
-          </QueryProvider>
-        </Suspense>
+        <QueryProvider>
+          <MockProvider>
+            <Header />
+            {children}
+          </MockProvider>
+        </QueryProvider>
       </body>
     </html>
   );
