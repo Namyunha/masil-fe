@@ -8,6 +8,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
 
 export default function Button({
   type = 'button',
+  className,
   variant,
   shape,
   size,
@@ -17,7 +18,7 @@ export default function Button({
     <button
       type={type}
       {...props}
-      className={cn(buttonVariants({ variant, shape, size }))}
+      className={cn(buttonVariants({ variant, shape, size }), className)}
     />
   );
 }
