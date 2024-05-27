@@ -1,8 +1,15 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { Nunito_Sans } from 'next/font/google';
 import Header from '@/components/Header/Header';
 import { MockProvider } from '@/mocks/MockProvider';
 import QueryProvider from '@/store/QueryProvider';
+
+const nunitoSans = Nunito_Sans({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
+  adjustFontFallback: false,
+});
 
 export const metadata: Metadata = {
   title: 'masil',
@@ -15,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={nunitoSans.className}>
       <body>
         <QueryProvider>
           <MockProvider>
