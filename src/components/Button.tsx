@@ -26,9 +26,9 @@ export default function Button({
 const buttonVariants = cva(``, {
   variants: {
     variant: {
-      primary: 'bg-brown text-white',
-      cancel: 'bg-red text-white',
-      more: 'bg-transparent text-black',
+      primary: 'bg-primary text-text_white',
+      cancel: 'bg-text_error text-text_white',
+      more: 'bg-transparent text-text_black',
     },
     shape: {
       primary: 'rounded',

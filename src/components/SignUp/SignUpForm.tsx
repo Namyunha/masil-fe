@@ -18,9 +18,15 @@ export default function SignUpForm() {
       <form
         className="flex flex-col gap-2"
         onSubmit={handleSubmit(() => onRegister())}>
-        <input {...register('email')} />
-        <input {...register('nickName')} />
-        <input {...register('password')} />
+        <input className="border-2 border-stroke_grey" {...register('email')} />
+        <input
+          className="border-2 border-stroke_grey"
+          {...register('nickName')}
+        />
+        <input
+          className="border-2 border-stroke_grey"
+          {...register('password')}
+        />
         <Button type="submit">회원가입</Button>
       </form>
     </>
