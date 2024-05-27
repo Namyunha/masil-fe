@@ -17,8 +17,12 @@ export const ERROR_CODE = {
 };
 
 export const END_POINT = {
-  AUTH: {
-    SIGNIN: 'api/signin',
-    SIGNUP: 'api/signup',
+  USER: {
+    SIGNIN: 'user/sign-in',
+    SIGNUP: 'user/sign-up',
+  },
+  REVIEW: {
+    LIST: 'review',
+    DETAIL: (id: string) => `review/${id}`,
   },
 };
