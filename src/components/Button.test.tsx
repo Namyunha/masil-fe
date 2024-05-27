@@ -10,7 +10,7 @@ describe('Button component', () => {
 
     expect(button).toBeInTheDocument();
     expect(button).toHaveClass(
-      'bg-brown text-white rounded text-base py-2 px-6'
+      'bg-primary text-text_white rounded text-base py-2 px-6'
     );
     expect(button).toHaveAttribute('type', 'button');
   });
@@ -25,7 +25,7 @@ describe('Button component', () => {
 
     expect(button).toBeInTheDocument();
     expect(button).toHaveClass(
-      'bg-brown text-white rounded text-base py-2 px-6'
+      'bg-primary text-text_white rounded text-base py-2 px-6'
     );
   });
 
@@ -34,7 +34,7 @@ describe('Button component', () => {
     const button = screen.getByRole('button', { name: /cancel/i });
 
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('bg-red text-white');
+    expect(button).toHaveClass('bg-text_error text-text_white');
   });
 
   test('renders with more variant', () => {
@@ -42,7 +42,7 @@ describe('Button component', () => {
     const button = screen.getByRole('button', { name: /more/i });
 
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('bg-transparent text-black');
+    expect(button).toHaveClass('bg-transparent text-text_black');
   });
 
   test('renders with square shape', () => {

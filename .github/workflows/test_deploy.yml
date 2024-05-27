@@ -1,0 +1,46 @@
+name: Synchronize to forked repo
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  sync:
+    name: Sync forked repo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.FORKED_REPO_TOKEN }}
+          fetch-depth: 0
+          ref: dev
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Configure git
+        run: |
+          git remote add forked-repo https://aaaz425:${{ secrets.FORKED_REPO_TOKEN }}@github.com/aaaz425/masil
+          git config user.name "aaaz425"
+          git config user.email "ytokogg@gmail.com"
+
+      - name: Push to forked-repo
+        run: |
+          git push -f forked-repo dev:main
+
+      - name: Clean up
+        run: |
+          git remote remove forked-repo
