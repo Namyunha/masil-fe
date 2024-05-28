@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={nunitoSans.className}>
-      <body>
+      <body className="h-dvh">
         <QueryProvider>
           <MockProvider>
             <Header />
