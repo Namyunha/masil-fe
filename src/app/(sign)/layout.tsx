@@ -14,9 +14,11 @@ export default function LoginLayout({
   console.log('modalState = ', modalState.modalStatus);
   return (
     <>
-      <section className="h-[35rem] flex flex-col items-center mt-48 gap-48">
-        {children}
-        {modalState.modalStatus && agreement}
+      <section className="flex justify-center h-[35rem]">
+        <div className="w-[20rem] flex flex-col items-center mt-48 gap-48">
+          {children}
+          {modalState.modalStatus && agreement}
+        </div>
       </section>
     </>
   );

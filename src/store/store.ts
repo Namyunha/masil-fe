@@ -6,6 +6,6 @@ interface ModalState {
 }
 
 export const useModalStore = create<ModalState>()((set) => ({
-  modalStatus: false,
+  modalStatus: true,
   changeStatus: () => set((state) => ({ modalStatus: !state.modalStatus })),
 }));

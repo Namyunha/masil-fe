@@ -12,7 +12,6 @@ export default function Layout({
   console.log('modal = ', modal);
   return (
     <>
-      {children}
       <div className="w-72 font-sans text-24 text-center">
         이메일 주소로 10초만에 가입해 마실을 시작하세요
       </div>
@@ -26,6 +25,7 @@ export default function Layout({
           placeholder="인증번호를 입력해주세요"
         />
       </div>
+      {children}
     </>
   );
 }

@@ -17,6 +17,7 @@ const config: Config = {
         transparent: 'transparent',
         primary: '#ECCDC1',
         gray: '#c9c8d3',
+        orange: '#ff7b27',
         bg_white: '#FFFFFF',
         bg_disabled: '#F4F3FE',
         stroke_focused: '#F845FC',
