@@ -18,10 +18,10 @@ export default function LoginModal() {
 
   const validate = useValidate();
 
-  const onEmailHandler = () => {
+  const onEmailHandler = useCallback(() => {
     validate.setCertification(random());
     modalState.changeStatus();
-  };
+  }, []);
 
   const eventHandler = useCallback((e) => {
     if (e.key === 'Escape') {
@@ -173,34 +173,23 @@ export default function LoginModal() {
               </div>
             </div>
             <div className={clsx('flex', 'justify-center')}>
-              {check2 && check3 === true ? (
-                <button
-                  onClick={onEmailHandler}
-                  className={clsx(
-                    'w-72',
-                    'font-semibold',
-                    'bg-orange',
-                    'text-white',
-                    'rounded-lg',
-                    'p-16',
-                    'disabled'
-                  )}>
-                  동의하기
-                </button>
-              ) : (
-                <button
-                  className={clsx(
-                    'w-72',
-                    'font-semibold',
-                    'rounded-lg',
-                    'bg-gray',
-                    'text-white',
-                    'p-16',
-                    'disabled'
-                  )}>
-                  동의하기
-                </button>
-              )}
+              <button
+                disabled={!(check2 && check3 === true)}
+                onClick={onEmailHandler}
+                className={clsx(
+                  'w-72',
+                  'font-semibold',
+                  'text-white',
+                  'rounded-lg',
+                  'p-16',
+                  {
+                    ['bg-gray']: !(check2 && check3 === true),
+                    ['bg-orange']: check2 && check3 === true,
+                    ['cursor-not-allowed']: !(check2 && check3 === true),
+                  }
+                )}>
+                동의하기
+              </button>
             </div>
           </div>
         </div>
