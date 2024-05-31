@@ -1,8 +1,8 @@
 'use client';
 
 import clsx from 'clsx';
-import { useState } from 'react';
-import { useModalStore, useValidate } from '@/store/store';
+import { useCallback, useState } from 'react';
+import { useModalStore, useValidate } from '@/store/Ystore';
 
 export default function LoginModal() {
   const modalState = useModalStore();
@@ -23,9 +23,23 @@ export default function LoginModal() {
     modalState.changeStatus();
   };
 
+  const eventHandler = useCallback((e) => {
+    if (e.key === 'Escape') {
+      modalState.changeStatus();
+      return;
+    }
+  }, []);
+
+  document.addEventListener('keydown', eventHandler);
+
   return (
     <>
       <div
+        onClick={(e) => {
+          if (e.screenY < 535 || e.screenX < 325 || e.screenX > 648) {
+            modalState.changeStatus();
+          }
+        }}
         className={clsx(
           'w-dvw',
           'h-dvh',
@@ -57,7 +71,7 @@ export default function LoginModal() {
                   setCheck2(!check1);
                   setCheck3(!check1);
                 }}>
-                {check1 === true && check2 === true && check3 === true ? (
+                {check2 === true && check3 === true ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -159,18 +173,34 @@ export default function LoginModal() {
               </div>
             </div>
             <div className={clsx('flex', 'justify-center')}>
-              <button
-                onClick={onEmailHandler}
-                className={clsx(
-                  'w-72',
-                  'font-semibold',
-                  'bg-orange',
-                  'text-white',
-                  'rounded-lg',
-                  'p-16'
-                )}>
-                동의하기
-              </button>
+              {check2 && check3 === true ? (
+                <button
+                  onClick={onEmailHandler}
+                  className={clsx(
+                    'w-72',
+                    'font-semibold',
+                    'bg-orange',
+                    'text-white',
+                    'rounded-lg',
+                    'p-16',
+                    'disabled'
+                  )}>
+                  동의하기
+                </button>
+              ) : (
+                <button
+                  className={clsx(
+                    'w-72',
+                    'font-semibold',
+                    'rounded-lg',
+                    'bg-gray',
+                    'text-white',
+                    'p-16',
+                    'disabled'
+                  )}>
+                  동의하기
+                </button>
+              )}
             </div>
           </div>
         </div>

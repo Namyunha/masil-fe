@@ -8,7 +8,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useModalStore, useValidate } from '@/store/store';
+import { useModalStore, useValidate } from '@/store/Ystore';
 
 export default function Layout({
   children,
