@@ -11,7 +11,6 @@ export default function LoginLayout({
   agreement: React.ReactNode;
 }) {
   const modalState = useModalStore();
-  console.log('modalState = ', modalState.modalStatus);
   return (
     <>
       <section className="flex justify-center">
