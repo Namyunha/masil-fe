@@ -1,5 +1,11 @@
 import { http, HttpResponse } from 'msw';
-import { END_POINT, ERROR_CODE, SUCCESS_CODE } from '@/constants/api';
+import {
+  DEFAULT_CURSOR,
+  DEFAULT_SIZE,
+  END_POINT,
+  ERROR_CODE,
+  SUCCESS_CODE,
+} from '@/constants/api';
 import { mockReviewList } from './data';
 
 export const browserHandlers = [
@@ -24,7 +30,21 @@ export const browserHandlers = [
   ),
 
   // 리뷰 리스트 조회
-  http.get(END_POINT.REVIEW.LIST, async () => {
-    return HttpResponse.json(mockReviewList, { status: SUCCESS_CODE.OK });
+  http.get(END_POINT.REVIEW.LIST, async ({ request }) => {
+    const url = new URL(request.url);
+    const cursor =
+      parseInt(url.searchParams.get('cursor') as string) || DEFAULT_CURSOR;
+    const size =
+      parseInt(url.searchParams.get('size') as string) || DEFAULT_SIZE;
+
+    const response = {
+      ...mockReviewList,
+      data: {
+        reviews: mockReviewList.data.reviews.slice(cursor, cursor + size),
+      },
+      hasNext: true,
+    };
+
+    return HttpResponse.json(response, { status: SUCCESS_CODE.OK });
   }),
 ];

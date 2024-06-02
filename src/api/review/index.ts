@@ -1,10 +1,19 @@
-import { END_POINT } from '@/constants/api';
+import { DEFAULT_SIZE, END_POINT } from '@/constants/api';
 import { ReviewListResType } from '@/types/review';
 import { fetcher } from '../fetcher';
 
-// Todo: 무한 스크롤로 구현
-export const getReviewList = async () => {
-  const { data } = await fetcher<ReviewListResType>(END_POINT.REVIEW.LIST);
+export const getReviewList = async ({
+  cursor,
+  size = DEFAULT_SIZE,
+}: {
+  cursor: number;
+  size: number;
+}) => {
+  const queryParameter = `?cursor=${cursor}size=${size}`;
+
+  const { data } = await fetcher<ReviewListResType>(
+    END_POINT.REVIEW.LIST + queryParameter
+  );
 
   return data;
 };

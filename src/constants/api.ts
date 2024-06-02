@@ -26,3 +26,6 @@ export const END_POINT = {
     DETAIL: (id: string) => `review/${id}`,
   },
 };
+
+export const DEFAULT_CURSOR = 0;
+export const DEFAULT_SIZE = 5;
