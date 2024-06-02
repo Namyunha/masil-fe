@@ -1,15 +1,15 @@
-'use client';
-
-// Memo: 데이터 확인용 임시 구현
-import { useEffect } from 'react';
-import { useReviewListQuery } from '@/api/review/queries';
+import HomeMain from '@/app/_components/HomeMain';
+import HomeFAB from './_components/HomeFAB';
+import HomeFilter from './_components/HomeFilter';
+import HomeTab from './_components/HomeTab';
 
 export default function Home() {
-  const { data } = useReviewListQuery();
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  return <>home</>;
+  return (
+    <main className="flex flex-col p-16 gap-2">
+      <HomeTab />
+      <HomeFilter />
+      <HomeMain />
+      <HomeFAB />
+    </main>
+  );
 }
