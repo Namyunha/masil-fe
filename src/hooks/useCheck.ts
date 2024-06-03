@@ -1,5 +1,10 @@
 import { useCallback, useState } from 'react';
 
+type setCheckTypeProps = {
+  checktype: string;
+  boolean: boolean;
+};
+
 export default function useCheck() {
   const [check1, setCheck1] = useState<boolean>();
   const [check2, setCheck2] = useState<boolean>();
