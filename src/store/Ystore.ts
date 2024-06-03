@@ -13,14 +13,18 @@ export const useModalStore = create<ModalState>((set) => ({
 type ValidateState = {
   certification: string;
   setCertification: (date: string) => void;
+  nextCheck: boolean;
+  setNextCheck: () => void;
 };
 
 export const useValidate = create<ValidateState>((set) => ({
   certification: '',
   setCertification: (data) => set(() => ({ certification: data })),
+  nextCheck: false,
+  setNextCheck: () => set(() => ({ nextCheck: true })),
 }));
 
-type userInfo = {
+export type userInfo = {
   id: string;
   pw: string;
   nickName: string;
