@@ -1,19 +1,32 @@
 import Image from 'next/image';
 import * as icons from 'public/icon/svg';
+import { FILTER_COLOR } from '@/styles/filterColor';
 
 type IconProps = {
   name: keyof typeof icons;
   size?: 16 | 24 | 32;
+  filter?: keyof typeof FILTER_COLOR;
+  className?: string;
 };
 
-export default function Icon({ name, size = 24 }: IconProps) {
+export default function Icon({
+  name,
+  className,
+  size = 24,
+  filter,
+}: IconProps) {
   return (
     <Image
       src={`/icon/${name}.svg`}
       alt={name}
+      className={className}
       width={size}
       height={size}
-      style={{ width: size, height: size }}
+      style={{
+        width: size,
+        height: size,
+        filter: filter && FILTER_COLOR[filter],
+      }}
     />
   );
 }
