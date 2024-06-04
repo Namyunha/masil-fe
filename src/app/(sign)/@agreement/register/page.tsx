@@ -9,7 +9,7 @@ export default function LoginModal() {
     <>
       <div
         onClick={(e) => {
-          if (e.screenY < 535 || e.screenX < 325 || e.screenX > 648) {
+          if (e.screenY < 535 || e.screenX < 240 || e.screenX > 648) {
             modalState.changeStatus();
           }
         }}
