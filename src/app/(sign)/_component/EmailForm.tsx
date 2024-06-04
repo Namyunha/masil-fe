@@ -8,7 +8,11 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useModalStore, useRegisterStore, useValidate } from '@/store/Ystore';
+import {
+  useModalStore,
+  useRegisterStore,
+  useValidate,
+} from '@/store/userStore';
 
 export default function EmailForm() {
   const modal = useModalStore();

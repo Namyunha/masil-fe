@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import React, { useCallback } from 'react';
 import useCheck from '@/hooks/useCheck';
-import { useModalStore, useValidate } from '@/store/Ystore';
+import { useModalStore, useValidate } from '@/store/userStore';
 import { AllCheck, RequiredCheck } from './CheckIcons';
 
 export const CheckForm = () => {

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useModalStore } from '@/store/Ystore';
+import { useModalStore } from '@/store/userStore';
 
 export default function LoginLayout({
   children,

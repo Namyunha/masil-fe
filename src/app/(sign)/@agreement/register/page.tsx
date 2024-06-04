@@ -1,6 +1,6 @@
 'use client';
 import clsx from 'clsx';
-import { useModalStore } from '@/store/Ystore';
+import { useModalStore } from '@/store/userStore';
 import AgreementForm from '../../_component/AgreementForm';
 
 export default function LoginModal() {

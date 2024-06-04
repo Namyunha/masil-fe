@@ -5,19 +5,20 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { id_regex, pw_regex } from '@/constants/validates';
 import useCheck from '@/hooks/useCheck';
-import { useRegisterStore, userInfo, useValidate } from '@/store/Ystore';
+import { useRegisterStore, userInfo, useValidate } from '@/store/userStore';
 
 export default function UserInfoForm() {
+  const { check1, check2, check3, setCheckType } = useCheck();
   const { register, handleSubmit } = useForm<userInfo>();
   const currentUserInfo = useRegisterStore();
   const validate = useValidate();
   const onSubmit: SubmitHandler<userInfo> = (data) => {
     console.log('data = ', data);
+    setCheckType('reset');
     currentUserInfo.setUserInfo(data);
     validate.setNextCheck();
   };
 
-  const { check1, check2, check3, setCheckType } = useCheck();
   console.log('check1 = ', check1, 'check2 = ', check2, 'check3 = ', check3);
 
   return (

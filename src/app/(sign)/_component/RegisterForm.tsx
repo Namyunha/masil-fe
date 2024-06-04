@@ -1,5 +1,5 @@
 import React from 'react';
-import { useValidate } from '@/store/Ystore';
+import { useValidate } from '@/store/userStore';
 import ProfilForm from './ProfilForm';
 import UserInfoForm from './UserInfoForm';
 
