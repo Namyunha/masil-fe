@@ -9,8 +9,10 @@ export default function LoginModal() {
     <>
       <div
         onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-          if (e.target.className.includes('background')) {
-            modalState.changeStatus();
+          if (typeof e.target.className === 'string') {
+            if (e.target.className.includes('background')) {
+              modalState.changeStatus();
+            }
           }
         }}
         className={clsx(
