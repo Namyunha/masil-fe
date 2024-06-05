@@ -1,5 +1,4 @@
 'use client';
-import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useRegisterStore } from '@/store/userStore';
@@ -42,15 +41,7 @@ export default function CurrentMessage() {
       <div className="flex justify-center">
         <button
           onClick={onSignUpHandler}
-          className={clsx(
-            'mt-28',
-            'w-72',
-            'font-semibold',
-            'text-white',
-            'rounded-lg',
-            'p-16',
-            'bg-orange'
-          )}>
+          className="mt-28 w-72 font-semibold text-white rounded-lg p-16 bg-orange">
           회원가입
         </button>
       </div>

@@ -8,6 +8,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { email_regex } from '@/constants/validates';
 import {
   useModalStore,
   useRegisterStore,
@@ -19,12 +20,12 @@ export default function EmailForm() {
   const validate = useValidate();
   const userInfo = useRegisterStore();
 
-  const [email, setEmail] = useState<string>('');
-  const [emailNum, setEmailNum] = useState<string>('');
-  const [certification, setCertification] = useState<string>('');
+  const [email, setEmail] = useState<string>();
+  const [emailNum, setEmailNum] = useState<string>();
+  const [certification, setCertification] = useState<string>();
 
-  const [checkEmail, setCheckEmail] = useState<boolean>(true);
-  const [checkCertification, setCheckCertification] = useState<boolean>(true);
+  const [checkEmail, setCheckEmail] = useState(true);
+  const [checkCertification, setCheckCertification] = useState(true);
 
   const emailInputRef = useRef<RefObject<HTMLInputElement>>(null);
 
@@ -33,12 +34,13 @@ export default function EmailForm() {
   }, [validate.certification]);
 
   const emailCheck = () => {
-    const email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
-    if (!email_regex.test(email)) {
-      return false;
-    } else {
-      userInfo.setEmail(email);
-      return true;
+    if (email) {
+      if (!email_regex.value.test(email)) {
+        return false;
+      } else {
+        userInfo.setEmail(email);
+        return true;
+      }
     }
   };
 
@@ -47,10 +49,10 @@ export default function EmailForm() {
       if (emailCheck()) {
         modal.changeStatus();
         setCheckEmail(true);
-        emailInputRef.current.blur();
+        emailInputRef?.current?.blur();
       } else {
         setCheckEmail(false);
-        console.log('이메일의 형식이 올바르지 않습니다.');
+        console.log(email_regex.message);
       }
     }
   };
@@ -71,6 +73,7 @@ export default function EmailForm() {
       <div className="w-72 font-sans text-24 text-center">
         이메일 주소로 10초만에 가입해 마실을 시작하세요
       </div>
+
       <div className="flex justify-center w-72">
         <input
           disabled={validate.certification.length > 0}
@@ -86,7 +89,7 @@ export default function EmailForm() {
       </div>
       <div
         className={clsx('justify-center', 'w-72', {
-          ['hidden']: emailNum.length === 0,
+          ['hidden']: emailNum?.length === 0,
         })}>
         <input
           className="w-full bg-gray  rounded-lg p-16"
@@ -96,7 +99,8 @@ export default function EmailForm() {
           onKeyDown={checkCertifiHandler}
         />
       </div>
-      <div className={clsx('flex justify-center', 'w-72')}>
+
+      <div className="flex justify-center w-72">
         <span
           className={clsx('text-text_error', 'font-semibold', {
             ['hidden']: checkEmail === true,

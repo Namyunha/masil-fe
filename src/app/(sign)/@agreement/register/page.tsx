@@ -8,12 +8,13 @@ export default function LoginModal() {
   return (
     <>
       <div
-        onClick={(e) => {
-          if (e.screenY < 535 || e.screenX < 240 || e.screenX > 648) {
+        onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+          if (e.target.className.includes('background')) {
             modalState.changeStatus();
           }
         }}
         className={clsx(
+          'background',
           'w-dvw',
           'h-dvh',
           'flex',
