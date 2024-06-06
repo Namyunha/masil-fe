@@ -12,7 +12,6 @@ export default function CurrentMessage() {
     const res = await (
       await fetch('/api/profile/image?file=' + currentUserState.fileName)
     ).json();
-    console.log('res = ', res);
     //S3 업로드
     const formData = new FormData();
     Object.entries({ ...res.fields, file }).forEach(([key, value]) => {

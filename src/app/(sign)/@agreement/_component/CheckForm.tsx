@@ -1,10 +1,10 @@
 'use client';
 
 import clsx from 'clsx';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import useCheck from '@/hooks/useCheck';
 import { useModalStore, useValidate } from '@/store/userStore';
-import { AllCheck, RequiredCheck } from './CheckIcons';
+import CheckComponent from './CheckComponent';
 
 export const CheckForm = () => {
   const modalState = useModalStore();
@@ -15,9 +15,7 @@ export const CheckForm = () => {
   const validate = useValidate();
 
   const onEmailHandler = useCallback(() => {
-    console.log('실행');
     validate.setCertification(random());
-    setCheckType('reset');
     modalState.changeStatus();
   }, []);
 
@@ -28,18 +26,21 @@ export const CheckForm = () => {
     }
   }, []);
 
-  document.addEventListener('keydown', eventHandler);
+  useEffect(() => {
+    document.addEventListener('keydown', eventHandler);
+    return () => {
+      document.removeEventListener('keydown', eventHandler);
+    };
+  }, [eventHandler]);
 
   return (
     <>
-      <AllCheck
+      <CheckComponent
         check1={check1}
         check2={check2}
         check3={check3}
-        setCheck={setCheckType}
+        setCheckType={setCheckType}
       />
-      <RequiredCheck check2={check2} check3={check3} setCheck={setCheckType} />
-
       <div className="flex justify-center">
         <button
           disabled={!(check2 && check3)}
@@ -50,8 +51,8 @@ export const CheckForm = () => {
             'text-white',
             'rounded-lg',
             'p-16',
+            'bg-gray',
             {
-              ['bg-gray']: !(check2 && check3),
               ['bg-orange']: check2 && check3,
               ['cursor-not-allowed']: !(check2 && check3),
             }

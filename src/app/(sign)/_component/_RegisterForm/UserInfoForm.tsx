@@ -5,7 +5,8 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { id_regex, pw_regex } from '@/constants/validates';
 import useCheck from '@/hooks/useCheck';
-import { useRegisterStore, userInfo, useValidate } from '@/store/userStore';
+import { useRegisterStore, useValidate } from '@/store/userStore';
+import { userInfo } from '@/types/user';
 
 export default function UserInfoForm() {
   const { check1, check2, check3, setCheckType } = useCheck();
@@ -13,14 +14,10 @@ export default function UserInfoForm() {
   const currentUserInfo = useRegisterStore();
   const validate = useValidate();
   const onSubmit: SubmitHandler<userInfo> = (data) => {
-    console.log('data = ', data);
     setCheckType('reset');
     currentUserInfo.setUserInfo(data);
     validate.setNextCheck();
   };
-
-  console.log('check1 = ', check1, 'check2 = ', check2, 'check3 = ', check3);
-
   return (
     <>
       <form
@@ -35,7 +32,6 @@ export default function UserInfoForm() {
               required: 'ID를 입력해주세요',
               onBlur: (e) => {
                 {
-                  console.log('이메일 인증:', e.target.value);
                   id_regex.value.test(e.target.value)
                     ? setCheckType('check1', true)
                     : setCheckType('check1', false);
@@ -58,7 +54,6 @@ export default function UserInfoForm() {
             {...register('pw', {
               required: 'PW를 입력해주세요',
               onBlur: (e) => {
-                console.log('비밀번호 인증:', e.target.value);
                 {
                   pw_regex.value.test(e.target.value)
                     ? setCheckType('check2', true)
@@ -80,7 +75,6 @@ export default function UserInfoForm() {
             {...register('nickName', {
               required: '닉네임을 입력해주세요',
               onBlur: (e) => {
-                console.log('닉네임 인증:', e.target.value);
                 {
                   e.target.value.length > 0
                     ? setCheckType('check3', true)

@@ -1,5 +1,5 @@
-import CurrentMessage from './_ProfileForm/CurrentMessage';
-import ProfileImage from './_ProfileForm/ProfileImage';
+import CurrentMessage from './_profileForm/CurrentMessage';
+import ProfileImage from './_profileForm/ProfileImage';
 
 export default function ProfilForm() {
   return (

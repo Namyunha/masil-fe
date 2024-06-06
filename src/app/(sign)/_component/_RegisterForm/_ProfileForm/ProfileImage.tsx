@@ -64,7 +64,6 @@ export default function ProfileImage() {
             if (e.target.files && e.target.files.length > 0) {
               const file = e.target.files[0];
               const imagePreview = window.URL.createObjectURL(file);
-              console.log('file = ', file);
               currentUserInfo.setImageFile(file);
               setSrc(imagePreview);
               setFileName(encodeURIComponent(file.name));
