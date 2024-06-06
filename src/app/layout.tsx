@@ -18,16 +18,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  agreement,
 }: Readonly<{
   children: React.ReactNode;
+  agreement: React.ReactNode;
 }>) {
   return (
     <html lang="ko" className={nunitoSans.className}>
-      <body>
+      <body className="h-dvh">
         <QueryProvider>
           <MockProvider>
             <Header />
             {children}
+            {agreement}
           </MockProvider>
         </QueryProvider>
       </body>

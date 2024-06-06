@@ -16,6 +16,8 @@ const config: Config = {
         // Todo: 디자인 팔레트에 맞춰 재작업
         transparent: 'transparent',
         primary: '#ECCDC1',
+        gray: '#c9c8d3',
+        orange: '#ff7b27',
         bg_white: '#FFFFFF',
         bg_disabled: '#F4F3FE',
         stroke_focused: '#F845FC',

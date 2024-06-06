@@ -1,3 +1,7 @@
+export { default as arrow_right } from 'public/icon/arrow_right.svg';
+export { default as check } from 'public/icon/check.svg';
+export { default as check_circle_full } from 'public/icon/check_circle_full.svg';
+export { default as check_circle_outline } from 'public/icon/check_circle_outline.svg';
 export { default as comment } from 'public/icon/comment.svg';
 export { default as heart } from 'public/icon/heart.svg';
 export { default as heart_full } from 'public/icon/heart_full.svg';
