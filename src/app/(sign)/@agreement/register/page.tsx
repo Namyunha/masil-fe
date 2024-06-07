@@ -8,8 +8,9 @@ export default function LoginModal() {
   const closeModalHandler = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    typeof e.target.className === 'string' &&
-      e.target.className.includes('background') &&
+    const target = e.target as HTMLElement;
+    typeof target.className === 'string' &&
+      target.className.includes('background') &&
       modalState.changeStatus();
   };
   return (
