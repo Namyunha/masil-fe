@@ -1,13 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import React, {
-  KeyboardEvent,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { email_regex } from '@/constants/validates';
 import {
   useModalStore,
@@ -27,7 +21,7 @@ export default function EmailForm() {
   const [checkEmail, setCheckEmail] = useState(true);
   const [checkCertification, setCheckCertification] = useState(true);
 
-  const emailInputRef = useRef<RefObject<HTMLInputElement>>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setEmailNum(validate.certification);

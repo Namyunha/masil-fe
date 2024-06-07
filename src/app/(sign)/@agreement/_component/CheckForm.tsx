@@ -19,7 +19,7 @@ export const CheckForm = () => {
     modalState.changeStatus();
   }, []);
 
-  const eventHandler = useCallback((e) => {
+  const eventHandler = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       modalState.changeStatus();
       return;

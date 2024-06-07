@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useRegisterStore } from '@/store/userStore';
 
 export default function ProfileImage() {
-  const imageRef = useRef(null);
+  const imageRef = useRef<HTMLInputElement>(null);
   const [src, setSrc] = useState<string>();
   const [filename, setFileName] = useState<string>();
   const currentUserInfo = useRegisterStore();

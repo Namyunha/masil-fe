@@ -14,8 +14,11 @@ export default function CurrentMessage() {
     ).json();
     //S3 업로드
     const formData = new FormData();
-    Object.entries({ ...res.fields, file }).forEach(([key, value]) => {
-      formData.append(key, value);
+    Object.entries({
+      ...(res.fields as Record<string, string | Blob>),
+      file,
+    }).forEach(([key, value]) => {
+      formData.append(key, value as string | Blob);
     });
     const uploadResult = await fetch(res.url, {
       method: 'POST',
