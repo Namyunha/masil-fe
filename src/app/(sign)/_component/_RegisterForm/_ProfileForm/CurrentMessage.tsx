@@ -1,13 +1,23 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRegisterStore } from '@/store/userStore';
 
 export default function CurrentMessage() {
   const currentUserState = useRegisterStore();
-  const [message, setMessage] = useState<string>();
+  const [userData, setUserData] = useState({
+    ...currentUserState.userInfo,
+    email: currentUserState.email,
+    fileName: currentUserState.imageFile?.name,
+    currentMessage: currentUserState.currentMessage,
+  });
+  useEffect(() => {
+    setUserData({ ...userData, fileName: currentUserState.imageFile?.name });
+  }, [currentUserState]);
   const router = useRouter();
   const file = currentUserState.imageFile;
+  console.log('currnetMessage userData = ', userData);
+
   const onImageUploadHandler = async () => {
     const res = await (
       await fetch('/api/profile/image?file=' + currentUserState.fileName)
@@ -27,16 +37,31 @@ export default function CurrentMessage() {
     console.log('uploadResult = ', uploadResult);
   };
 
-  const onSignUpHandler = () => {
-    currentUserState.setCurrentMessage(message);
-    onImageUploadHandler();
-    router.push('/');
+  const onSaveInfo = async (e) => {
+    setUserData({ ...userData, currentMessage: e.target.value });
+  };
+
+  const onUserUploadHandler = async () => {
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(userData),
+    });
+    console.log('response = ', response);
+  };
+
+  const onSignUpHandler = async () => {
+    await onUserUploadHandler();
+    await onImageUploadHandler();
+    // router.push('/');
   };
 
   return (
     <div className="flex flex-col h-96 mt-80 justify-end">
       <input
-        onChange={(e) => setMessage(e.target.value)}
+        onChange={(e) => onSaveInfo(e)}
         className="text-center w-72 border-b-2 pt-3 pb-3 border-black/50"
         placeholder="상태 메시지를 입력하세요"
       />
