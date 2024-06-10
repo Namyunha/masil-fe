@@ -14,7 +14,7 @@ export default async function handler(
     const hash = await bcrypt.hash(req.body.pw, 10);
     req.body.pw = hash;
     console.log('req = ', req.body);
-    registerUser(req.body);
-    res.status(200).json({ message: 'Hello from Next.js!' });
+    registerUser(req.body).catch(console.dir);
+    res.status(200).json({ message: '회원가입 성공!' });
   }
 }

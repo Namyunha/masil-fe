@@ -4,7 +4,7 @@ import { FILTER_COLOR } from '@/styles/filterColor';
 
 type IconProps = {
   name: keyof typeof icons;
-  size?: 16 | 24 | 32;
+  size?: 16 | 24 | 32 | number;
   filter?: keyof typeof FILTER_COLOR;
   className?: string;
 };
