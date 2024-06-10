@@ -1,16 +1,22 @@
 import { MongoClient } from 'mongodb';
 
-const url =
-  'mongodb+srv://yunn75151:qwer1234@cluster0.apcolmu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-const options = { useNewUrlParser: true };
-let connectDB;
+// Replace the following with your Atlas connection string
+const uri = process.env.DATABASE_URL;
+export const dbClient = new MongoClient(uri);
 
-if (process.env.NODE_ENV === 'development') {
-  if (!global._mongo) {
-    global._mongo = new MongoClient(url, options).connect();
+export async function findUserList() {
+  try {
+    // Connect to the Atlas cluster
+    await dbClient.connect();
+    // Get the database and collection on which to run the operation
+    const db = dbClient.db('masil');
+    const col = db.collection('user');
+    const document = await col.find().toArray();
+    // Print results
+    console.log('Document found:\n' + JSON.stringify(document));
+  } catch (err) {
+    console.log(err.stack);
+  } finally {
+    await dbClient.close();
   }
-  connectDB = global._mongo;
-} else {
-  connectDB = new MongoClient(url, options).connect();
 }
-export { connectDB };
