@@ -42,7 +42,7 @@ export default function CurrentMessage() {
   };
 
   const onUserUploadHandler = async () => {
-    const response = await fetch('/api/register', {
+    const response = await fetch('/api/user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -55,7 +55,7 @@ export default function CurrentMessage() {
   const onSignUpHandler = async () => {
     await onUserUploadHandler();
     await onImageUploadHandler();
-    // router.push('/');
+    router.push('/');
   };
 
   return (
