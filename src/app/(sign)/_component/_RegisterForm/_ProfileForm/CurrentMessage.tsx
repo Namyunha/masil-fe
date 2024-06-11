@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useRegisterStore } from '@/store/userStore';
 
 export default function CurrentMessage() {
@@ -37,8 +37,11 @@ export default function CurrentMessage() {
     console.log('uploadResult = ', uploadResult);
   };
 
-  const onSaveInfo = async (e) => {
-    setUserData({ ...userData, currentMessage: e.target.value });
+  const onSaveInfo = async (e: ChangeEvent<HTMLInputElement>) => {
+    setUserData({
+      ...userData,
+      currentMessage: e.target.value,
+    });
   };
 
   const onUserUploadHandler = async () => {

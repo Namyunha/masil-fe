@@ -8,7 +8,6 @@ export default function ProfileImage() {
   const [src, setSrc] = useState<string>();
   const [filename, setFileName] = useState<string>();
   const currentUserInfo = useRegisterStore();
-
   const onImageUploadHandler = () => {
     imageRef?.current?.click();
   };
@@ -16,6 +15,17 @@ export default function ProfileImage() {
   useEffect(() => {
     filename && currentUserInfo.setFileName(filename);
   }, [filename]);
+
+  const onPreviewImageHandler = async (e: ChangeEvent<HTMLInputElement>) => {
+    // 미리보기
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const imagePreview = window.URL.createObjectURL(file);
+      currentUserInfo.setImageFile(file);
+      setSrc(imagePreview);
+      setFileName(encodeURIComponent(file.name));
+    }
+  };
 
   return (
     <>
@@ -41,16 +51,7 @@ export default function ProfileImage() {
           </>
         )}
         <input
-          onChange={async (e: ChangeEvent<HTMLInputElement>) => {
-            // 미리보기
-            if (e.target.files && e.target.files.length > 0) {
-              const file = e.target.files[0];
-              const imagePreview = window.URL.createObjectURL(file);
-              currentUserInfo.setImageFile(file);
-              setSrc(imagePreview);
-              setFileName(encodeURIComponent(file.name));
-            }
-          }}
+          onChange={onPreviewImageHandler}
           ref={imageRef}
           className="hidden"
           type="file"

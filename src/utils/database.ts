@@ -1,7 +1,9 @@
 import { MongoClient } from 'mongodb';
+import { dbUserData } from '@/types/user';
 
 // Replace the following with your Atlas connection string
-const uri = process.env.DATABASE_URL;
+const uri = process.env.DATABASE_URL as string;
+
 export const dbClient = new MongoClient(uri);
 
 const connectDB = async () => {
@@ -21,13 +23,13 @@ export async function findUser(searchEmail: string) {
     // console.log('Document found:\n' + JSON.stringify(document));
     return document;
   } catch (err) {
-    console.log(err.stack);
+    console.log(err);
   } finally {
     await dbClient.close();
   }
 }
 
-export async function registerUser(newItem) {
+export async function registerUser(newItem: dbUserData) {
   try {
     const col = await connectDB();
     const document = await col
@@ -39,7 +41,7 @@ export async function registerUser(newItem) {
     // Print results
     console.log('Document found:\n' + JSON.stringify(document));
   } catch (err) {
-    console.log(err.stack);
+    console.log(err);
   } finally {
     await dbClient.close();
   }

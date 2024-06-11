@@ -1,21 +1,11 @@
 import bcrypt from 'bcrypt';
-import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { dbUserData } from '@/types/user';
 import { findUser, registerUser } from '@/utils/database';
-
-type userdata = {
-  _id: ObjectId;
-  id: string;
-  pw: string;
-  nickName: string;
-  email: string;
-  fileName: string;
-  currentMessage: string;
-};
 
 type ResponseData = {
   message: string;
-  data?: userdata;
+  data?: dbUserData;
 };
 
 export default async function handler(
@@ -23,7 +13,8 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
   if (req.method === 'GET') {
-    const result = await findUser(req.query.email);
+    const searchUser = req.query.email as string;
+    const result = (await findUser(searchUser)) as dbUserData;
     console.log('result = ', result);
     if (!result) {
       res
