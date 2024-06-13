@@ -15,11 +15,11 @@ export default function ReviewItemSubInfo({
     <div className="flex justify-between items-center px-4">
       <div className="flex items-center gap-1">
         <Icon name={isLike ? 'heart_full' : 'heart'} size={16} filter="GRAY" />
-        <span className="text-text_disabled">{likeCount}</span>
+        <span className="text-text_light_grey">{likeCount}</span>
       </div>
       <div className="flex items-center gap-1">
         <Icon name="comment" size={16} filter="GRAY" />
-        <span className="text-text_disabled">{commentCount}</span>
+        <span className="text-text_light_grey">{commentCount}</span>
       </div>
       <Icon name="share" size={16} filter="GRAY" />
     </div>

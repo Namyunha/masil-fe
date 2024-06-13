@@ -1,95 +1,71 @@
-import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import Button from '@/components/Button';
+import Button from './Button';
 
 describe('Button component', () => {
-  test('renders with default props', () => {
-    render(<Button>Click me</Button>);
-    const button = screen.getByRole('button', { name: /click me/i });
-
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveClass(
-      'bg-primary text-text_white rounded text-base py-2 px-6'
-    );
-    expect(button).toHaveAttribute('type', 'button');
+  it('디폴트 버튼 랜더링 테스트', () => {
+    render(<Button text="Default Button" childrenType="textOnly" />);
+    const buttonElement = screen.getByRole('button', {
+      name: /default button/i,
+    });
+    expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement).toHaveClass('text-16', 'px-32', 'py-14');
+    expect(buttonElement).toHaveClass('bg-button_bg_default');
   });
 
-  test('renders with primary variant, shape, and size', () => {
+  it('테마, 사이즈 변경 버튼 랜더링 테스트', () => {
     render(
-      <Button variant="primary" shape="primary" size="medium">
-        Click me
-      </Button>
+      <Button
+        variant="secondary"
+        size="xl"
+        childrenType="textOnly"
+        text="Secondary XL Button"
+      />
     );
-    const button = screen.getByRole('button', { name: /click me/i });
-
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveClass(
-      'bg-primary text-text_white rounded text-base py-2 px-6'
+    const buttonElement = screen.getByRole('button', {
+      name: /secondary xl button/i,
+    });
+    expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement).toHaveClass('text-20', 'px-32', 'py-20', 'gap-8');
+    expect(buttonElement).toHaveClass(
+      'bg-transparent',
+      'border',
+      'border-button_secondary_stroke',
+      'text-button_secondary_text'
     );
   });
 
-  test('renders with cancel variant', () => {
-    render(<Button variant="cancel">Cancel</Button>);
-    const button = screen.getByRole('button', { name: /cancel/i });
-
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('bg-text_error text-text_white');
+  it('icon only 버튼 랜더링 테스트', () => {
+    render(
+      <Button
+        variant="primary"
+        size="s"
+        childrenType="iconOnly"
+        iconName="heart"
+        aria-label="icon only button"
+      />
+    );
+    const buttonElement = screen.getByRole('button', {
+      name: /icon only button/i,
+    });
+    expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement).toHaveClass('p-8');
+    expect(buttonElement).toHaveClass('bg-button_bg_default');
   });
 
-  test('renders with more variant', () => {
-    render(<Button variant="more">More</Button>);
-    const button = screen.getByRole('button', { name: /more/i });
-
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('bg-transparent text-text_black');
-  });
-
-  test('renders with square shape', () => {
-    render(<Button shape="square">Square</Button>);
-    const button = screen.getByRole('button', { name: /square/i });
-
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('rounded-none');
-  });
-
-  test('renders with full shape', () => {
-    render(<Button shape="full">Full</Button>);
-    const button = screen.getByRole('button', { name: /full/i });
-
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('rounded-full');
-  });
-
-  test('renders with small size', () => {
-    render(<Button size="small">Small</Button>);
-    const button = screen.getByRole('button', { name: /small/i });
-
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('text-sm py-1 px-2');
-  });
-
-  test('renders with large size', () => {
-    render(<Button size="large">Large</Button>);
-    const button = screen.getByRole('button', { name: /large/i });
-
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('text-lg py-3 px-6');
-  });
-
-  test('handles onClick event', () => {
+  it('버튼 클릭 작동 테스트', () => {
     const handleClick = jest.fn();
-    render(<Button onClick={handleClick}>Click me</Button>);
-    const button = screen.getByRole('button', { name: /click me/i });
-
-    fireEvent.click(button);
+    render(<Button onClick={handleClick} text="Click Me" />);
+    const buttonElement = screen.getByRole('button', { name: /click me/i });
+    fireEvent.click(buttonElement);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  test('supports custom class names', () => {
-    render(<Button className="custom-class">Click me</Button>);
-    const button = screen.getByRole('button', { name: /click me/i });
-
-    expect(button).toHaveClass('custom-class');
+  it('클래스네임 추가 테스트', () => {
+    render(<Button className="extra-class" text="Button with Class" />);
+    const buttonElement = screen.getByRole('button', {
+      name: /button with class/i,
+    });
+    expect(buttonElement).toHaveClass('extra-class');
   });
 });
