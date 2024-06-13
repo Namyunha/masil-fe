@@ -30,11 +30,11 @@ export default function HomeTabButton({ name }: HomeTabButtonProps) {
   );
 }
 
-const linkVariants = cva(`font-bold text-text_disabled`, {
+const linkVariants = cva(`font-bold text-text_light_grey`, {
   variants: {
     state: {
-      activate: 'text-text_black',
-      inactivate: 'text-text_disabled',
+      activate: 'text-text_primary',
+      inactivate: 'text-text_light_grey',
     },
   },
   defaultVariants: {

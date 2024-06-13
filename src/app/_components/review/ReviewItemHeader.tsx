@@ -27,7 +27,7 @@ export default function ReviewItemHeader({
           <Icon name="star" size={16} />
           {rating}
         </div>
-        <span className="text-text_disabled">{convertTime(createdAt)}</span>
+        <span className="text-text_light_grey">{convertTime(createdAt)}</span>
       </div>
     </div>
   );

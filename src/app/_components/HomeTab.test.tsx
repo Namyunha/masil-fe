@@ -20,9 +20,9 @@ describe('HomeTab component', () => {
     const inactiveTabButton = screen.getByText('카페');
     const secondInactiveTabButton = screen.getByText('스크랩');
 
-    expect(activeTabButton).toHaveClass('text-text_black');
-    expect(inactiveTabButton).toHaveClass('text-text_disabled');
-    expect(secondInactiveTabButton).toHaveClass('text-text_disabled');
+    expect(activeTabButton).toHaveClass('text-text_primary');
+    expect(inactiveTabButton).toHaveClass('text-text_light_grey');
+    expect(secondInactiveTabButton).toHaveClass('text-text_light_grey');
   });
 
   it('버튼 클릭시 활성화 버튼 변경 테스트', () => {
@@ -34,8 +34,8 @@ describe('HomeTab component', () => {
 
     fireEvent.click(inactiveTabButton);
 
-    expect(activeTabButton).toHaveClass('text-text_disabled');
-    expect(inactiveTabButton).toHaveClass('text-text_black');
-    expect(secondInactiveTabButton).toHaveClass('text-text_disabled');
+    expect(activeTabButton).toHaveClass('text-text_light_grey');
+    expect(inactiveTabButton).toHaveClass('text-text_primary');
+    expect(secondInactiveTabButton).toHaveClass('text-text_light_grey');
   });
 });
