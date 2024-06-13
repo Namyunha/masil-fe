@@ -1,25 +1,63 @@
+'use client';
+
 import clsx from 'clsx';
-import React from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+type Inputs = {
+  id: string;
+  pw: string;
+};
 
 export default function LoginForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onLoginHandler = async (data: Inputs) => {
+    console.log('Data = ', data);
+    setIsLoading(true);
+    const result = await (
+      await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(data),
+      })
+    ).json();
+    setIsLoading(false);
+    console.log('result = ', result);
+  };
+
   return (
-    <form className="flex flex-col items-center mt-48 gap-48">
+    <form
+      onSubmit={handleSubmit(onLoginHandler)}
+      className="flex flex-col items-center mt-48 gap-48">
       <div className="flex flex-col justify-center w-72">
         <input
+          {...register('id', { required: '아이디를 입력해주세요' })}
           className="w-full bg-gray  rounded-lg p-16"
           type="text"
           placeholder="아이디를 입력해주세요"
         />
+        {errors && errors.id?.message}
       </div>
       <div className="justify-center w-72">
         <input
+          {...register('pw', { required: '비밀번호를 입력해주세요' })}
           className="w-full bg-gray  rounded-lg p-16"
           type="password"
           placeholder="비밀번호를 입력해주세요"
         />
+        {errors && errors.pw?.message}
       </div>
       <div className="flex justify-center">
         <button
+          disabled={isLoading}
           className={clsx(
             'mt-28',
             'w-72',
@@ -29,7 +67,7 @@ export default function LoginForm() {
             'p-16',
             'bg-gray'
           )}>
-          로그인
+          {!isLoading ? '로그인' : '로그인중...'}
         </button>
       </div>
     </form>
