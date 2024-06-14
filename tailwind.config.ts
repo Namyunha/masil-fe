@@ -104,6 +104,11 @@ const config: Config = {
         20: '20px',
         24: '24px',
       },
+      zIndex: {
+        float: '10',
+        dim: '20',
+        modal: '30',
+      },
     },
   },
   plugins: [],
