@@ -6,6 +6,7 @@ import {
   ERROR_CODE,
   SUCCESS_CODE,
 } from '@/constants/api';
+import { ReviewListReqType } from '@/types/review';
 import { mockReviewList } from './data';
 
 export const browserHandlers = [
@@ -30,21 +31,24 @@ export const browserHandlers = [
   ),
 
   // 리뷰 리스트 조회
-  http.get(END_POINT.REVIEW.LIST, async ({ request }) => {
-    const url = new URL(request.url);
-    const cursor =
-      parseInt(url.searchParams.get('cursor') as string) || DEFAULT_CURSOR;
-    const size =
-      parseInt(url.searchParams.get('size') as string) || DEFAULT_SIZE;
+  http.post<never, ReviewListReqType>(
+    END_POINT.REVIEW.LIST,
+    async ({ request }) => {
+      const { pagingData } = await request.json();
+      const { lastPostId, pageSize } = pagingData;
+      const cursor = lastPostId ?? DEFAULT_CURSOR;
+      const size = pageSize ?? DEFAULT_SIZE;
+      const nextList = mockReviewList.data.reviews.slice(cursor, cursor + size);
 
-    const response = {
-      ...mockReviewList,
-      data: {
-        reviews: mockReviewList.data.reviews.slice(cursor, cursor + size),
-      },
-      hasNext: true,
-    };
+      const response = {
+        ...mockReviewList,
+        data: {
+          reviews: nextList,
+          hasNext: nextList.length <= DEFAULT_SIZE,
+        },
+      };
 
-    return HttpResponse.json(response, { status: SUCCESS_CODE.OK });
-  }),
+      return HttpResponse.json(response, { status: SUCCESS_CODE.OK });
+    }
+  ),
 ];
