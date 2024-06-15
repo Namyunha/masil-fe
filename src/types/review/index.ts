@@ -1,9 +1,17 @@
+export type ReviewListReqType = {
+  tags: string[];
+  pagingData: {
+    lastPostId?: number;
+    pageSize?: number;
+  };
+};
+
 export type ReviewListResType = {
   status: string;
   message: string;
-  hasNext: boolean;
   data: {
     reviews: ReviewItemType[];
+    hasNext: boolean;
   };
 };
 
@@ -18,7 +26,7 @@ export type ReviewItemType = {
   isLike: boolean;
   likeCount: number;
   commentCount: number;
-  store: ReviewStoreType;
+  cafeInfo: CafeInfoType;
   createdAt: string;
 };
 
@@ -27,9 +35,9 @@ export type ReviewImageType = {
   url: string;
 };
 
-export type ReviewStoreType = {
-  id: number;
-  name: string;
-  address: string;
+export type CafeInfoType = {
+  cafeId: number;
+  cafeName: string;
+  cafeLoca: string;
   isLike: boolean;
 };

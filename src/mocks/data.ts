@@ -8,7 +8,8 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content:
+          '외국인들도 줄 서서 먹는다는 츄러스 리뷰 아이템 길이 테스트용 내용 의미 없음',
         reviewImageUrls: [
           {
             id: 1,
@@ -27,10 +28,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',
@@ -40,7 +41,7 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리2',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content: '외국인들도 줄 서서 먹는다는 츄러스',
         reviewImageUrls: [
           {
             id: 1,
@@ -59,10 +60,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',
@@ -72,7 +73,7 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리3',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content: '외국인들도 줄 서서 먹는다는 츄러스',
         reviewImageUrls: [
           {
             id: 1,
@@ -91,10 +92,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',
@@ -104,7 +105,7 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리4',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content: '외국인들도 줄 서서 먹는다는 츄러스',
         reviewImageUrls: [
           {
             id: 1,
@@ -123,10 +124,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',
@@ -136,7 +137,7 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리5',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content: '외국인들도 줄 서서 먹는다는 츄러스',
         reviewImageUrls: [
           {
             id: 1,
@@ -155,10 +156,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',
@@ -168,7 +169,7 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리6',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content: '외국인들도 줄 서서 먹는다는 츄러스',
         reviewImageUrls: [
           {
             id: 1,
@@ -187,10 +188,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',
@@ -200,7 +201,7 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리7',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content: '외국인들도 줄 서서 먹는다는 츄러스',
         reviewImageUrls: [
           {
             id: 1,
@@ -219,10 +220,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',
@@ -232,7 +233,7 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리8',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content: '외국인들도 줄 서서 먹는다는 츄러스',
         reviewImageUrls: [
           {
             id: 1,
@@ -251,10 +252,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',
@@ -264,7 +265,7 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리9',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content: '외국인들도 줄 서서 먹는다는 츄러스',
         reviewImageUrls: [
           {
             id: 1,
@@ -283,10 +284,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',
@@ -296,7 +297,7 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리10',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content: '외국인들도 줄 서서 먹는다는 츄러스',
         reviewImageUrls: [
           {
             id: 1,
@@ -315,10 +316,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',
@@ -328,7 +329,7 @@ export const mockReviewList = {
         userId: 2,
         nickName: '베리11',
         profileImageUrl: '/image/test_user.png',
-        content: '외국인들도 줄 서서 먹는다는 츄러스 ...',
+        content: '외국인들도 줄 서서 먹는다는 츄러스',
         reviewImageUrls: [
           {
             id: 1,
@@ -347,10 +348,10 @@ export const mockReviewList = {
         isLike: false,
         likeCount: 12,
         commentCount: 12,
-        store: {
-          id: 1,
-          name: '미뉴트빠삐용',
-          address: '서울 강남구 도산대로 51길 37 지하 1층',
+        cafeInfo: {
+          cafeId: 1,
+          cafeName: '미뉴트빠삐용',
+          cafeLoca: '서울 강남구 도산대로 51길 37 지하 1층',
           isLike: false,
         },
         createdAt: '2024-05-22 12:10:55',

@@ -3,16 +3,28 @@ import { DEFAULT_CURSOR, DEFAULT_SIZE } from '@/constants/api';
 import { reviewKeys } from './../queryKeys';
 import { getReviewList } from '.';
 
-export function useReviewListInfiniteQuery() {
+export function useReviewListInfiniteQuery({
+  tags,
+  pageSize = DEFAULT_SIZE,
+}: {
+  tags: string[];
+  pageSize?: number;
+}) {
   return useInfiniteQuery({
-    ...reviewKeys.reviewList, // Todo: 필터링 정해지면 인수 추가
+    ...reviewKeys.reviewList,
     initialPageParam: DEFAULT_CURSOR,
     queryFn: ({ pageParam }) =>
-      getReviewList({ cursor: pageParam, size: DEFAULT_SIZE }),
+      getReviewList({
+        tags,
+        pagingData: {
+          lastPostId: pageParam,
+          pageSize,
+        },
+      }),
     getNextPageParam: (lastPage) => {
       const lastReview = lastPage.data.reviews.at(-1);
       const nextCursor = lastReview?.reviewId;
-      return lastPage.hasNext ? nextCursor : undefined;
+      return lastPage.data.hasNext ? nextCursor : undefined;
     },
   });
 }

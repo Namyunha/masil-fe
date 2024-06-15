@@ -3,7 +3,7 @@
 import { useReviewListInfiniteQuery } from '@/api/review/queries';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { useInfiniteObserver } from '@/hooks/useInfiniteObserver';
-import ReviewItem from './ReviewItem';
+import ReviewItem from './ReviewItem/ReviewItem';
 
 export default function ReviewList() {
   const {
@@ -13,7 +13,7 @@ export default function ReviewList() {
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useReviewListInfiniteQuery();
+  } = useReviewListInfiniteQuery({ tags: [] });
 
   const targetRef = useInfiniteObserver(() => {
     if (hasNextPage) {
@@ -24,7 +24,7 @@ export default function ReviewList() {
   return (
     <>
       {status === 'error' && <>{error.message}</>}
-      {status === 'pending' && <>로딩중...</>}
+      {status === 'pending' && <LoadingSpinner />}
       {status === 'success' && (
         <ul>
           {data.pages.map((page) =>

@@ -1,14 +1,10 @@
-import HomeMain from '@/app/_components/HomeMain';
+import HomeReview from '@/app/_components/HomeReview';
 import HomeFAB from './_components/HomeFAB';
-import HomeFilter from './_components/HomeFilter';
-import HomeTab from './_components/HomeTab';
 
 export default function Home() {
   return (
-    <main className="flex flex-col p-16 gap-2">
-      <HomeTab />
-      <HomeFilter />
-      <HomeMain />
+    <main className="p-16">
+      <HomeReview />
       <HomeFAB />
     </main>
   );

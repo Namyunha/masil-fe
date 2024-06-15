@@ -1,11 +1,11 @@
-import HeaderButtons from './HeaderButtons';
 import HeaderLogo from './HeaderLogo';
+import HeaderNavButton from './HeaderNavButton';
 
 export default function Header() {
   return (
-    <header className="flex justify-between px-2 py-2 text-text_white bg-primary">
+    <header className="flex justify-between px-16 py-8">
       <HeaderLogo />
-      <HeaderButtons />
+      <HeaderNavButton />
     </header>
   );
 }
