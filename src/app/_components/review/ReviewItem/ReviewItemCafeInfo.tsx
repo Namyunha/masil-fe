@@ -16,7 +16,7 @@ export default function ReviewItemCafeInfo({
   };
 
   return (
-    <div className="flex justify-between items-center px-12 py-24 bg-bg_disabled rounded-md border border-stroke_grey">
+    <div className="flex justify-between items-center px-12 py-24 rounded-md border border-stroke_grey">
       <div className="flex flex-col gap-1">
         <span className="text-14 font-bold">{cafeInfo.cafeName}</span>
         <span className="text-12 text-text_grey">{cafeInfo.cafeLoca}</span>

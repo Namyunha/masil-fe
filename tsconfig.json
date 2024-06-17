@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "jest.setup.js",
-    "jest.config.js"
+    "jest.config.js",
+    "svg.d.ts"
   ],
   "exclude": ["node_modules"]
 }

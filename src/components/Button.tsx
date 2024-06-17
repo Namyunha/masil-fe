@@ -67,7 +67,7 @@ export default function Button({
 }
 
 const buttonVariants = cva(
-  `flex justify-center items-center rounded font-normal`,
+  `flex justify-center items-center rounded font-bold`,
   {
     variants: {
       variant: {

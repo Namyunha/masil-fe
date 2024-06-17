@@ -1,4 +1,4 @@
-import ReviewFilter from './review/ReviewFilter';
+import ReviewFilter from './review/ReviewFilter/ReviewFilter';
 import ReviewList from './review/ReviewList';
 
 export default function HomeReview() {

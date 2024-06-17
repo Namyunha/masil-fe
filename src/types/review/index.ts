@@ -1,5 +1,9 @@
+import { LOCATION, SORTING, TAGS } from '@/constants/reviewFilter';
+
 export type ReviewListReqType = {
-  tags: string[];
+  tags: TagsKey[];
+  sorting: SortingKey;
+  location: LocationKey;
   pagingData: {
     lastPostId?: number;
     pageSize?: number;
@@ -11,7 +15,7 @@ export type ReviewListResType = {
   message: string;
   data: {
     reviews: ReviewItemType[];
-    hasNext: boolean;
+    meta: ReviewListMetaType;
   };
 };
 
@@ -41,3 +45,18 @@ export type CafeInfoType = {
   cafeLoca: string;
   isLike: boolean;
 };
+
+export type ReviewListMetaType = {
+  hasNext: boolean;
+  pageable_count: number;
+  same_name: {
+    keyword: string;
+    region: string[];
+    selected_region: string;
+  };
+  total_count: number;
+};
+
+export type SortingKey = keyof typeof SORTING;
+export type TagsKey = keyof typeof TAGS;
+export type LocationKey = keyof typeof LOCATION;

@@ -3,9 +3,13 @@
 import { useReviewListInfiniteQuery } from '@/api/review/queries';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { useInfiniteObserver } from '@/hooks/useInfiniteObserver';
+import { useFilterStore } from '@/store/filterStore';
 import ReviewItem from './ReviewItem/ReviewItem';
 
 export default function ReviewList() {
+  const { activeTags, activeSorting, activeLocation } = useFilterStore();
+
+  // Todo: 필터 변할 시 캐싱 제거하기
   const {
     data,
     error,
@@ -13,7 +17,11 @@ export default function ReviewList() {
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useReviewListInfiniteQuery({ tags: [] });
+  } = useReviewListInfiniteQuery({
+    tags: activeTags,
+    sorting: activeSorting,
+    location: activeLocation,
+  });
 
   const targetRef = useInfiniteObserver(() => {
     if (hasNextPage) {

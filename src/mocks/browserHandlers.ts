@@ -44,7 +44,9 @@ export const browserHandlers = [
         ...mockReviewList,
         data: {
           reviews: nextList,
-          hasNext: nextList.length <= DEFAULT_SIZE,
+          meta: {
+            hasNext: nextList.length <= DEFAULT_SIZE,
+          },
         },
       };
 
