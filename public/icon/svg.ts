@@ -9,6 +9,8 @@ export { default as comment } from 'public/icon/comment.svg';
 export { default as filter } from 'public/icon/filter.svg';
 export { default as heart } from 'public/icon/heart.svg';
 export { default as heart_full } from 'public/icon/heart_full.svg';
+export { default as icon_plus } from 'public/icon/icon_plus.svg';
+export { default as icon_profile } from 'public/icon/icon_profile.svg';
 export { default as logo } from 'public/icon/logo.svg';
 export { default as logo_secondary } from 'public/icon/logo_secondary.svg';
 export { default as menu } from 'public/icon/menu.svg';

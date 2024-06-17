@@ -10,54 +10,71 @@ import {
 } from '@/store/userStore';
 
 export default function EmailForm() {
+  // 모달 온, 오프 조절
   const modal = useModalStore();
+  // 인증 확인 여부
   const validate = useValidate();
+  // 유저정보 (이메일) 저장
   const userInfo = useRegisterStore();
-
+  // 이메일 입력
   const [email, setEmail] = useState<string>();
-  const [emailNum, setEmailNum] = useState<string>();
+  // 인증번호 받기 여부
+  const [validationNum, setValidationNum] = useState<string>();
+  // 인증번호 입력
   const [certification, setCertification] = useState<string>();
-
-  const [checkEmail, setCheckEmail] = useState(true);
-  const [checkCertification, setCheckCertification] = useState(true);
-
+  // 이메일 입력후 모달 띄울 때, 포커스 없애기
   const emailInputRef = useRef<HTMLInputElement>(null);
-
+  //  에러 문자 남기기
+  const [errorMessage, setErrorMessage] = useState('');
+  // 인증번호 받기시 리랜더링
   useEffect(() => {
-    setEmailNum(validate.certification);
+    setValidationNum(validate.certification);
   }, [validate.certification]);
 
-  const emailCheck = () => {
-    if (email) {
-      if (!email_regex.value.test(email)) {
-        return false;
-      } else {
-        userInfo.setEmail(email);
-        return true;
-      }
+  // 이메일 중복체크
+  const emailDuplicateCheck = async () => {
+    const result = await (await fetch(`/api/user?email=` + email)).json();
+    return result;
+  };
+  // 이메일 사용가능 여부 체크
+  const emailCheck = async () => {
+    if (!email) {
+      setErrorMessage('이메일을 입력해주세요');
+      return false;
+    }
+    if (!email_regex.value.test(email)) {
+      setErrorMessage(email_regex.message);
+      return false;
+    }
+    const result = await emailDuplicateCheck();
+    if (result.data) {
+      setErrorMessage(result.message);
+      return false;
+    } else {
+      setErrorMessage('');
+      return true;
     }
   };
-
-  const emailValidate = (e: KeyboardEvent<HTMLInputElement>) => {
+  // modal 켜기
+  const emailValidate = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      if (emailCheck()) {
+      if (await emailCheck()) {
         modal.changeStatus();
-        setCheckEmail(true);
         emailInputRef?.current?.blur();
-      } else {
-        setCheckEmail(false);
-        console.log(email_regex.message);
       }
     }
   };
-
+  // 인증번호 체크
   const checkCertifiHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      if (!certification) {
+        setErrorMessage('인증번호를 입력해주세요');
+        return;
+      }
       if (certification === validate.certification) {
         userInfo.setAgree();
-        setCheckCertification(true);
       } else {
-        setCheckCertification(false);
+        setErrorMessage('인증번호가 일치하지 않습니다.');
       }
     }
   };
@@ -81,9 +98,10 @@ export default function EmailForm() {
           type="text"
         />
       </div>
+
       <div
         className={clsx('justify-center', 'w-72', {
-          ['hidden']: emailNum?.length === 0,
+          ['hidden']: validationNum?.length === 0,
         })}>
         <input
           className="w-full bg-gray  rounded-lg p-16"
@@ -97,16 +115,9 @@ export default function EmailForm() {
       <div className="flex justify-center w-72">
         <span
           className={clsx('text-text_error', 'font-semibold', {
-            ['hidden']: checkEmail === true,
+            ['hidden']: !errorMessage,
           })}>
-          올바르지 않은 이메일 형식입니다.
-        </span>
-
-        <span
-          className={clsx('text-text_error', 'font-semibold', {
-            ['hidden']: checkCertification === true,
-          })}>
-          인증번호가 일치하지 않습니다.
+          {errorMessage && errorMessage}
         </span>
       </div>
     </>

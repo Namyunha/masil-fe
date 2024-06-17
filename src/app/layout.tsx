@@ -1,4 +1,5 @@
 import './globals.css';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { Metadata } from 'next';
 import { Nunito_Sans } from 'next/font/google';
 import Header from '@/components/Header/Header';
@@ -29,6 +30,7 @@ export default function RootLayout({
             <Header />
             {children}
           </MockProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryProvider>
       </body>
     </html>

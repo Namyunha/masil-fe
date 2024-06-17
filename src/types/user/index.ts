@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 export type ModalState = {
   modalStatus: boolean;
   changeStatus: () => void;
@@ -31,7 +33,16 @@ export type useRegisterStoreProps = {
   setImageFile: (imageFile: File) => void;
 };
 
-// export interface File extends Blob {
-//   readonly lastModified: number;
-//   readonly name: string;
-// }
+export type dbUserData = {
+  _id: ObjectId;
+  id: string;
+  pw: string;
+  nickName: string;
+  email: string;
+  fileName: string;
+  currentMessage: string;
+};
+
+export type updataUserProps = {
+  [key: string]: string;
+};
