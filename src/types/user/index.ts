@@ -42,3 +42,7 @@ export type dbUserData = {
   fileName: string;
   currentMessage: string;
 };
+
+export type updataUserProps = {
+  [key: string]: string;
+};

@@ -1,26 +1,24 @@
-import jwt from 'jsonwebtoken';
-
-const token = jwt.sign(
-  {
-    data: 'foobar',
-  },
-  'secret',
-  {
-    algorithm: 'HS256', // 암호화 알고리즘
-    expiresIn: '1h', // 유효기간
-  }
-);
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 // access Token 발급
 const sign = (userId: string) => {
-  return token;
+  return jwt.sign(
+    {
+      data: userId,
+    },
+    'secret',
+    {
+      algorithm: 'HS256', // 암호화 알고리즘
+      expiresIn: '1h', // 유효기간
+    }
+  );
 };
 
 // access Token 검증
 const verify = (token: string) => {
   let decoded = null;
   try {
-    decoded = jwt.verify(token, 'secret');
+    decoded = jwt.verify(token, 'secret') as JwtPayload;
     return {
       ok: true,
       userId: decoded.id,
@@ -28,10 +26,11 @@ const verify = (token: string) => {
   } catch (error) {
     return {
       ok: false,
-      message: error.message,
+      message: (error as Error).message,
     };
   }
 };
+
 // refresh Token 발급
 const refresh = (userId: string) => {
   return jwt.sign({ id: userId }, 'secret', {

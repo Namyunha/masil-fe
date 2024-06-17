@@ -1,6 +1,8 @@
 'use client';
 
 import clsx from 'clsx';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -10,6 +12,7 @@ type Inputs = {
 };
 
 export default function LoginForm() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -18,7 +21,6 @@ export default function LoginForm() {
   } = useForm<Inputs>();
 
   const onLoginHandler = async (data: Inputs) => {
-    console.log('Data = ', data);
     setIsLoading(true);
     const result = await (
       await fetch('/api/auth/login', {
@@ -29,8 +31,13 @@ export default function LoginForm() {
         body: JSON.stringify(data),
       })
     ).json();
+    // console.log('Current Time = ', new Date(Date.now() + 60 * 60 * 1000));
+    Cookies.set('currentUser', result.accessToken, {
+      secure: true,
+      expires: new Date(Date.now() + 60 * 60 * 1000),
+    });
+    router.push('/');
     setIsLoading(false);
-    console.log('result = ', result);
   };
 
   return (

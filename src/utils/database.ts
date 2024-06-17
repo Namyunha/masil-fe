@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-import { dbUserData } from '@/types/user';
+import { dbUserData, updataUserProps } from '@/types/user';
 
 // Replace the following with your Atlas connection string
 const uri = process.env.DATABASE_URL as string;
@@ -42,13 +42,16 @@ export async function registerUser(newItem: dbUserData) {
   }
 }
 
-export async function updateUser(id, data) {
+export async function updateUser({ id, data, key }: updataUserProps) {
   try {
     const col = await connectDB();
     const query = { id };
-    const update = { $set: data };
     const options = { upsert: true };
-    console.log('query = ', query, ' update = ', update);
+    let update = {};
+    switch (key) {
+      case 'refreshToken':
+        update = { $set: { refreshToken: data } };
+    }
     await col
       .updateOne(query, update, options)
       .then((result) => {
