@@ -2,7 +2,6 @@ import './globals.css';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { Metadata } from 'next';
 import { Nunito_Sans } from 'next/font/google';
-import Header from '@/components/Header/Header';
 import { MockProvider } from '@/mocks/MockProvider';
 import QueryProvider from '@/store/QueryProvider';
 
@@ -26,10 +25,7 @@ export default function RootLayout({
     <html lang="ko" className={nunitoSans.className}>
       <body className="h-dvh">
         <QueryProvider>
-          <MockProvider>
-            <Header />
-            {children}
-          </MockProvider>
+          <MockProvider>{children}</MockProvider>
           <ReactQueryDevtools
             buttonPosition="bottom-left"
             initialIsOpen={false}

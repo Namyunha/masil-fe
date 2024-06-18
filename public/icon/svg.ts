@@ -15,6 +15,7 @@ export { default as logo } from 'public/icon/logo.svg';
 export { default as logo_secondary } from 'public/icon/logo_secondary.svg';
 export { default as menu } from 'public/icon/menu.svg';
 export { default as refresh } from 'public/icon/refresh.svg';
+export { default as register_logo } from 'public/icon/register_logo.svg';
 export { default as setting } from 'public/icon/setting.svg';
 export { default as share } from 'public/icon/share.svg';
 export { default as star } from 'public/icon/star.svg';
