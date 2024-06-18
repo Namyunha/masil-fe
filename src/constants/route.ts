@@ -4,5 +4,8 @@ export const ROUTE_PATH = {
   WRITE: '/write',
   CAFE: '/cafe',
   SCRAP: '/scrap',
+  SIGNIN: '/login',
+  SIGNOUT: '/logout',
+  SIGNUP: '/register',
   REVIEW_DETAIL: (reviewId: string) => `/review/${reviewId}`,
 };
