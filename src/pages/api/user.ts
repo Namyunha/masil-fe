@@ -14,7 +14,11 @@ export default async function handler(
 ) {
   if (req.method === 'GET') {
     const searchUser = req.query.email as string;
-    const result = (await findUser(searchUser)) as dbUserData;
+    console.log('searchUser = ', searchUser);
+    const result = (await findUser({
+      searchData: searchUser,
+      searchSource: 'email',
+    })) as dbUserData;
     console.log('result = ', result);
     if (!result) {
       res

@@ -4,11 +4,10 @@ import { findUser, updateUser } from '@/utils/database';
 import { refresh, sign } from '@/utils/jwtUtils';
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
-  // mongoDB 연결
   switch (req.method) {
     case 'POST': {
       const { id, pw } = req.body;
-      const result = await findUser(id);
+      const result = await findUser({ searchData: id, searchSource: 'id' });
       if (!result || !bcrypt.compareSync(pw, result.pw)) {
         res.status(405).json({ message: '존재하지 않는 계정입니다.' });
       } else {

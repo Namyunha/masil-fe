@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-import { dbUserData, updataUserProps } from '@/types/user';
+import { dbUserData, dbUserProps } from '@/types/user';
 
 // Replace the following with your Atlas connection string
 const uri = process.env.DATABASE_URL as string;
@@ -13,10 +13,19 @@ const connectDB = async () => {
   return col;
 };
 
-export async function findUser(searchEmail: string) {
+export async function findUser({ searchData, searchSource }: dbUserProps) {
   try {
     const col = await connectDB();
-    const document = await col.findOne({ id: searchEmail });
+    let insertInfo = {};
+    switch (searchSource) {
+      case 'email':
+        insertInfo = { email: searchData };
+        break;
+      case 'id':
+        insertInfo = { id: searchData };
+        break;
+    }
+    const document = await col.findOne(insertInfo);
     return document;
   } catch (err) {
     console.log(err);
@@ -42,7 +51,7 @@ export async function registerUser(newItem: dbUserData) {
   }
 }
 
-export async function updateUser({ id, data, key }: updataUserProps) {
+export async function updateUser({ id, data, key }: dbUserProps) {
   try {
     const col = await connectDB();
     const query = { id };

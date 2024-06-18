@@ -43,6 +43,6 @@ export type dbUserData = {
   currentMessage: string;
 };
 
-export type updataUserProps = {
+export type dbUserProps = {
   [key: string]: string;
 };
