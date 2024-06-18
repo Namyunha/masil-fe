@@ -17,11 +17,11 @@ export default function EmailForm() {
   // 유저정보 (이메일) 저장
   const userInfo = useRegisterStore();
   // 이메일 입력
-  const [email, setEmail] = useState<string>();
+  const [email, setEmail] = useState('');
   // 인증번호 받기 여부
-  const [validationNum, setValidationNum] = useState<string>();
+  const [validationNum, setValidationNum] = useState('');
   // 인증번호 입력
-  const [certification, setCertification] = useState<string>();
+  const [certification, setCertification] = useState('');
   // 이메일 입력후 모달 띄울 때, 포커스 없애기
   const emailInputRef = useRef<HTMLInputElement>(null);
   //  에러 문자 남기기
@@ -101,7 +101,7 @@ export default function EmailForm() {
 
       <div
         className={clsx('justify-center', 'w-72', {
-          ['hidden']: validationNum?.length === 0,
+          ['hidden']: !validationNum.length,
         })}>
         <input
           className="w-full bg-gray  rounded-lg p-16"
@@ -112,14 +112,16 @@ export default function EmailForm() {
         />
       </div>
 
-      <div className="flex justify-center w-72">
-        <span
-          className={clsx('text-text_error', 'font-semibold', {
-            ['hidden']: !errorMessage,
-          })}>
-          {errorMessage && errorMessage}
-        </span>
-      </div>
+      {errorMessage && (
+        <div className="flex justify-center w-72">
+          <span
+            className={clsx('text-text_error', 'font-semibold', {
+              ['hidden']: !errorMessage,
+            })}>
+            {errorMessage}
+          </span>
+        </div>
+      )}
     </>
   );
 }

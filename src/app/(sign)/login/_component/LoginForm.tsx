@@ -1,6 +1,5 @@
 'use client';
 
-import clsx from 'clsx';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -65,15 +64,13 @@ export default function LoginForm() {
       <div className="flex justify-center">
         <button
           disabled={isLoading}
-          className={clsx(
-            'mt-28',
-            'w-72',
-            'font-semibold',
-            'text-white',
-            'rounded-lg',
-            'p-16',
-            'bg-gray'
-          )}>
+          className="mt-28
+            w-72
+            font-semibold
+            text-white
+            rounded-lg
+            p-16
+            bg-gray">
           {!isLoading ? '로그인' : '로그인중...'}
         </button>
       </div>
