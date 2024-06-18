@@ -30,7 +30,10 @@ export default function RootLayout({
             <Header />
             {children}
           </MockProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
+          <ReactQueryDevtools
+            buttonPosition="bottom-left"
+            initialIsOpen={false}
+          />
         </QueryProvider>
       </body>
     </html>
