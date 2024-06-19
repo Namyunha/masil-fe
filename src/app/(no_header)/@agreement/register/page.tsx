@@ -17,13 +17,14 @@ export default function LoginModal() {
     <div
       onClick={closeModalHandler}
       className={clsx(
+        'overflow-hidden',
         'background',
         'w-dvw',
         'h-dvh',
         'flex',
         'absolute',
         'bottom-0',
-        'z-10',
+        'z-modal',
         'justify-center',
         'bg-zinc-950/50',
         { ['invisible']: !modalState.modalStatus }

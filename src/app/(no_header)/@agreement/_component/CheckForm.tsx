@@ -46,18 +46,18 @@ export const CheckForm = () => {
           disabled={!(check2 && check3)}
           onClick={onEmailHandler}
           className={clsx(
-            'w-72',
+            'w-full',
             'font-semibold',
-            'text-white',
+            'text-text_white',
             'rounded-lg',
-            'p-16',
+            'p-12',
             'bg-gray',
             {
-              ['bg-orange']: check2 && check3,
+              ['bg-primary']: check2 && check3,
               ['cursor-not-allowed']: !(check2 && check3),
             }
           )}>
-          동의하기
+          다음
         </button>
       </div>
     </>

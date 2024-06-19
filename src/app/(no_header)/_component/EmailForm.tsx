@@ -95,7 +95,7 @@ export default function EmailForm() {
               {errors.email.message}
             </p>
           )}
-          {duplicateError && (
+          {!errors.email && duplicateError && (
             <p className="text-text_error text-sm font-bold" role="alert">
               {duplicateError}
             </p>
@@ -113,7 +113,7 @@ export default function EmailForm() {
           </button>
         </form>
       </div>
-      <div className="text-center mt-10">
+      <div className="text-center mt-8">
         <span className="text-xs mr-1">이미 마실 회원이세요?</span>
         <Link className="font-black text-sm" href={ROUTE_PATH.SIGNIN}>
           로그인 하기

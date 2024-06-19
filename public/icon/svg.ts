@@ -4,6 +4,8 @@ export { default as bookmark_marked } from 'public/icon/bookmark_marked.svg';
 export { default as check } from 'public/icon/check.svg';
 export { default as check_circle_full } from 'public/icon/check_circle_full.svg';
 export { default as check_circle_outline } from 'public/icon/check_circle_outline.svg';
+export { default as checkbox } from 'public/icon/checkbox.svg';
+export { default as checkbox_check } from 'public/icon/checkbox_check.svg';
 export { default as close } from 'public/icon/close.svg';
 export { default as comment } from 'public/icon/comment.svg';
 export { default as filter } from 'public/icon/filter.svg';
