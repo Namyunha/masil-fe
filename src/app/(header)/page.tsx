@@ -1,5 +1,5 @@
 import HomeReview from '@/app/_components/HomeReview';
-import HomeFAB from './_components/HomeFAB';
+import HomeFAB from '../_components/HomeFAB';
 
 export default function Home() {
   return (

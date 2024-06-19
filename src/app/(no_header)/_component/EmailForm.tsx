@@ -1,7 +1,10 @@
 'use client';
 
 import clsx from 'clsx';
+import Link from 'next/link';
 import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
+import Icon from '@/components/Icon';
+import { ROUTE_PATH } from '@/constants/route';
 import { email_regex } from '@/constants/validates';
 import {
   useModalStore,
@@ -64,52 +67,38 @@ export default function EmailForm() {
       }
     }
   };
-  // 인증번호 체크
-  const checkCertifiHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      if (!certification) {
-        setErrorMessage('인증번호를 입력해주세요');
-        return;
-      }
-      if (certification === validate.certification) {
-        userInfo.setAgree();
-      } else {
-        setErrorMessage('인증번호가 일치하지 않습니다.');
-      }
-    }
-  };
 
   return (
     <>
-      <div className="w-72 font-sans text-24 text-center">
-        이메일 주소로 10초만에 가입해 마실을 시작하세요
+      <div>
+        <Icon name="close" size={24} />
       </div>
-
-      <div className="flex justify-center w-72">
-        <input
-          disabled={validate.certification.length > 0}
-          ref={emailInputRef}
-          onKeyDown={emailValidate}
-          onChange={(e) => setEmail(e.target.value)}
-          className={clsx('w-full', 'bg-gray', 'rounded-lg', 'p-16', {
-            ['cursor-not-allowed']: validate.certification.length > 0,
-            ['opacity-60']: validate.certification.length > 0,
-          })}
-          type="text"
-        />
+      <div className="flex flex-col justify-center">
+        <div>
+          <Icon name="register_logo" size={200} />
+        </div>
+        <div className="text-24 text-center">
+          이메일 주소로 10초만에 가입해 마실을 시작하세요
+        </div>
+        <div className="flex flex-col">
+          <input
+            disabled={validate.certification.length > 0}
+            ref={emailInputRef}
+            onKeyDown={emailValidate}
+            onChange={(e) => setEmail(e.target.value)}
+            className={clsx('bg-gray', 'mb-5', 'rounded-lg', 'p-16', {
+              ['cursor-not-allowed']: validate.certification.length > 0,
+              ['opacity-60']: validate.certification.length > 0,
+            })}
+            type="text"
+          />
+          <button className="bg-primary text-text_white rounded-lg p-16">
+            가입하기
+          </button>
+        </div>
       </div>
-
-      <div
-        className={clsx('justify-center', 'w-72', {
-          ['hidden']: !validationNum.length,
-        })}>
-        <input
-          className="w-full bg-gray  rounded-lg p-16"
-          type="text"
-          placeholder="인증번호를 입력해주세요"
-          onChange={(e) => setCertification(e.target.value)}
-          onKeyDown={checkCertifiHandler}
-        />
+      <div>
+        이미 마실 회원이세요? <Link href={ROUTE_PATH.SIGNIN}>로그인 하기</Link>
       </div>
 
       {errorMessage && (

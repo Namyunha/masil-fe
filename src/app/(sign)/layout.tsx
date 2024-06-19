@@ -1,23 +1,14 @@
-'use client';
-
 import React from 'react';
-import { useModalStore } from '@/store/userStore';
 
 export default function LoginLayout({
   children,
-  agreement,
 }: {
   children: React.ReactNode;
-  agreement: React.ReactNode;
 }) {
-  const modalState = useModalStore();
   return (
     <>
       <section className="flex justify-center">
-        <div className="w-[20rem] flex flex-col items-center mt-48 gap-48">
-          {children}
-          {modalState.modalStatus && agreement}
-        </div>
+        <div>{children}</div>
       </section>
     </>
   );
