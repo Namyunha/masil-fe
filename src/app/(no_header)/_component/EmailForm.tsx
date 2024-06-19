@@ -2,115 +2,123 @@
 
 import clsx from 'clsx';
 import Link from 'next/link';
-import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import Icon from '@/components/Icon';
 import { ROUTE_PATH } from '@/constants/route';
 import { email_regex } from '@/constants/validates';
-import {
-  useModalStore,
-  useRegisterStore,
-  useValidate,
-} from '@/store/userStore';
+import { useModalStore, useValidate } from '@/store/userStore';
+
+type Inputs = {
+  email: string;
+};
 
 export default function EmailForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+
   // 모달 온, 오프 조절
   const modal = useModalStore();
   // 인증 확인 여부
   const validate = useValidate();
-  // 유저정보 (이메일) 저장
-  const userInfo = useRegisterStore();
-  // 이메일 입력
-  const [email, setEmail] = useState('');
+
   // 인증번호 받기 여부
   const [validationNum, setValidationNum] = useState('');
-  // 인증번호 입력
-  const [certification, setCertification] = useState('');
-  // 이메일 입력후 모달 띄울 때, 포커스 없애기
-  const emailInputRef = useRef<HTMLInputElement>(null);
-  //  에러 문자 남기기
-  const [errorMessage, setErrorMessage] = useState('');
+
+  const [duplicateError, setDuplicateError] = useState('');
+
   // 인증번호 받기시 리랜더링
   useEffect(() => {
     setValidationNum(validate.certification);
   }, [validate.certification]);
 
   // 이메일 중복체크
-  const emailDuplicateCheck = async () => {
+  const emailDuplicateCheck = async (email: string) => {
     const result = await (await fetch(`/api/user?email=` + email)).json();
     return result;
   };
-  // 이메일 사용가능 여부 체크
-  const emailCheck = async () => {
-    if (!email) {
-      setErrorMessage('이메일을 입력해주세요');
-      return false;
-    }
-    if (!email_regex.value.test(email)) {
-      setErrorMessage(email_regex.message);
-      return false;
-    }
-    const result = await emailDuplicateCheck();
-    if (result.data) {
-      setErrorMessage(result.message);
-      return false;
-    } else {
-      setErrorMessage('');
-      return true;
-    }
-  };
+
   // modal 켜기
-  const emailValidate = async (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      if (await emailCheck()) {
-        modal.changeStatus();
-        emailInputRef?.current?.blur();
-      }
+  const emailValidate = () => {
+    modal.changeStatus();
+  };
+
+  const onContinueHandler: SubmitHandler<Inputs> = async (data) => {
+    // 중복체크
+    const result = await emailDuplicateCheck(data.email);
+    if (result.data) {
+      setDuplicateError(result.message);
+      return;
     }
+    setDuplicateError('');
+    emailValidate();
   };
 
   return (
-    <>
-      <div>
-        <Icon name="close" size={24} />
+    <div className="h-dvh w-dvw px-10 py-10 flex flex-col justify-between">
+      <div className="flex justify-end">
+        <Icon className="cursor-pointer opacity-50" name="close" size={24} />
       </div>
       <div className="flex flex-col justify-center">
-        <div>
-          <Icon name="register_logo" size={200} />
+        <div className="flex justify-center">
+          <Icon name="register_logo" size={160} />
         </div>
-        <div className="text-24 text-center">
-          이메일 주소로 10초만에 가입해 마실을 시작하세요
+        <div className="my-10 text-20">
+          <p className="text-center font-bold">
+            이메일 주소로 10초만에 가입해
+            <span className="inline-flex items-center align-middle">
+              <Icon name="logo_secondary" size={32} className="mx-1" />
+              <span className="font-bold">을 시작하세요</span>
+            </span>
+          </p>
         </div>
-        <div className="flex flex-col">
+        <form
+          onSubmit={handleSubmit(onContinueHandler)}
+          className="flex flex-col">
           <input
-            disabled={validate.certification.length > 0}
-            ref={emailInputRef}
-            onKeyDown={emailValidate}
-            onChange={(e) => setEmail(e.target.value)}
-            className={clsx('bg-gray', 'mb-5', 'rounded-lg', 'p-16', {
-              ['cursor-not-allowed']: validate.certification.length > 0,
-              ['opacity-60']: validate.certification.length > 0,
+            {...register('email', {
+              required: '이메일을 입력해주세요',
+              pattern: {
+                value: email_regex.value,
+                message: email_regex.message,
+              },
             })}
+            placeholder="이메일 (example@example.com)"
+            className="border text-text_grey mb-2 rounded-md p-12"
             type="text"
           />
-          <button className="bg-primary text-text_white rounded-lg p-16">
-            가입하기
+          {errors.email && (
+            <p className="text-text_error text-sm font-bold" role="alert">
+              {errors.email.message}
+            </p>
+          )}
+          {duplicateError && (
+            <p className="text-text_error text-sm font-bold" role="alert">
+              {duplicateError}
+            </p>
+          )}
+          <button
+            className={clsx(
+              'bg-primary',
+              'text-text_white',
+              'rounded-lg',
+              'p-12',
+              'font-bold',
+              { ['mt-4']: errors.email || duplicateError }
+            )}>
+            계속하기
           </button>
-        </div>
+        </form>
       </div>
-      <div>
-        이미 마실 회원이세요? <Link href={ROUTE_PATH.SIGNIN}>로그인 하기</Link>
+      <div className="text-center mt-10">
+        <span className="text-xs mr-1">이미 마실 회원이세요?</span>
+        <Link className="font-black text-sm" href={ROUTE_PATH.SIGNIN}>
+          로그인 하기
+        </Link>
       </div>
-
-      {errorMessage && (
-        <div className="flex justify-center w-72">
-          <span
-            className={clsx('text-text_error', 'font-semibold', {
-              ['hidden']: !errorMessage,
-            })}>
-            {errorMessage}
-          </span>
-        </div>
-      )}
-    </>
+    </div>
   );
 }
