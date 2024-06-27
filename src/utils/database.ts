@@ -24,6 +24,9 @@ export async function findUser({ searchData, searchSource }: dbUserProps) {
       case 'id':
         insertInfo = { id: searchData };
         break;
+      case 'nickName':
+        insertInfo = { nickName: searchData };
+        break;
     }
     const document = await col.findOne(insertInfo);
     return document;

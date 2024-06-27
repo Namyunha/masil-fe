@@ -1,36 +1,43 @@
 import { create } from 'zustand';
-import { ModalState, useRegisterStoreProps, ValidateState } from '@/types/user';
+import {
+  ProgessState,
+  useRegisterStoreProps,
+  ValidateState,
+} from '@/types/user';
 
-export const useModalStore = create<ModalState>((set) => ({
-  modalStatus: false,
-  changeStatus: () => set((state) => ({ modalStatus: !state.modalStatus })),
+export const validateCondition = create<ValidateState>((set) => ({
+  confirmState: false,
+  validateNum: '',
+  setValidateState: () =>
+    set((state) => ({ confirmState: !state.confirmState })),
+  setValidateNum: (data) => set(() => ({ validateNum: data })),
 }));
 
-export const useValidate = create<ValidateState>((set) => ({
-  certification: '',
-  setCertification: (data) => set(() => ({ certification: data })),
-  nextCheck: false,
-  setNextCheck: () => set(() => ({ nextCheck: true })),
+export const progessCondition = create<ProgessState>((set) => ({
+  currentProgess: 1,
+  setProgessCondition: (data) => set(() => ({ currentProgess: data })),
 }));
 
 export const useRegisterStore = create<useRegisterStoreProps>((set) => ({
-  imageFile: undefined,
-  isAgreed: false,
   email: '',
-  fileName: '',
-  currentMessage: '',
+  profileImg: '',
   userInfo: {
-    id: '',
     pw: '',
     nickName: '',
   },
-  setAgree: () => set(() => ({ isAgreed: true })),
   setEmail: (emailData) => set(() => ({ email: emailData })),
   setUserInfo: (userData) =>
     set(() => ({
       userInfo: { ...userData },
     })),
-  setFileName: (fileName) => set(() => ({ fileName: fileName })),
-  setCurrentMessage: (message) => set(() => ({ currentMessage: message })),
-  setImageFile: (imageFile) => set(() => ({ imageFile: imageFile })),
+  setprofileImg: (img) => set(() => ({ profileImg: img })),
+  resetProfile: () =>
+    set(() => ({
+      email: '',
+      profileImg: '',
+      userInfo: {
+        pw: '',
+        nickName: '',
+      },
+    })),
 }));

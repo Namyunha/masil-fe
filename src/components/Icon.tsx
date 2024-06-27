@@ -3,7 +3,7 @@ import * as icons from 'public/icon/svg';
 import { FILTER_COLOR } from '@/styles/filterColor';
 
 type IconProps = {
-  name: keyof typeof icons;
+  name: keyof typeof icons | string;
   size?: 8 | 12 | 16 | 20 | 24 | 32 | number;
   filter?: keyof typeof FILTER_COLOR;
   className?: string;
