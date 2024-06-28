@@ -13,7 +13,7 @@ export const CheckForm = () => {
 
   const onAgreementHandler = () => {
     progessStatus.setProgessCondition(3);
-    currentUserStatus.setAgreement();
+    currentUserStatus.setAgreement(true);
   };
 
   return (

@@ -19,6 +19,7 @@ export default function ProgessBarContainer() {
       userInfo.resetProfile();
       validate.setValidateState();
       validate.setValidateNum('');
+      userInfo.setAgreement(false);
       router.back();
       return;
     }

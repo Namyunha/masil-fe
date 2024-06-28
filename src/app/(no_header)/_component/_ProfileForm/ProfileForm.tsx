@@ -3,6 +3,7 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useSignUpMutation } from '@/api/sign/queries';
 import Icon from '@/components/Icon';
 import { progessCondition, useRegisterStore } from '@/store/userStore';
 import ErrorMessage from '../ErrorMessage';
@@ -34,25 +35,17 @@ export default function ProfileForm() {
     return result;
   };
 
-  const onsubmitHandler: SubmitHandler<Inputs> = async (data) => {
+  const mutation = useSignUpMutation();
+
+  const OnsubmitHandler: SubmitHandler<Inputs> = async (data) => {
     const result = await nickNameDuplicateCheck(data.nickName);
     if (!result.data) {
-      // progessStatus.setProgessCondition(5);
-      const response = await fetch('/api/user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-        body: JSON.stringify({
-          email: currentUserInfo.email,
-          pw: currentUserInfo.userInfo.pw,
-          nickName: data.nickName,
-          profileImg: currentUserInfo.profileImg,
-        }),
+      mutation.mutate({
+        email: currentUserInfo.email,
+        pw: currentUserInfo.userInfo.pw,
+        nickName: data.nickName,
+        profileImg: currentUserInfo.profileImg,
       });
-      if (response.ok) {
-        progessStatus.setProgessCondition(5);
-      }
     }
   };
 
@@ -68,7 +61,7 @@ export default function ProfileForm() {
           닉네임과 프로필을 정해주세요
         </p>
       </div>
-      <form onSubmit={handleSubmit(onsubmitHandler)} className="flex flex-col">
+      <form onSubmit={handleSubmit(OnsubmitHandler)} className="flex flex-col">
         <div className="relative mb-5 mt-3">
           <input
             id="small_filled"
@@ -104,7 +97,10 @@ export default function ProfileForm() {
             ))}
           </div>
         </div>
-        <PassButton label={'완료'} errorState={errorState} />
+        <PassButton
+          label={mutation.isPending ? '가입중' : '완료'}
+          errorState={errorState}
+        />
       </form>
     </div>
   );

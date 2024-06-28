@@ -34,7 +34,7 @@ export const useRegisterStore = create<useRegisterStoreProps>((set) => ({
       userInfo: { ...userData },
     })),
   setprofileImg: (img) => set(() => ({ profileImg: img })),
-  setAgreement: () => set((state) => ({ agreement: true })),
+  setAgreement: (data) => set(() => ({ agreement: data })),
   resetProfile: () =>
     set(() => ({
       email: '',

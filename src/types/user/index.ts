@@ -32,7 +32,7 @@ export type useRegisterStoreProps = {
   setEmail: (emailData: string) => void;
   setUserInfo: (userData: userInfo) => void;
   setprofileImg: (img: string) => void;
-  setAgreement: () => void;
+  setAgreement: (data: boolean) => void;
   resetProfile: () => void;
 };
 
@@ -44,6 +44,13 @@ export type dbUserData = {
   email: string;
   fileName: string;
   currentMessage: string;
+};
+
+export type userData = {
+  email: string;
+  pw: string;
+  nickName: string;
+  profileImg: string;
 };
 
 export type dbUserProps = {
