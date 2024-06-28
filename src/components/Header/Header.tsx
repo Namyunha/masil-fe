@@ -3,7 +3,7 @@ import HeaderNavButton from './HeaderNavButton';
 
 export default function Header() {
   return (
-    <header className="flex justify-between px-16 py-8">
+    <header className="sticky top-0 flex justify-between z-float px-16 py-8 bg-bg_white shadow-elevation1">
       <HeaderLogo />
       <HeaderNavButton />
     </header>
