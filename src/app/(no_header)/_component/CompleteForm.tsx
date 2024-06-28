@@ -1,11 +1,17 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import Icon from '@/components/Icon';
-import { progessCondition, useRegisterStore } from '@/store/userStore';
+import { useRegisterStore, validateCondition } from '@/store/userStore';
 
 export default function CompleteForm() {
   const userInfo = useRegisterStore();
-  const currentProgessStatus = progessCondition();
+  const validate = validateCondition();
+  const homeHandlerButton = () => {
+    userInfo.resetProfile();
+    validate.setValidateNum('');
+    validate.setValidateState();
+    router.push('/');
+  };
   const router = useRouter();
   useEffect(() => {
     return () => {
@@ -21,10 +27,7 @@ export default function CompleteForm() {
         <Icon name="register_logo" size={150} />
       </div>
       <button
-        onClick={() => {
-          userInfo.resetProfile();
-          router.push('/');
-        }}
+        onClick={homeHandlerButton}
         className="bg-primary text-white rounded-lg p-12 font-bold">
         카페 구경하기
       </button>

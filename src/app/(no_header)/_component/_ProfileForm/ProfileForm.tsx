@@ -57,9 +57,7 @@ export default function ProfileForm() {
   };
 
   useEffect(() => {
-    watch('nickName') && currentUserInfo.profileImg
-      ? setErrorState(false)
-      : setErrorState(true);
+    watch('nickName') ? setErrorState(false) : setErrorState(true);
   }, [currentUserInfo, watch('nickName')]);
 
   return (
@@ -75,18 +73,7 @@ export default function ProfileForm() {
           <input
             id="small_filled"
             placeholder=""
-            className={clsx(
-              'peer',
-              'block',
-              'rounded-lg',
-              'px-12',
-              'pt-4',
-              'pb-8',
-              'w-full',
-              'border-2',
-              'focus:outline-none',
-              'border-fields_stroke'
-            )}
+            className="peer block rounded-lg px-12 pt-4 pb-8 w-full border-2 focus:outline-none border-fields_stroke"
             type="text"
             {...register('nickName', {
               required: '닉네임을 입력해주세요',

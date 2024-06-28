@@ -8,9 +8,11 @@ import {
 export const validateCondition = create<ValidateState>((set) => ({
   confirmState: false,
   validateNum: '',
+  validateStatus: false,
   setValidateState: () =>
     set((state) => ({ confirmState: !state.confirmState })),
   setValidateNum: (data) => set(() => ({ validateNum: data })),
+  setValidateStatus: () => set(() => ({ validateStatus: true })),
 }));
 
 export const progessCondition = create<ProgessState>((set) => ({
@@ -21,6 +23,7 @@ export const progessCondition = create<ProgessState>((set) => ({
 export const useRegisterStore = create<useRegisterStoreProps>((set) => ({
   email: '',
   profileImg: '',
+  agreement: false,
   userInfo: {
     pw: '',
     nickName: '',
@@ -31,6 +34,7 @@ export const useRegisterStore = create<useRegisterStoreProps>((set) => ({
       userInfo: { ...userData },
     })),
   setprofileImg: (img) => set(() => ({ profileImg: img })),
+  setAgreement: () => set((state) => ({ agreement: true })),
   resetProfile: () =>
     set(() => ({
       email: '',

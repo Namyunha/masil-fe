@@ -3,12 +3,18 @@
 import clsx from 'clsx';
 import React from 'react';
 import useCheck from '@/hooks/useCheck';
-import { progessCondition } from '@/store/userStore';
+import { progessCondition, useRegisterStore } from '@/store/userStore';
 import CheckComponent from './_component/CheckComponent';
 
 export const CheckForm = () => {
   const progessStatus = progessCondition();
+  const currentUserStatus = useRegisterStore();
   const { check1, check2, check3, setCheckType } = useCheck();
+
+  const onAgreementHandler = () => {
+    progessStatus.setProgessCondition(3);
+    currentUserStatus.setAgreement();
+  };
 
   return (
     <>
@@ -27,7 +33,7 @@ export const CheckForm = () => {
         />
         <div className="flex justify-center">
           <button
-            onClick={() => progessStatus.setProgessCondition(3)}
+            onClick={onAgreementHandler}
             disabled={!(check2 && check3)}
             className={clsx(
               'w-full',

@@ -8,8 +8,10 @@ export type ModalState = {
 export type ValidateState = {
   validateNum: string;
   confirmState: boolean;
+  validateStatus: boolean;
   setValidateState: () => void;
   setValidateNum: (data: string) => void;
+  setValidateStatus: () => void;
 };
 
 export type ProgessState = {
@@ -26,9 +28,11 @@ export type useRegisterStoreProps = {
   email: string;
   profileImg: string;
   userInfo: userInfo;
+  agreement: boolean;
   setEmail: (emailData: string) => void;
   setUserInfo: (userData: userInfo) => void;
   setprofileImg: (img: string) => void;
+  setAgreement: () => void;
   resetProfile: () => void;
 };
 

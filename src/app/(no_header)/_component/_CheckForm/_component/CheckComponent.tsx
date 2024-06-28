@@ -1,5 +1,7 @@
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
 import Icon from '@/components/Icon';
+import { useRegisterStore } from '@/store/userStore';
 
 type CheckComponentProps = {
   check1: boolean | undefined;
@@ -14,6 +16,8 @@ export default function CheckComponent({
   check3,
   setCheckType,
 }: CheckComponentProps) {
+  const currentUserStatus = useRegisterStore();
+
   const onCheckHandler = (checkType?: number) => {
     switch (checkType) {
       case 1:
@@ -31,8 +35,10 @@ export default function CheckComponent({
         null;
     }
   };
-  console.log('check2 = ', check2);
-  console.log('check3 = ', check3);
+  useEffect(() => {
+    currentUserStatus.agreement && onCheckHandler(1);
+  }, []);
+
   return (
     <div className="my-10">
       <div className="flex content-center justify-between border-b border-fields_stroke px-3 py-4">

@@ -37,10 +37,11 @@ export default function ValidateNumberForm() {
   const onsubmitHandler: SubmitHandler<Inputs> = async () => {
     progessStatus.setProgessCondition(2);
     validateState.setValidateState();
+    validateState.setValidateStatus();
   };
   // 인증번호 입력 상태에 따른 에러 메시지 업데이트
   useEffect(() => {
-    watch('validateNum').length === 6
+    watch('validateNum') && watch('validateNum').length === 6
       ? setErrorState(false)
       : setErrorState(true);
   }, [watch('validateNum'), validateState]);
