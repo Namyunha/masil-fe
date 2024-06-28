@@ -7,7 +7,8 @@ import {
   SUCCESS_CODE,
 } from '@/constants/api';
 import { ReviewListReqType } from '@/types/review';
-import { mockReviewList } from './data';
+import { mockRecommendCafeList } from './data/recommendCafeList';
+import { mockReviewList } from './data/reviewList';
 
 export const browserHandlers = [
   // 회원가입
@@ -30,7 +31,7 @@ export const browserHandlers = [
     }
   ),
 
-  // 리뷰 리스트 조회
+  // Memo: 리뷰 리스트 조회
   http.post<never, ReviewListReqType>(
     END_POINT.REVIEW.LIST,
     async ({ request }) => {
@@ -53,4 +54,11 @@ export const browserHandlers = [
       return HttpResponse.json(response, { status: SUCCESS_CODE.OK });
     }
   ),
+
+  // Memo: 추천 카페 리스트 조회
+  http.get(END_POINT.CAFE.RECOMMEND, async () => {
+    return HttpResponse.json(mockRecommendCafeList, {
+      status: SUCCESS_CODE.OK,
+    });
+  }),
 ];

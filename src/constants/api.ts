@@ -25,6 +25,9 @@ export const END_POINT = {
     LIST: 'review',
     DETAIL: (id: string) => `review/${id}`,
   },
+  CAFE: {
+    RECOMMEND: 'cafes/rec',
+  },
 };
 
 export const DEFAULT_CURSOR = 0;
