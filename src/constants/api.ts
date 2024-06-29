@@ -19,7 +19,7 @@ export const ERROR_CODE = {
 export const END_POINT = {
   USER: {
     SIGNIN: 'user/sign-in',
-    SIGNUP: 'user/sign-up',
+    SIGNUP: 'api/user',
   },
   REVIEW: {
     LIST: 'review',

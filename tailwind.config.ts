@@ -116,6 +116,15 @@ const config: Config = {
         dim: '20',
         modal: '30',
       },
+      keyframes: {
+        slide: {
+          '0%': { transform: 'translateY(225%)' },
+          '100%': { transform: 'translateY(132%)' },
+        },
+      },
+      animation: {
+        agreement_modal: 'slide 0.2s linear forwards',
+      },
     },
   },
   plugins: [],
