@@ -17,6 +17,7 @@ export function useReviewListInfiniteQuery({
   location,
   pageSize = DEFAULT_SIZE,
 }: ReviewListQueryType) {
+  // Todo: 쿼리키에 필터 추가
   return useInfiniteQuery({
     ...reviewKeys.reviewList,
     initialPageParam: DEFAULT_CURSOR,

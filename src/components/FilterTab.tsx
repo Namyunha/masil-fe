@@ -1,20 +1,20 @@
 import clsx from 'clsx';
 
-type ReviewFilterTabProps = {
+type FilterTabProps = {
   isActive: boolean;
   value: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
-export default function ReviewFilterTab({
+export default function FilterTab({
   isActive,
   value,
   onClick,
-}: ReviewFilterTabProps) {
+}: FilterTabProps) {
   return (
-    <li
+    <div
       className={clsx(
-        'px-8 py-6 text-12 border rounded-full whitespace-nowrap',
+        'px-8 py-6 text-12 border cursor-pointer rounded-full whitespace-nowrap shadow-elevation1',
         {
           ['text-text_white bg-primary border-stroke_focused']: isActive,
           ['text-text_grey border-stroke_grey']: !isActive,
@@ -22,6 +22,6 @@ export default function ReviewFilterTab({
       )}
       onClick={onClick}>
       {value}
-    </li>
+    </div>
   );
 }

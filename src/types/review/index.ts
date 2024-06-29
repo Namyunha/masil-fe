@@ -11,7 +11,7 @@ export type ReviewListReqType = {
 };
 
 export type ReviewListResType = {
-  status: string;
+  status: number;
   message: string;
   data: {
     reviews: ReviewItemType[];

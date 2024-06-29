@@ -12,6 +12,7 @@ type FilterStoreType = {
   activeSorting: SortingKey;
   activeTags: TagsKey[];
   activeLocation: LocationKey;
+  resetFilter: () => void;
   toggleSorting: (newSorting: SortingKey) => void;
   toggleTag: (tag: TagsKey) => void;
   toggleLocation: (location: LocationKey) => void;
@@ -21,6 +22,13 @@ export const useFilterStore = create<FilterStoreType>((set) => ({
   activeSorting: DEFAULT_SORTING,
   activeTags: [DEFAULT_TAG],
   activeLocation: DEFAULT_LOCATION,
+
+  resetFilter: () =>
+    set({
+      activeSorting: DEFAULT_SORTING,
+      activeTags: [DEFAULT_TAG],
+      activeLocation: DEFAULT_LOCATION,
+    }),
 
   toggleSorting: (sorting) =>
     set((state) => {

@@ -16,16 +16,16 @@ export default function ReviewItemCafeInfo({
   };
 
   return (
-    <div className="flex justify-between items-center px-12 py-24 rounded-md border border-stroke_grey">
+    <div className="flex justify-between items-center px-12 py-24 rounded-md border border-bg_disabled">
       <div className="flex flex-col gap-1">
         <span className="text-14 font-bold">{cafeInfo.cafeName}</span>
         <span className="text-12 text-text_grey">{cafeInfo.cafeLoca}</span>
       </div>
       <button
         className={clsx(
-          'flex items-center justify-center w-32 h-32 rounded-full border',
+          'flex items-center justify-center p-12 rounded-full border',
           {
-            ['border-stroke_focused']: isLike,
+            ['border-stroke_focused bg-button_secondary_bg_clicked']: isLike,
             ['border-stroke_grey']: !isLike,
           }
         )}

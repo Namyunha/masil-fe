@@ -23,9 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={nunitoSans.className}>
-      <body className="h-dvh">
+      <body className="flex items-center h-dvh bg-primary bg-opacity-80">
         <QueryProvider>
-          <MockProvider>{children}</MockProvider>
+          <MockProvider>
+            <div className="relative max-w-screen_max w-full h-full mx-auto my-0 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-primary scrollbar-track-bg_white bg-bg_white shadow-2xl main-screen">
+              {children}
+            </div>
+          </MockProvider>
           <ReactQueryDevtools
             buttonPosition="bottom-left"
             initialIsOpen={false}

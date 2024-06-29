@@ -1,25 +1,27 @@
 import { LOCATION } from '@/constants/reviewFilter';
 import { useFilterStore } from '@/store/filterStore';
 import { LocationKey } from '@/types/review';
-import ReviewFilterTab from './ReviewFilterTab';
+import FilterTab from '../../../../components/FilterTab';
+import ReviewFilterModalTitle from './ReviewFilterModalTitle';
 
 export default function ReviewFilterModalLocation() {
   const { activeLocation, toggleLocation } = useFilterStore();
 
   return (
     <div>
-      <div className="px-8 py-12 text-14 font-bold">지역</div>
+      <ReviewFilterModalTitle title="지역" subInfo="선택 1개" />
       <ul className="flex flex-wrap gap-16 pt-16 border-t border-stroke_grey">
         {Object.entries(LOCATION).map(([key, value]) => {
           const isActive = activeLocation === key;
 
           return (
-            <ReviewFilterTab
-              key={key}
-              value={value}
-              isActive={isActive}
-              onClick={() => toggleLocation(key as LocationKey)}
-            />
+            <li key={key}>
+              <FilterTab
+                value={value}
+                isActive={isActive}
+                onClick={() => toggleLocation(key as LocationKey)}
+              />
+            </li>
           );
         })}
       </ul>

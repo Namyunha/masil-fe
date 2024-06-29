@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ROUTE_PATH } from '@/constants/route';
+import { SIDE_NAV_LIST } from '@/constants/sideNavBar';
 
 type SideNavBarMainProps = {
   closeHandler: () => void;
@@ -18,48 +18,19 @@ export default function SideNavBarList({ closeHandler }: SideNavBarMainProps) {
   };
 
   // Todo: 다른 페이지 작업 완료되면 route 경로 변경
+  // Todo: 유저 정보 작업 완료되면 비회원시 회원가입, 로그인 링크 추가
   return (
     <ul className="flex flex-col gap-1 text-20 text-right">
-      <li className={getListClassName(ROUTE_PATH.HOME)}>
-        <Link
-          href={ROUTE_PATH.HOME}
-          className="block p-8 font-bold"
-          onClick={closeHandler}>
-          리뷰
-        </Link>
-      </li>
-      <li className={getListClassName(ROUTE_PATH.CAFE)}>
-        <Link
-          href={ROUTE_PATH.CAFE}
-          className="block p-8 font-bold"
-          onClick={closeHandler}>
-          카페
-        </Link>
-      </li>
-      <li className={getListClassName(ROUTE_PATH.SCRAP)}>
-        <Link
-          href={ROUTE_PATH.SCRAP}
-          className="block p-8 font-bold"
-          onClick={closeHandler}>
-          스크랩
-        </Link>
-      </li>
-      <li className={getListClassName(ROUTE_PATH.MY_PAGE)}>
-        <Link
-          href={ROUTE_PATH.MY_PAGE}
-          className="block p-8 font-bold"
-          onClick={closeHandler}>
-          마이페이지
-        </Link>
-      </li>
-      <li className={getListClassName(ROUTE_PATH.WRITE)}>
-        <Link
-          href={ROUTE_PATH.WRITE}
-          className="block p-8 font-bold"
-          onClick={closeHandler}>
-          리뷰 작성하기
-        </Link>
-      </li>
+      {SIDE_NAV_LIST.map((item) => (
+        <li key={item.routePath} className={getListClassName(item.routePath)}>
+          <Link
+            href={item.routePath}
+            className="block p-8 font-bold"
+            onClick={closeHandler}>
+            {item.name}
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 }

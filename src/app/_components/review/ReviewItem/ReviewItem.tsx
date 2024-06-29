@@ -16,7 +16,7 @@ export default function ReviewItem({ ...review }: ReviewItemType) {
 
   return (
     <li
-      className="flex flex-col gap-8 py-4 border-b border-stroke_grey"
+      className="flex flex-col gap-8 p-16 rounded-2xl shadow-elevation2 cursor-pointer"
       onClick={onClickReviewItem}
       tabIndex={0}>
       <ReviewItemHeader
