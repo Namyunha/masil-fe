@@ -7,5 +7,6 @@ export const ROUTE_PATH = {
   SIGNIN: '/login',
   SIGNOUT: '/logout',
   SIGNUP: '/register',
-  REVIEW_DETAIL: (reviewId: string) => `/review/${reviewId}`,
+  REVIEW_DETAIL: (reviewId: number) => `/review/${reviewId}`,
+  CAFE_DETAIL: (cafeId: number) => `/cafe/${cafeId}`,
 };
