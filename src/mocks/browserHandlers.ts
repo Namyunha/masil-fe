@@ -39,10 +39,11 @@ export const browserHandlers = [
       const { lastPostId, pageSize } = pagingData;
       const cursor = lastPostId ?? DEFAULT_CURSOR;
       const size = pageSize ?? DEFAULT_SIZE;
-      const nextList = mockReviewList.data.reviews.slice(cursor, cursor + size);
+      const nextList = mockReviewList.slice(cursor, cursor + size);
 
       const response = {
-        ...mockReviewList,
+        status: SUCCESS_CODE.OK,
+        message: '전체 리뷰 리스트 조회 성공',
         data: {
           reviews: nextList,
           meta: {
