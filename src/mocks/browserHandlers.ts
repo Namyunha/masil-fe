@@ -6,7 +6,7 @@ import {
   ERROR_CODE,
   SUCCESS_CODE,
 } from '@/constants/api';
-import { ReviewListReqType } from '@/types/review';
+import { ReviewLikeReqType, ReviewListReqType } from '@/types/review';
 import { mockRecommendCafeList } from './data/recommendCafeList';
 import { mockReviewList } from './data/reviewList';
 
@@ -61,4 +61,23 @@ export const browserHandlers = [
       status: SUCCESS_CODE.OK,
     });
   }),
+
+  // Memo: 좋아요 상태 변경
+  http.patch<never, ReviewLikeReqType>(
+    END_POINT.REVIEW.LIKE,
+    async ({ request }) => {
+      const { isLike } = await request.json();
+
+      return HttpResponse.json(
+        {
+          status: SUCCESS_CODE.OK,
+          message: '좋아요 상태 변경 성공',
+          data: { isLike: !isLike },
+        },
+        {
+          status: SUCCESS_CODE.OK,
+        }
+      );
+    }
+  ),
 ];

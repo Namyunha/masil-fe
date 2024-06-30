@@ -1,8 +1,13 @@
 import { END_POINT } from '@/constants/api';
-import { ReviewListReqType, ReviewListResType } from '@/types/review';
+import {
+  ReviewLikeReqType,
+  ReviewLikeResType,
+  ReviewListReqType,
+  ReviewListResType,
+} from '@/types/review';
 import { fetcher } from '../fetcher';
 
-export const getReviewList = async ({
+export const postReviewList = async ({
   tags,
   pagingData,
 }: ReviewListReqType) => {
@@ -13,6 +18,18 @@ export const getReviewList = async ({
       tags,
       pagingData,
     }
+  );
+
+  return data;
+};
+
+export const patchReviewLike = async ({
+  reviewId,
+  isLike,
+}: ReviewLikeReqType) => {
+  const { data } = await fetcher.patch<ReviewLikeResType>(
+    END_POINT.REVIEW.LIKE,
+    { reviewId, isLike }
   );
 
   return data;

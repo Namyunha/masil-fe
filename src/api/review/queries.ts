@@ -1,8 +1,8 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
 import { DEFAULT_CURSOR, DEFAULT_SIZE } from '@/constants/api';
-import { ReviewListReqType } from '@/types/review';
+import { ReviewLikeReqType, ReviewListReqType } from '@/types/review';
 import { reviewKeys } from './../queryKeys';
-import { getReviewList } from '.';
+import { patchReviewLike, postReviewList } from '.';
 
 type ReviewListQueryType = Pick<
   ReviewListReqType,
@@ -22,7 +22,7 @@ export function useReviewListInfiniteQuery({
     ...reviewKeys.reviewList,
     initialPageParam: DEFAULT_CURSOR,
     queryFn: ({ pageParam }) =>
-      getReviewList({
+      postReviewList({
         tags,
         sorting,
         location,
@@ -35,6 +35,28 @@ export function useReviewListInfiniteQuery({
       const lastReview = lastPage.data.reviews.at(-1);
       const nextCursor = lastReview?.reviewId;
       return lastPage.data.meta.hasNext ? nextCursor : undefined;
+    },
+  });
+}
+
+// Todo: 쿼리키 추가하기?
+export function useReviewLikeMutation({
+  reviewId,
+  isLike,
+  setLikeState,
+}: ReviewLikeReqType & {
+  setLikeState: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  return useMutation({
+    mutationFn: () => patchReviewLike({ reviewId, isLike }),
+    onSuccess: (data) => {
+      // Todo: 성공할 경우 토스트 팝업 띄우기
+      const newLikeState = data.data.isLike;
+      setLikeState(newLikeState);
+    },
+    onError: (error) => {
+      // Todo: 실패할 경우 토스트 팝업 띄우기
+      console.log(error.message);
     },
   });
 }

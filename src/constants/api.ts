@@ -24,6 +24,7 @@ export const END_POINT = {
   REVIEW: {
     LIST: 'review',
     DETAIL: (id: string) => `review/${id}`,
+    LIKE: 'like',
   },
   CAFE: {
     RECOMMEND: 'cafes/rec',
