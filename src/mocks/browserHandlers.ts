@@ -6,7 +6,7 @@ import {
   ERROR_CODE,
   SUCCESS_CODE,
 } from '@/constants/api';
-import { ReviewListReqType } from '@/types/review';
+import { ReviewLikeReqType, ReviewListReqType } from '@/types/review';
 import { mockRecommendCafeList } from './data/recommendCafeList';
 import { mockReviewList } from './data/reviewList';
 
@@ -39,10 +39,11 @@ export const browserHandlers = [
       const { lastPostId, pageSize } = pagingData;
       const cursor = lastPostId ?? DEFAULT_CURSOR;
       const size = pageSize ?? DEFAULT_SIZE;
-      const nextList = mockReviewList.data.reviews.slice(cursor, cursor + size);
+      const nextList = mockReviewList.slice(cursor, cursor + size);
 
       const response = {
-        ...mockReviewList,
+        status: SUCCESS_CODE.OK,
+        message: '전체 리뷰 리스트 조회 성공',
         data: {
           reviews: nextList,
           meta: {
@@ -61,4 +62,23 @@ export const browserHandlers = [
       status: SUCCESS_CODE.OK,
     });
   }),
+
+  // Memo: 좋아요 상태 변경
+  http.patch<never, ReviewLikeReqType>(
+    END_POINT.REVIEW.LIKE,
+    async ({ request }) => {
+      const { isLike } = await request.json();
+
+      return HttpResponse.json(
+        {
+          status: SUCCESS_CODE.OK,
+          message: '좋아요 상태 변경 성공',
+          data: { isLike: !isLike },
+        },
+        {
+          status: SUCCESS_CODE.OK,
+        }
+      );
+    }
+  ),
 ];

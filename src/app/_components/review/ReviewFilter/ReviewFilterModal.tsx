@@ -20,10 +20,10 @@ export default function ReviewFilterModal({
       {isOpen && <Dim closeHandler={closeHandler} />}
       <div
         className={clsx(
-          'fixed left-0 right-0 max-w-screen_max mx-auto my-0 p-16 pb-32 flex flex-col z-modal gap-16 bg-bg_white border border-stroke_grey rounded-t-3xl transition-bottom duration-300',
+          'fixed left-0 right-0 bottom-0 max-w-screen_max mx-auto my-0 p-16 flex flex-col z-modal gap-8 bg-bg_white border border-stroke_grey rounded-t-3xl transition-transform duration-300',
           {
-            ['bottom-0']: isOpen,
-            ['-bottom-full']: !isOpen,
+            ['translate-y-0']: isOpen,
+            ['translate-y-full']: !isOpen,
           }
         )}>
         <div className="flex justify-between items-center">
