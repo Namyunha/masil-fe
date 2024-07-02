@@ -116,14 +116,11 @@ const config: Config = {
         dim: '20',
         modal: '30',
       },
-      keyframes: {
-        slide: {
-          '0%': { transform: 'translateY(225%)' },
-          '100%': { transform: 'translateY(132%)' },
-        },
-      },
-      animation: {
-        agreement_modal: 'slide 0.2s linear forwards',
+      boxShadow: {
+        elevation1: '0 4px 4px rgba(0, 0, 0, 0.16)',
+        elevation2: '0 4px 12px rgba(0, 0, 0, 0.16)',
+        elevation3: '0 8px 16px rgba(0, 0, 0, 0.12)',
+        elevation4: '0 16px 24px rgba(0, 0, 0, 0.12)',
       },
     },
   },
