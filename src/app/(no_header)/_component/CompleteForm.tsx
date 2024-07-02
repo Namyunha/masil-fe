@@ -24,7 +24,7 @@ export default function CompleteForm() {
         <p className="font-bold">마실에 가입한 것을 축하드립니다</p>
       </div>
       <div className="flex justify-center items-center h-60 m-11">
-        <Icon name="register_logo" size={150} />
+        <Icon name="register_logo" size={185} />
       </div>
       <button
         onClick={homeHandlerButton}

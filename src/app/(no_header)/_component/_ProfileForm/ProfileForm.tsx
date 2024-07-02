@@ -95,7 +95,7 @@ export default function ProfileForm() {
                       currentUserInfo.profileImg === `user${index}`,
                   })}
                   onClick={() => currentUserInfo.setprofileImg(`user${index}`)}>
-                  <Icon key={index} name={'user' + index} size={60} />
+                  <Icon key={index} name={`user${index}`} size={65} />
                 </span>
               </div>
             ))}
