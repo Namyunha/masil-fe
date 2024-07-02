@@ -11,7 +11,7 @@ export type ReviewListReqType = {
 };
 
 export type ReviewListResType = {
-  status: string;
+  status: number;
   message: string;
   data: {
     reviews: ReviewItemType[];
@@ -60,3 +60,16 @@ export type ReviewListMetaType = {
 export type SortingKey = keyof typeof SORTING;
 export type TagsKey = keyof typeof TAGS;
 export type LocationKey = keyof typeof LOCATION;
+
+export type ReviewLikeReqType = {
+  reviewId: number;
+  isLike: boolean;
+};
+
+export type ReviewLikeResType = {
+  status: number;
+  message: string;
+  data: {
+    isLike: boolean;
+  };
+};

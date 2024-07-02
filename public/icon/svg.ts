@@ -1,5 +1,6 @@
 export { default as arrow_left } from 'public/icon/arrow_left.svg';
 export { default as arrow_right } from 'public/icon/arrow_right.svg';
+export { default as arrow_top } from 'public/icon/arrow_top.svg';
 export { default as bookmark } from 'public/icon/bookmark.svg';
 export { default as bookmark_marked } from 'public/icon/bookmark_marked.svg';
 export { default as check } from 'public/icon/check.svg';

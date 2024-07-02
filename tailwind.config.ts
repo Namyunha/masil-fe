@@ -9,7 +9,9 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      mobile: { max: '640px' },
+      min: { max: '320px' },
+      mid: { max: '480px' },
+      max: { max: '540px' },
     },
     extend: {
       colors: {
@@ -53,6 +55,9 @@ const config: Config = {
         fields_bg_validation: '#FFFBF4',
         fields_stroke_error: '#FFD8D8',
         fields_bg_error: '#FFF5F5',
+      },
+      maxWidth: {
+        screen_max: '540px',
       },
       margin: {
         6: '6px',
@@ -124,7 +129,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar')],
 };
 
 export default config;

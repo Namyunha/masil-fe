@@ -19,6 +19,7 @@ export default function ReviewItemImages({
               fill={true}
               // Todo: 이미지 사이즈 최적화하기
               sizes="(max-width: 732px) 90vw, (max-width: 992px) 45vw, 320px"
+              className="object-cover"
               priority
             />
           </li>
