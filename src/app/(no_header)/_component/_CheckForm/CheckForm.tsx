@@ -9,7 +9,7 @@ import CheckComponent from './_component/CheckComponent';
 export const CheckForm = () => {
   const progessStatus = progessCondition();
   const currentUserStatus = useRegisterStore();
-  const { check1, check2, check3, setCheckType } = useCheck();
+  const { allCheck, TermsCheck, infoCollectCheck, setCheckType } = useCheck();
 
   const onAgreementHandler = () => {
     progessStatus.setProgessCondition(3);
@@ -26,25 +26,20 @@ export const CheckForm = () => {
       </div>
       <div className="flex flex-col">
         <CheckComponent
-          check1={check1}
-          check2={check2}
-          check3={check3}
+          allCheck={allCheck}
+          TermsCheck={TermsCheck}
+          infoCollectCheck={infoCollectCheck}
           setCheckType={setCheckType}
         />
         <div className="flex justify-center">
           <button
             onClick={onAgreementHandler}
-            disabled={!(check2 && check3)}
+            disabled={!(TermsCheck && infoCollectCheck)}
             className={clsx(
-              'w-full',
-              'font-semibold',
-              'text-text_white',
-              'rounded-lg',
-              'p-12',
-              'bg-gray',
+              'w-full font-semibold text-text_white rounded-lg p-12 bg-gray',
               {
-                ['bg-primary']: check2 && check3,
-                ['cursor-not-allowed']: !(check2 && check3),
+                ['bg-primary']: TermsCheck && infoCollectCheck,
+                ['cursor-not-allowed']: !(TermsCheck && infoCollectCheck),
               }
             )}>
             다음

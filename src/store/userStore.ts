@@ -9,8 +9,7 @@ export const validateCondition = create<ValidateState>((set) => ({
   confirmState: false,
   validateNum: '',
   validateStatus: false,
-  setValidateState: () =>
-    set((state) => ({ confirmState: !state.confirmState })),
+  setValidateState: (data) => set(() => ({ confirmState: data })),
   setValidateNum: (data) => set(() => ({ validateNum: data })),
   setValidateStatus: () => set(() => ({ validateStatus: true })),
 }));

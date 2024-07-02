@@ -1,8 +1,7 @@
-import { ReactNode } from 'react';
 import Icon from '@/components/Icon';
 
 type ErrorMessageProps = {
-  message: ReactNode;
+  message: string | undefined;
 };
 
 export default function ErrorMessage({ message }: ErrorMessageProps) {

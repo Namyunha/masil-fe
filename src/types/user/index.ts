@@ -9,7 +9,7 @@ export type ValidateState = {
   validateNum: string;
   confirmState: boolean;
   validateStatus: boolean;
-  setValidateState: () => void;
+  setValidateState: (data: boolean) => void;
   setValidateNum: (data: string) => void;
   setValidateStatus: () => void;
 };

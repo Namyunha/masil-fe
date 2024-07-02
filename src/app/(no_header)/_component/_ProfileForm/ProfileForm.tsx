@@ -66,7 +66,11 @@ export default function ProfileForm() {
           <input
             id="small_filled"
             placeholder=""
-            className="peer block rounded-lg px-12 pt-4 pb-8 w-full border-2 focus:outline-none border-fields_stroke"
+            className={clsx(
+              'peer block rounded-lg px-12 pt-4 pb-8 w-full border-2 focus:outline-none',
+              errors.nickName &&
+                'bg-fields_bg_error border border-fields_stroke_error'
+            )}
             type="text"
             {...register('nickName', {
               required: '닉네임을 입력해주세요',

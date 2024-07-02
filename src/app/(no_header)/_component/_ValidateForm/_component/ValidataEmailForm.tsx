@@ -67,15 +67,7 @@ export default function ValidateEmailForm() {
           })}
           placeholder=" "
           className={clsx(
-            'peer',
-            'block',
-            'rounded-lg',
-            'px-12',
-            'pt-4',
-            'pb-8',
-            'w-full',
-            'border-2',
-            'focus:outline-none',
+            'peer block rounded-lg px-12 pt-4 pb-8 w-full border-2 focus:outline-none',
             duplicateError
               ? 'bg-fields_bg_error border-fields_stroke_error'
               : 'border-fields_stroke'

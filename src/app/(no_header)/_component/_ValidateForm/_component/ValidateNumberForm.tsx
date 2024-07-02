@@ -32,11 +32,10 @@ export default function ValidateNumberForm() {
   const random = (length = 6) => {
     return Math.random().toString(10).substr(2, length);
   };
-  console.log('validateState = ', validateState);
 
   const onsubmitHandler: SubmitHandler<Inputs> = async () => {
     progessStatus.setProgessCondition(2);
-    validateState.setValidateState();
+    validateState.setValidateState(true);
     validateState.setValidateStatus();
   };
   // 인증번호 입력 상태에 따른 에러 메시지 업데이트
@@ -74,18 +73,11 @@ export default function ValidateNumberForm() {
             <input
               disabled={validateState.confirmState}
               className={clsx(
-                'w-full',
-                'border',
-                'rounded-lg',
-                'p-12',
+                'w-full border rounded-lg p-12',
                 validateState.confirmState && 'cursor-not-allowed text-zinc-300'
               )}
               type="text"
-              placeholder={
-                validateState.confirmState
-                  ? validateState.validateNum
-                  : '인증번호를 입력해주세요'
-              }
+              placeholder="인증번호를 입력해주세요"
               value={
                 validateState.confirmState
                   ? validateState.validateNum

@@ -9,7 +9,7 @@ export default function CompleteForm() {
   const homeHandlerButton = () => {
     userInfo.resetProfile();
     validate.setValidateNum('');
-    validate.setValidateState();
+    validate.setValidateState(false);
     router.push('/');
   };
   const router = useRouter();

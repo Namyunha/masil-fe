@@ -3,7 +3,7 @@ import { validateCondition } from '@/store/userStore';
 
 export default function Timer() {
   const validateState = validateCondition();
-  const [timeLeft, setTimeLeft] = useState(60); // 5분(300초) 초기값
+  const [timeLeft, setTimeLeft] = useState(300); // 5분(300초) 초기값
   const random = (length = 6) => {
     return Math.random().toString(10).substr(2, length);
   };
@@ -13,7 +13,7 @@ export default function Timer() {
       setTimeLeft((prevTime) => {
         if (prevTime <= 0) {
           validateState.setValidateNum(random());
-          return 60;
+          return 300;
         }
         return prevTime - 1;
       });

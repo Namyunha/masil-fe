@@ -54,15 +54,9 @@ export default function PasswordForm() {
             id="small_filled"
             placeholder=""
             className={clsx(
-              'peer',
-              'block',
-              'rounded-lg',
-              'px-12',
-              'pt-4',
-              'pb-8',
-              'w-full',
-              'border-2',
-              'focus:outline-none'
+              'peer block rounded-lg px-12 pt-4 pb-8 w-full border-2 focus:outline-none',
+              errors.password &&
+                'bg-fields_bg_error border border-fields_stroke_error'
             )}
             type="password"
           />
