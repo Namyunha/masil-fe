@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { email_regex } from '@/constants/validates';
-import { useRegisterStore, validateCondition } from '@/store/userStore';
+import { userRegisterStore, validateCondition } from '@/store/userStore';
 import ErrorMessage from '../../ErrorMessage';
 import Label from '../../Label';
 import PassButton from '../../PassButton';
@@ -14,7 +14,7 @@ type Inputs = {
 
 export default function ValidateEmailForm() {
   const [errorState, setErrorState] = useState(true);
-  const currentUserInfo = useRegisterStore();
+  const currentUserInfo = userRegisterStore();
   const {
     register,
     handleSubmit,

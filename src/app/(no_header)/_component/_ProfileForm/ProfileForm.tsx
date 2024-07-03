@@ -6,7 +6,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSignUpMutation } from '@/api/sign/queries';
 import Icon from '@/components/Icon';
 import LoadingSpinner from '@/components/LoadingSpinner';
-import { useRegisterStore } from '@/store/userStore';
+import {
+  progressCondition,
+  userRegisterStore,
+  validateCondition,
+} from '@/store/userStore';
 import ErrorMessage from '../ErrorMessage';
 import Label from '../Label';
 import PassButton from '../PassButton';
@@ -25,7 +29,9 @@ export default function ProfileForm() {
 
   const [errorState, setErrorState] = useState(true);
   const [duplicateErrorMessage, setDuplicateErrorMessage] = useState('');
-  const currentUserInfo = useRegisterStore();
+  const validateState = validateCondition();
+  const userInfoState = userRegisterStore();
+  const ProgressState = progressCondition();
 
   const nickNameDuplicateCheck = async (nickName: string) => {
     const result = await (await fetch(`/api/user?nickName=` + nickName)).json();
@@ -38,20 +44,31 @@ export default function ProfileForm() {
   const mutation = useSignUpMutation();
 
   const OnsubmitHandler: SubmitHandler<Inputs> = async (data) => {
-    const result = await nickNameDuplicateCheck(data.nickName);
-    if (!result.data) {
-      mutation.mutate({
-        email: currentUserInfo.email,
-        pw: currentUserInfo.userInfo.pw,
-        nickName: data.nickName,
-        profileImg: currentUserInfo.profileImg,
-      });
+    if (!userInfoState.email || !validateState.confirmState) {
+      ProgressState.setProgressCondition(1);
+      return;
     }
+    if (!validateState.agreement) {
+      ProgressState.setProgressCondition(2);
+      return;
+    }
+    if (!userInfoState.userInfo.pw) {
+      ProgressState.setProgressCondition(3);
+      return;
+    }
+    const result = await nickNameDuplicateCheck(data.nickName);
+    if (result.data) return;
+    mutation.mutate({
+      email: userInfoState.email,
+      pw: userInfoState.userInfo.pw,
+      nickName: data.nickName,
+      profileImg: userInfoState.profileImg,
+    });
   };
 
   useEffect(() => {
     watch('nickName') ? setErrorState(false) : setErrorState(true);
-  }, [currentUserInfo, watch('nickName')]);
+  }, [userInfoState, watch('nickName')]);
 
   return (
     <div className="flex flex-col mt-20">
@@ -92,9 +109,9 @@ export default function ProfileForm() {
                 <span
                   className={clsx('relative', {
                     'border-solid border-4 border-stroke_focused rounded-full':
-                      currentUserInfo.profileImg === `user${index}`,
+                      userInfoState.profileImg === `user${index}`,
                   })}
-                  onClick={() => currentUserInfo.setProfileImg(`user${index}`)}>
+                  onClick={() => userInfoState.setProfileImg(`user${index}`)}>
                   <Icon key={index} name={`user${index}`} size={65} />
                 </span>
               </div>

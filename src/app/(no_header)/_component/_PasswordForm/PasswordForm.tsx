@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { pw_regex } from '@/constants/validates';
-import { progressCondition, useRegisterStore } from '@/store/userStore';
+import { progressCondition, userRegisterStore } from '@/store/userStore';
 import ErrorMessage from '../ErrorMessage';
 import Label from '../Label';
 import PassButton from '../PassButton';
@@ -13,7 +13,7 @@ type Inputs = {
 
 export default function PasswordForm() {
   const [errorState, setErrorState] = useState(true);
-  const currentUserInfo = useRegisterStore();
+  const currentUserInfo = userRegisterStore();
   const {
     register,
     handleSubmit,

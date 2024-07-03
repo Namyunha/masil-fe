@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import {
   progressCondition,
-  useRegisterStore,
+  userRegisterStore,
   validateCondition,
 } from '@/store/userStore';
 import AlertModal from '../../AlertModal';
@@ -25,17 +25,17 @@ export default function ValidateNumberForm() {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const progessStatus = progressCondition();
+  const progressStatus = progressCondition();
   const validateState = validateCondition();
-  const currentUserInfo = useRegisterStore();
+  const currentUserInfo = userRegisterStore();
 
   const random = (length = 6) => {
     return Math.random().toString(10).substr(2, length);
   };
 
   const onsubmitHandler: SubmitHandler<Inputs> = async () => {
-    progessStatus.setProgressCondition(2);
-    validateState.setValidateState(true);
+    progressStatus.setProgressCondition(2);
+    validateState.setConfirmState(true);
     validateState.setValidateStatus();
   };
   // 인증번호 입력 상태에 따른 에러 메시지 업데이트

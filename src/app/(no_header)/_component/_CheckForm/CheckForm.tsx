@@ -3,17 +3,17 @@
 import clsx from 'clsx';
 import React from 'react';
 import useCheck from '@/hooks/useCheck';
-import { progressCondition, useRegisterStore } from '@/store/userStore';
+import { progressCondition, validateCondition } from '@/store/userStore';
 import CheckComponent from './_component/CheckComponent';
 
 export const CheckForm = () => {
-  const progessStatus = progressCondition();
-  const currentUserStatus = useRegisterStore();
+  const progressStatus = progressCondition();
+  const validateStatus = validateCondition();
   const { allCheck, termsCheck, infoCollectCheck, setCheckType } = useCheck();
 
   const onAgreementHandler = () => {
-    progessStatus.setProgressCondition(3);
-    currentUserStatus.setAgreement(true);
+    progressStatus.setProgressCondition(3);
+    validateStatus.setAgreement(true);
   };
 
   return (

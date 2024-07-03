@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
-import { useRegisterStore } from '@/store/userStore';
+import { validateCondition } from '@/store/userStore';
 import SelectBox from './SelectBox';
 
 type setCheckType = {
@@ -14,21 +14,16 @@ export type CheckComponentProps = {
   setCheckType: setCheckType;
 };
 
-type checkHandlerProps = {
-  checkType?: 'all' | 'terms' | 'infoCollect';
-};
-
 export default function CheckComponent({
   allCheck,
   termsCheck,
   infoCollectCheck,
   setCheckType,
 }: CheckComponentProps) {
-  const currentUserStatus = useRegisterStore();
   const { all, terms, infoCollect } = setCheckType;
-
+  const currentValidateStatus = validateCondition();
   useEffect(() => {
-    currentUserStatus.agreement ? all(true) : all(false);
+    currentValidateStatus.agreement ? all(true) : all(false);
   }, []);
 
   return (
