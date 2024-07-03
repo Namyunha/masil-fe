@@ -3,7 +3,6 @@ import {
   DEFAULT_CURSOR,
   DEFAULT_SIZE,
   END_POINT,
-  ERROR_CODE,
   SUCCESS_CODE,
 } from '@/constants/api';
 import { ReviewLikeReqType, ReviewListReqType } from '@/types/review';
@@ -12,24 +11,24 @@ import { mockReviewList } from './data/reviewList';
 
 export const browserHandlers = [
   // 회원가입
-  http.post<never, { nickName: string; email: string; password: string }>(
-    END_POINT.USER.SIGNUP,
-    async ({ request }) => {
-      const { email } = await request.json();
+  // http.post<never, { nickName: string; email: string; password: string }>(
+  //   END_POINT.USER.SIGNUP,
+  //   async ({ request }) => {
+  //     const { email } = await request.json();
 
-      if (email === 'error@gmail.com') {
-        return HttpResponse.json(
-          {
-            status: ERROR_CODE.BAD_REQUEST,
-            message: '회원가입에 실패했습니다',
-          },
-          { status: ERROR_CODE.BAD_REQUEST }
-        );
-      }
+  //     if (email === 'error@gmail.com') {
+  //       return HttpResponse.json(
+  //         {
+  //           status: ERROR_CODE.BAD_REQUEST,
+  //           message: '회원가입에 실패했습니다',
+  //         },
+  //         { status: ERROR_CODE.BAD_REQUEST }
+  //       );
+  //     }
 
-      return HttpResponse.json(null, { status: SUCCESS_CODE.CREATED });
-    }
-  ),
+  //     return HttpResponse.json(null, { status: SUCCESS_CODE.CREATED });
+  //   }
+  // ),
 
   // Memo: 리뷰 리스트 조회
   http.post<never, ReviewListReqType>(

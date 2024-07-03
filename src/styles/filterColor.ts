@@ -9,4 +9,7 @@ export const FILTER_COLOR = {
     'invert(71%) sepia(11%) saturate(526%) hue-rotate(326deg) brightness(91%) contrast(83%)',
   SECONDARY:
     'invert(89%) sepia(8%) saturate(617%) hue-rotate(324deg) brightness(99%) contrast(90%)',
+  RED: 'brightness(0) saturate(100%) invert(32%) sepia(57%) saturate(6117%) hue-rotate(347deg) brightness(123%) contrast(96%)',
+  GREEN:
+    'brightness(0) saturate(100%) invert(74%) sepia(72%) saturate(563%) hue-rotate(62deg) brightness(100%) contrast(96%)',
 };

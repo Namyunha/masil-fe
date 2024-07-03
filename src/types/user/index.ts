@@ -6,31 +6,34 @@ export type ModalState = {
 };
 
 export type ValidateState = {
-  certification: string;
-  setCertification: (date: string) => void;
-  nextCheck: boolean;
-  setNextCheck: () => void;
+  validateNum: string;
+  confirmState: boolean;
+  validateStatus: boolean;
+  setValidateState: (data: boolean) => void;
+  setValidateNum: (data: string) => void;
+  setValidateStatus: () => void;
+};
+
+export type ProgessState = {
+  currentProgess: number;
+  setProgessCondition: (data: number) => void;
 };
 
 export type userInfo = {
-  id: string;
   pw: string;
   nickName: string;
 };
 
 export type useRegisterStoreProps = {
-  imageFile: File | undefined;
-  isAgreed: boolean;
   email: string;
+  profileImg: string;
   userInfo: userInfo;
-  fileName: string;
-  currentMessage: string;
-  setAgree: () => void;
+  agreement: boolean;
   setEmail: (emailData: string) => void;
   setUserInfo: (userData: userInfo) => void;
-  setFileName: (fileName: string) => void;
-  setCurrentMessage: (message?: string) => void;
-  setImageFile: (imageFile: File) => void;
+  setprofileImg: (img: string) => void;
+  setAgreement: (data: boolean) => void;
+  resetProfile: () => void;
 };
 
 export type dbUserData = {
@@ -41,6 +44,13 @@ export type dbUserData = {
   email: string;
   fileName: string;
   currentMessage: string;
+};
+
+export type userData = {
+  email: string;
+  pw: string;
+  nickName: string;
+  profileImg: string;
 };
 
 export type dbUserProps = {

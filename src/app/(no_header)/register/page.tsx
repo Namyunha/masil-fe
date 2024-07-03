@@ -1,11 +1,19 @@
 'use client';
-import { useRegisterStore, useValidate } from '@/store/userStore';
-import EmailForm from '../_component/EmailForm';
-import RegisterForm from '../_component/RegisterForm';
+
+import { useEffect } from 'react';
+import { progessCondition } from '@/store/userStore';
+import ProgessBarContainer from '../_component/_ProgessBar/ProgessBarContainer';
+import FormContainer from '../_component/FormContainer';
 
 export default function Register() {
-  const validate = useValidate();
-  console.log('validate = ', validate);
-  const userInfo = useRegisterStore();
-  return <>{userInfo.isAgreed === false ? <EmailForm /> : <RegisterForm />}</>;
+  const progressStatus = progessCondition();
+  useEffect(() => {
+    progressStatus.setProgessCondition(1);
+  }, []);
+  return (
+    <div className="h-dvh w-dvw box-border flex flex-col">
+      {progressStatus.currentProgess < 5 && <ProgessBarContainer />}
+      <FormContainer />
+    </div>
+  );
 }
