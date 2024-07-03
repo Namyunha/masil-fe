@@ -5,9 +5,14 @@ import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSignUpMutation } from '@/api/sign/queries';
 import Icon from '@/components/Icon';
-import { progessCondition, useRegisterStore } from '@/store/userStore';
+import LoadingSpinner from '@/components/LoadingSpinner';
+import {
+  progressCondition,
+  userRegisterStore,
+  validateCondition,
+} from '@/store/userStore';
 import ErrorMessage from '../ErrorMessage';
-import LabelName from '../LabelInput';
+import Label from '../Label';
 import PassButton from '../PassButton';
 
 type Inputs = {
@@ -24,8 +29,9 @@ export default function ProfileForm() {
 
   const [errorState, setErrorState] = useState(true);
   const [duplicateErrorMessage, setDuplicateErrorMessage] = useState('');
-  const progessStatus = progessCondition();
-  const currentUserInfo = useRegisterStore();
+  const validateState = validateCondition();
+  const userInfoState = userRegisterStore();
+  const ProgressState = progressCondition();
 
   const nickNameDuplicateCheck = async (nickName: string) => {
     const result = await (await fetch(`/api/user?nickName=` + nickName)).json();
@@ -38,20 +44,31 @@ export default function ProfileForm() {
   const mutation = useSignUpMutation();
 
   const OnsubmitHandler: SubmitHandler<Inputs> = async (data) => {
-    const result = await nickNameDuplicateCheck(data.nickName);
-    if (!result.data) {
-      mutation.mutate({
-        email: currentUserInfo.email,
-        pw: currentUserInfo.userInfo.pw,
-        nickName: data.nickName,
-        profileImg: currentUserInfo.profileImg,
-      });
+    if (!userInfoState.email || !validateState.confirmState) {
+      ProgressState.setProgressCondition(1);
+      return;
     }
+    if (!validateState.agreement) {
+      ProgressState.setProgressCondition(2);
+      return;
+    }
+    if (!userInfoState.userInfo.pw) {
+      ProgressState.setProgressCondition(3);
+      return;
+    }
+    const result = await nickNameDuplicateCheck(data.nickName);
+    if (result.data) return;
+    mutation.mutate({
+      email: userInfoState.email,
+      pw: userInfoState.userInfo.pw,
+      nickName: data.nickName,
+      profileImg: userInfoState.profileImg,
+    });
   };
 
   useEffect(() => {
     watch('nickName') ? setErrorState(false) : setErrorState(true);
-  }, [currentUserInfo, watch('nickName')]);
+  }, [userInfoState, watch('nickName')]);
 
   return (
     <div className="flex flex-col mt-20">
@@ -77,7 +94,7 @@ export default function ProfileForm() {
               maxLength: { value: 20, message: '1~20자 사이로 입력해주세요' },
             })}
           />
-          <LabelName labelName="닉네임(1~20 한,영,특수기호) " />
+          <Label labelName="닉네임(1~20 한,영,특수기호) " />
           {errors.nickName && (
             <ErrorMessage message={errors.nickName.message} />
           )}
@@ -92,19 +109,18 @@ export default function ProfileForm() {
                 <span
                   className={clsx('relative', {
                     'border-solid border-4 border-stroke_focused rounded-full':
-                      currentUserInfo.profileImg === `user${index}`,
+                      userInfoState.profileImg === `user${index}`,
                   })}
-                  onClick={() => currentUserInfo.setprofileImg(`user${index}`)}>
+                  onClick={() => userInfoState.setProfileImg(`user${index}`)}>
                   <Icon key={index} name={`user${index}`} size={65} />
                 </span>
               </div>
             ))}
           </div>
         </div>
-        <PassButton
-          label={mutation.isPending ? '가입중' : '완료'}
-          errorState={errorState}
-        />
+        <PassButton errorState={errorState}>
+          {mutation.isPending ? <LoadingSpinner /> : '완료'}
+        </PassButton>
       </form>
     </div>
   );

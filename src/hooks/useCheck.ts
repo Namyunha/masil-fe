@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function useCheck() {
   const [allCheck, setAllCheck] = useState(false);
-  const [TermsCheck, setTermsCheck] = useState(false);
+  const [termsCheck, setTermsCheck] = useState(false);
   const [infoCollectCheck, setInfoCollectCheck] = useState(false);
 
   const setCheckType = {
@@ -22,7 +22,7 @@ export default function useCheck() {
 
   return {
     allCheck,
-    TermsCheck,
+    termsCheck,
     infoCollectCheck,
     setCheckType,
   };

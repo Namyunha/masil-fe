@@ -1,5 +1,5 @@
 import React from 'react';
-import { progessCondition } from '@/store/userStore';
+import { progressCondition } from '@/store/userStore';
 import { CheckForm } from './_CheckForm/CheckForm';
 import PasswordForm from './_PasswordForm/PasswordForm';
 import ProfileForm from './_ProfileForm/ProfileForm';
@@ -7,9 +7,9 @@ import ValidateForm from './_ValidateForm/ValidateForm';
 import CompleteForm from './CompleteForm';
 
 export default function FormContainer() {
-  const progessStatus = progessCondition();
+  const progressStatus = progressCondition();
   const getContent = () => {
-    switch (progessStatus.currentProgess) {
+    switch (progressStatus.currentProgress) {
       case 1:
         return <ValidateForm />;
       case 2:

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import {
-  ProgessState,
+  ProgressState,
   useRegisterStoreProps,
   ValidateState,
 } from '@/types/user';
@@ -9,20 +9,21 @@ export const validateCondition = create<ValidateState>((set) => ({
   confirmState: false,
   validateNum: '',
   validateStatus: false,
-  setValidateState: (data) => set(() => ({ confirmState: data })),
+  agreement: false,
+  setConfirmState: (data) => set(() => ({ confirmState: data })),
   setValidateNum: (data) => set(() => ({ validateNum: data })),
   setValidateStatus: () => set(() => ({ validateStatus: true })),
+  setAgreement: (data) => set(() => ({ agreement: data })),
 }));
 
-export const progessCondition = create<ProgessState>((set) => ({
-  currentProgess: 1,
-  setProgessCondition: (data) => set(() => ({ currentProgess: data })),
+export const progressCondition = create<ProgressState>((set) => ({
+  currentProgress: 1,
+  setProgressCondition: (data) => set(() => ({ currentProgress: data })),
 }));
 
-export const useRegisterStore = create<useRegisterStoreProps>((set) => ({
+export const userRegisterStore = create<useRegisterStoreProps>((set) => ({
   email: '',
   profileImg: '',
-  agreement: false,
   userInfo: {
     pw: '',
     nickName: '',
@@ -32,8 +33,7 @@ export const useRegisterStore = create<useRegisterStoreProps>((set) => ({
     set(() => ({
       userInfo: { ...userData },
     })),
-  setprofileImg: (img) => set(() => ({ profileImg: img })),
-  setAgreement: (data) => set(() => ({ agreement: data })),
+  setProfileImg: (img) => set(() => ({ profileImg: img })),
   resetProfile: () =>
     set(() => ({
       email: '',

@@ -1,15 +1,15 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import Icon from '@/components/Icon';
-import { useRegisterStore, validateCondition } from '@/store/userStore';
+import { userRegisterStore, validateCondition } from '@/store/userStore';
 
 export default function CompleteForm() {
-  const userInfo = useRegisterStore();
+  const userInfo = userRegisterStore();
   const validate = validateCondition();
   const homeHandlerButton = () => {
     userInfo.resetProfile();
     validate.setValidateNum('');
-    validate.setValidateState(false);
+    validate.setConfirmState(false);
     router.push('/');
   };
   const router = useRouter();
