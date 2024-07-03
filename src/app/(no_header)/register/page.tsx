@@ -1,18 +1,18 @@
 'use client';
 
 import { useEffect } from 'react';
-import { progessCondition } from '@/store/userStore';
-import ProgessBarContainer from '../_component/_ProgessBar/ProgessBarContainer';
+import { progressCondition } from '@/store/userStore';
+import ProgressBarContainer from '../_component/_ProgressBar/ProgressBarContainer';
 import FormContainer from '../_component/FormContainer';
 
 export default function Register() {
-  const progressStatus = progessCondition();
+  const progressStatus = progressCondition();
   useEffect(() => {
-    progressStatus.setProgessCondition(1);
+    progressStatus.setProgressCondition(1);
   }, []);
   return (
     <div className="h-dvh w-dvw box-border flex flex-col">
-      {progressStatus.currentProgess < 5 && <ProgessBarContainer />}
+      {progressStatus.currentProgress < 5 && <ProgressBarContainer />}
       <FormContainer />
     </div>
   );

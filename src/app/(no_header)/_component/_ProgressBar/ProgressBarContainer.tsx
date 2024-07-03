@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import Icon from '@/components/Icon';
 import {
-  progessCondition,
+  progressCondition,
   useRegisterStore,
   validateCondition,
 } from '@/store/userStore';
@@ -10,14 +10,17 @@ import ProgressBar from './_component/ProgressBar';
 
 type directionValue = 'prev' | 'next';
 
-export default function ProgessBarContainer() {
+export default function ProgressBarContainer() {
   const validate = validateCondition();
   const userInfo = useRegisterStore();
   const router = useRouter();
-  const currentProgessCondition = progessCondition();
+  const currentProgressCondition = progressCondition();
 
   const onRouterHandler = (direction: directionValue) => {
-    if (direction === 'prev' && currentProgessCondition.currentProgess === 1) {
+    if (
+      direction === 'prev' &&
+      currentProgressCondition.currentProgress === 1
+    ) {
       userInfo.resetProfile();
       validate.setValidateState(false);
       validate.setValidateNum('');
@@ -25,28 +28,31 @@ export default function ProgessBarContainer() {
       router.back();
       return;
     }
-    if (direction === 'next' && currentProgessCondition.currentProgess === 4) {
+    if (
+      direction === 'next' &&
+      currentProgressCondition.currentProgress === 4
+    ) {
       if (!userInfo.email || !validate.validateStatus) {
-        currentProgessCondition.setProgessCondition(1);
+        currentProgressCondition.setProgressCondition(1);
         return;
       }
       if (!userInfo.agreement) {
-        currentProgessCondition.setProgessCondition(2);
+        currentProgressCondition.setProgressCondition(2);
         return;
       }
       if (!userInfo.userInfo.pw) {
-        currentProgessCondition.setProgessCondition(3);
+        currentProgressCondition.setProgressCondition(3);
         return;
       }
       if (!userInfo.userInfo.nickName) {
-        currentProgessCondition.setProgessCondition(4);
+        currentProgressCondition.setProgressCondition(4);
         return;
       }
     }
-    currentProgessCondition.setProgessCondition(
+    currentProgressCondition.setProgressCondition(
       direction === 'prev'
-        ? currentProgessCondition.currentProgess - 1
-        : currentProgessCondition.currentProgess + 1
+        ? currentProgressCondition.currentProgress - 1
+        : currentProgressCondition.currentProgress + 1
     );
 
     // (direction.next || direction.prev)

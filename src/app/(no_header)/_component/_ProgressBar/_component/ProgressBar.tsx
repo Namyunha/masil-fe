@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { progessCondition } from '@/store/userStore';
+import { progressCondition } from '@/store/userStore';
 
 export default function ProgressBar() {
-  const progessStatus = progessCondition();
+  const progressStatus = progressCondition();
   const getContent = () => {
-    switch (progessStatus.currentProgess) {
+    switch (progressStatus.currentProgress) {
       case 1:
         return <div className="bg-primary w-1/4 h-2.5 rounded-lg" />;
       case 2:

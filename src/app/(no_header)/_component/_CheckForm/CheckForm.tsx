@@ -3,16 +3,16 @@
 import clsx from 'clsx';
 import React from 'react';
 import useCheck from '@/hooks/useCheck';
-import { progessCondition, useRegisterStore } from '@/store/userStore';
+import { progressCondition, useRegisterStore } from '@/store/userStore';
 import CheckComponent from './_component/CheckComponent';
 
 export const CheckForm = () => {
-  const progessStatus = progessCondition();
+  const progessStatus = progressCondition();
   const currentUserStatus = useRegisterStore();
-  const { allCheck, TermsCheck, infoCollectCheck, setCheckType } = useCheck();
+  const { allCheck, termsCheck, infoCollectCheck, setCheckType } = useCheck();
 
   const onAgreementHandler = () => {
-    progessStatus.setProgessCondition(3);
+    progessStatus.setProgressCondition(3);
     currentUserStatus.setAgreement(true);
   };
 
@@ -27,19 +27,19 @@ export const CheckForm = () => {
       <div className="flex flex-col">
         <CheckComponent
           allCheck={allCheck}
-          TermsCheck={TermsCheck}
+          termsCheck={termsCheck}
           infoCollectCheck={infoCollectCheck}
           setCheckType={setCheckType}
         />
         <div className="flex justify-center">
           <button
             onClick={onAgreementHandler}
-            disabled={!(TermsCheck && infoCollectCheck)}
+            disabled={!(termsCheck && infoCollectCheck)}
             className={clsx(
               'w-full font-semibold text-text_white rounded-lg p-12 bg-gray',
               {
-                ['bg-primary']: TermsCheck && infoCollectCheck,
-                ['cursor-not-allowed']: !(TermsCheck && infoCollectCheck),
+                ['bg-primary']: termsCheck && infoCollectCheck,
+                ['cursor-not-allowed']: !(termsCheck && infoCollectCheck),
               }
             )}>
             다음

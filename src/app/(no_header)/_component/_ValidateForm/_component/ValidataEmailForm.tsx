@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { email_regex } from '@/constants/validates';
 import { useRegisterStore, validateCondition } from '@/store/userStore';
 import ErrorMessage from '../../ErrorMessage';
-import LabelName from '../../LabelInput';
+import Label from '../../Label';
 import PassButton from '../../PassButton';
 
 type Inputs = {
@@ -74,13 +74,13 @@ export default function ValidateEmailForm() {
           )}
           type="text"
         />
-        <LabelName labelName="이메일 (example@example.com)" />
+        <Label labelName="이메일 (example@example.com)" />
         {errors.email && <ErrorMessage message={errors.email.message} />}
         {!errors.email && duplicateError && (
           <ErrorMessage message={duplicateError} />
         )}
       </div>
-      <PassButton label={'인증번호 전송'} errorState={errorState} />
+      <PassButton errorState={errorState}>{'인증번호 전송'}</PassButton>
     </form>
   );
 }

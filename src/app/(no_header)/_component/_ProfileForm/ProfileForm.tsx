@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSignUpMutation } from '@/api/sign/queries';
 import Icon from '@/components/Icon';
-import { progessCondition, useRegisterStore } from '@/store/userStore';
+import LoadingSpinner from '@/components/LoadingSpinner';
+import { useRegisterStore } from '@/store/userStore';
 import ErrorMessage from '../ErrorMessage';
-import LabelName from '../LabelInput';
+import Label from '../Label';
 import PassButton from '../PassButton';
 
 type Inputs = {
@@ -24,7 +25,6 @@ export default function ProfileForm() {
 
   const [errorState, setErrorState] = useState(true);
   const [duplicateErrorMessage, setDuplicateErrorMessage] = useState('');
-  const progessStatus = progessCondition();
   const currentUserInfo = useRegisterStore();
 
   const nickNameDuplicateCheck = async (nickName: string) => {
@@ -77,7 +77,7 @@ export default function ProfileForm() {
               maxLength: { value: 20, message: '1~20자 사이로 입력해주세요' },
             })}
           />
-          <LabelName labelName="닉네임(1~20 한,영,특수기호) " />
+          <Label labelName="닉네임(1~20 한,영,특수기호) " />
           {errors.nickName && (
             <ErrorMessage message={errors.nickName.message} />
           )}
@@ -94,17 +94,16 @@ export default function ProfileForm() {
                     'border-solid border-4 border-stroke_focused rounded-full':
                       currentUserInfo.profileImg === `user${index}`,
                   })}
-                  onClick={() => currentUserInfo.setprofileImg(`user${index}`)}>
+                  onClick={() => currentUserInfo.setProfileImg(`user${index}`)}>
                   <Icon key={index} name={`user${index}`} size={65} />
                 </span>
               </div>
             ))}
           </div>
         </div>
-        <PassButton
-          label={mutation.isPending ? '가입중' : '완료'}
-          errorState={errorState}
-        />
+        <PassButton errorState={errorState}>
+          {mutation.isPending ? <LoadingSpinner /> : '완료'}
+        </PassButton>
       </form>
     </div>
   );

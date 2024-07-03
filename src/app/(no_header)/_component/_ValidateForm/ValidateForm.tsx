@@ -1,10 +1,12 @@
 import React from 'react';
-import { useRegisterStore } from '@/store/userStore';
+import { useRegisterStore, validateCondition } from '@/store/userStore';
 import ValidateEmailForm from './_component/ValidataEmailForm';
 import ValidateNumberForm from './_component/ValidateNumberForm';
 
 export default function ValidateForm() {
   const currentUserInfo = useRegisterStore();
+  const validateState = validateCondition();
+  console.log('validateCondition = ', validateState);
 
   return (
     <>

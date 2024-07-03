@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import {
-  progessCondition,
+  progressCondition,
   useRegisterStore,
   validateCondition,
 } from '@/store/userStore';
@@ -25,7 +25,7 @@ export default function ValidateNumberForm() {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const progessStatus = progessCondition();
+  const progessStatus = progressCondition();
   const validateState = validateCondition();
   const currentUserInfo = useRegisterStore();
 
@@ -34,7 +34,7 @@ export default function ValidateNumberForm() {
   };
 
   const onsubmitHandler: SubmitHandler<Inputs> = async () => {
-    progessStatus.setProgessCondition(2);
+    progessStatus.setProgressCondition(2);
     validateState.setValidateState(true);
     validateState.setValidateStatus();
   };
@@ -98,7 +98,7 @@ export default function ValidateNumberForm() {
             <ErrorMessage message={errors.validateNum.message} />
           )}
         </div>
-        <PassButton label={'다음'} errorState={errorState} />
+        <PassButton errorState={errorState}>{'다음'}</PassButton>
       </form>
       <div className="flex justify-center mt-5 text-text_light_grey">
         <span className="cursor-pointer" onClick={resendValidateNum}>

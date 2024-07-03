@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { pw_regex } from '@/constants/validates';
-import { progessCondition, useRegisterStore } from '@/store/userStore';
+import { progressCondition, useRegisterStore } from '@/store/userStore';
 import ErrorMessage from '../ErrorMessage';
-import LabelName from '../LabelInput';
+import Label from '../Label';
 import PassButton from '../PassButton';
 
 type Inputs = {
@@ -20,11 +20,11 @@ export default function PasswordForm() {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const progessStatus = progessCondition();
+  const progressStatus = progressCondition();
 
   const onsubmitHandler: SubmitHandler<Inputs> = async (data) => {
     currentUserInfo.setUserInfo({ pw: data.password, nickName: '' });
-    progessStatus.setProgessCondition(4);
+    progressStatus.setProgressCondition(4);
   };
 
   useEffect(() => {
@@ -60,12 +60,12 @@ export default function PasswordForm() {
             )}
             type="password"
           />
-          <LabelName labelName="영문,숫자,특수기호 포함 5~20자" />
+          <Label labelName="영문,숫자,특수기호 포함 5~20자" />
           {errors.password && (
             <ErrorMessage message={errors.password.message} />
           )}
         </div>
-        <PassButton label={'다음'} errorState={errorState} />
+        <PassButton errorState={errorState}>{'다음'}</PassButton>
       </form>
     </div>
   );

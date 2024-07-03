@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import {
-  ProgessState,
+  ProgressState,
   useRegisterStoreProps,
   ValidateState,
 } from '@/types/user';
@@ -14,9 +14,9 @@ export const validateCondition = create<ValidateState>((set) => ({
   setValidateStatus: () => set(() => ({ validateStatus: true })),
 }));
 
-export const progessCondition = create<ProgessState>((set) => ({
-  currentProgess: 1,
-  setProgessCondition: (data) => set(() => ({ currentProgess: data })),
+export const progressCondition = create<ProgressState>((set) => ({
+  currentProgress: 1,
+  setProgressCondition: (data) => set(() => ({ currentProgress: data })),
 }));
 
 export const useRegisterStore = create<useRegisterStoreProps>((set) => ({
@@ -32,7 +32,7 @@ export const useRegisterStore = create<useRegisterStoreProps>((set) => ({
     set(() => ({
       userInfo: { ...userData },
     })),
-  setprofileImg: (img) => set(() => ({ profileImg: img })),
+  setProfileImg: (img) => set(() => ({ profileImg: img })),
   setAgreement: (data) => set(() => ({ agreement: data })),
   resetProfile: () =>
     set(() => ({

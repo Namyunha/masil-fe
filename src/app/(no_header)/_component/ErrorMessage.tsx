@@ -1,7 +1,7 @@
 import Icon from '@/components/Icon';
 
 type ErrorMessageProps = {
-  message: string | undefined;
+  message?: string;
 };
 
 export default function ErrorMessage({ message }: ErrorMessageProps) {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LabelName({ labelName }: { labelName: string }) {
+export default function Label({ labelName }: { labelName: string }) {
   return (
     <label
       htmlFor="small_filled"
