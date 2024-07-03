@@ -1,6 +1,6 @@
 import { LOCATION } from '@/constants/reviewFilter';
 import { useFilterStore } from '@/store/filterStore';
-import ReviewFilterModalFilterList from './\bReviewFilterModalFilterList';
+import ReviewFilterModalFilterList from './ReviewFilterModalFilterList';
 import ReviewFilterModalTitle from './ReviewFilterModalTitle';
 
 export default function ReviewFilterModalLocation() {
