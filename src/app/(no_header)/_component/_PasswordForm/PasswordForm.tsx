@@ -34,15 +34,15 @@ export default function PasswordForm() {
   }, [watch('password')]);
 
   return (
-    <div className="flex flex-col mt-56">
-      <div className="text-20">
+    <div className="flex flex-col">
+      <div className="max:text-16 text-20">
         <p className="font-bold">
           로그인에 사용할 <br />
           비밀번호를 입력해주세요
         </p>
       </div>
       <form onSubmit={handleSubmit(onsubmitHandler)} className="flex flex-col">
-        <div className="relative my-9">
+        <div className="relative mt-9">
           <input
             {...register('password', {
               required: '비밀번호를 입력해주세요',
@@ -54,7 +54,7 @@ export default function PasswordForm() {
             id="small_filled"
             placeholder=""
             className={clsx(
-              'peer block rounded-lg px-12 pt-4 pb-8 w-full border-2 focus:outline-none',
+              'peer block rounded-lg px-12 pt-4 max:pt-3 pb-8 max:pb-6 w-full border-2 focus:outline-none',
               errors.password &&
                 'bg-fields_bg_error border border-fields_stroke_error'
             )}

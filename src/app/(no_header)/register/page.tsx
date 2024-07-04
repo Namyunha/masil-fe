@@ -11,7 +11,7 @@ export default function Register() {
     progressStatus.setProgressCondition(1);
   }, []);
   return (
-    <div className="h-dvh w-dvw box-border flex flex-col">
+    <div className="h-dvh w-full box-border flex flex-col">
       {progressStatus.currentProgress < 5 && <ProgressBarContainer />}
       <FormContainer />
     </div>

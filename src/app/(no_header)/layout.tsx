@@ -7,8 +7,8 @@ export default function LoginLayout({
 }) {
   return (
     <>
-      <section className="flex justify-center overflow-hidden h-full">
-        <div className="pt-10">{children}</div>
+      <section className="flex justify-center overflow-hidden w-full h-full">
+        <div className="pt-3 w-full">{children}</div>
       </section>
     </>
   );

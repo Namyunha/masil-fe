@@ -33,7 +33,7 @@ export default function ProgressBarContainer() {
   };
 
   return (
-    <div className="flex flex-col fixed top-0 left-0 box-border w-full h-1/5 justify-center p-10">
+    <div className="flex flex-col box-border w-full h-1/6 justify-center max-w-screen_max px-10">
       <div className="flex justify-between">
         <span onClick={() => onRouterHandler('prev')}>
           <Icon className="cursor-pointer mb-2" name="arrow_left" size={24} />

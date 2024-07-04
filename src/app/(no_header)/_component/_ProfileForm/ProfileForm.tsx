@@ -71,8 +71,8 @@ export default function ProfileForm() {
   }, [userInfoState, watch('nickName')]);
 
   return (
-    <div className="flex flex-col mt-20">
-      <div className="text-20">
+    <div className="flex flex-col">
+      <div className="max:text-16 text-20">
         <p className="font-bold">
           마실에서 사용할 <br />
           닉네임과 프로필을 정해주세요
@@ -81,18 +81,18 @@ export default function ProfileForm() {
       <form onSubmit={handleSubmit(OnsubmitHandler)} className="flex flex-col">
         <div className="relative mb-5 mt-3">
           <input
-            id="small_filled"
-            placeholder=""
-            className={clsx(
-              'peer block rounded-lg px-12 pt-4 pb-8 w-full border-2 focus:outline-none',
-              errors.nickName &&
-                'bg-fields_bg_error border border-fields_stroke_error'
-            )}
-            type="text"
             {...register('nickName', {
               required: '닉네임을 입력해주세요',
               maxLength: { value: 20, message: '1~20자 사이로 입력해주세요' },
             })}
+            id="small_filled"
+            placeholder=""
+            className={clsx(
+              'peer block rounded-lg px-12 pt-4 max:pt-3 pb-8 max:pb-6 w-full border-2 focus:outline-none',
+              errors.nickName &&
+                'bg-fields_bg_error border border-fields_stroke_error'
+            )}
+            type="text"
           />
           <Label labelName="닉네임(1~20 한,영,특수기호) " />
           {errors.nickName && (
@@ -102,7 +102,7 @@ export default function ProfileForm() {
             <ErrorMessage message={duplicateErrorMessage} />
           )}
         </div>
-        <div className="relative overflow-scroll h-60 mb-5">
+        <div className="relative overflow-scroll mab:h-72 h-72">
           <div className="grid gap-4 grid-cols-3 grid-rows-3 pt-3 pb-10">
             {Array.from({ length: 21 }).map((_, index) => (
               <div key={index} className="flex justify-center relative">

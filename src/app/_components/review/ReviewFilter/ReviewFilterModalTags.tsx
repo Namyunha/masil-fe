@@ -1,7 +1,7 @@
 import { TAGS } from '@/constants/reviewFilter';
 import { useFilterStore } from '@/store/filterStore';
 import { TagsKey } from '@/types/review';
-import ReviewFilterModalFilterList from './\bReviewFilterModalFilterList';
+import ReviewFilterModalFilterList from './ReviewFilterModalFilterList';
 import ReviewFilterModalTitle from './ReviewFilterModalTitle';
 
 export default function ReviewFilterModalTags() {

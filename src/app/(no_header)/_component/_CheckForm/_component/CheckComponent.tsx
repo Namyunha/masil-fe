@@ -27,7 +27,7 @@ export default function CheckComponent({
   }, []);
 
   return (
-    <div className="my-10">
+    <div className="mt-5 mb-10">
       <div className="flex content-center justify-between border-b border-fields_stroke px-3 py-4">
         <span className="ml-1 font-black text-lg">전체 동의</span>
         <SelectBox

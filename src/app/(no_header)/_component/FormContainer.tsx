@@ -24,5 +24,5 @@ export default function FormContainer() {
         return null;
     }
   };
-  return <div className="items-center mt-10 p-10">{getContent()}</div>;
+  return <div className="items-center px-10 mt-3">{getContent()}</div>;
 }
