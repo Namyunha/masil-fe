@@ -18,7 +18,7 @@ export const CheckForm = () => {
 
   return (
     <>
-      <div className="text-20 mt-56">
+      <div className="max:text-16 text-20">
         <p className="font-bold">
           마실 서비스 이용약관에 <br />
           동의해주세요

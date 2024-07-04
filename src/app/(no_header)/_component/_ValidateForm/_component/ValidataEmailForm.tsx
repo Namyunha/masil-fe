@@ -55,9 +55,8 @@ export default function ValidateEmailForm() {
   }, [watch('email')]);
   return (
     <form onSubmit={handleSubmit(onContinueHandler)} className="flex flex-col">
-      <div className="relative mt-5 mb-4">
+      <div className="relative mt-10">
         <input
-          id="small_filled"
           {...register('email', {
             required: '이메일을 입력해주세요',
             pattern: {
@@ -65,9 +64,10 @@ export default function ValidateEmailForm() {
               message: email_regex.message,
             },
           })}
+          id="small_filled"
           placeholder=" "
           className={clsx(
-            'peer block rounded-lg px-12 pt-4 pb-8 w-full border-2 focus:outline-none',
+            'peer block rounded-lg px-12 pt-4 max:pt-3 pb-8 max:pb-6 w-full border-2 focus:outline-none',
             duplicateError
               ? 'bg-fields_bg_error border-fields_stroke_error'
               : 'border-fields_stroke'

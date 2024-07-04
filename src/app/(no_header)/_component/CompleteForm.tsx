@@ -19,8 +19,8 @@ export default function CompleteForm() {
     };
   }, []);
   return (
-    <div className="flex flex-col justify-between mt-20">
-      <div className="text-18 text-center">
+    <div className="flex flex-col h-dvh justify-center">
+      <div className="max:text-18 text-24 text-center">
         <p className="font-bold">마실에 가입한 것을 축하드립니다</p>
       </div>
       <div className="flex justify-center items-center h-60 m-11">
@@ -28,7 +28,7 @@ export default function CompleteForm() {
       </div>
       <button
         onClick={homeHandlerButton}
-        className="bg-primary text-white rounded-lg p-12 font-bold">
+        className="bg-primary text-white rounded-lg  py-16 px-12 max:p-12 font-bold">
         카페 구경하기
       </button>
     </div>

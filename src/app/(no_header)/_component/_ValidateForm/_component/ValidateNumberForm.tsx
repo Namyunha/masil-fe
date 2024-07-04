@@ -53,7 +53,7 @@ export default function ValidateNumberForm() {
   return (
     <>
       <form onSubmit={handleSubmit(onsubmitHandler)} className="flex flex-col">
-        <div className="flex flex-col mt-5 mb-4">
+        <div className="flex flex-col mt-10">
           <div className="relative mb-2">
             <input
               disabled
@@ -68,7 +68,7 @@ export default function ValidateNumberForm() {
               이메일 (example@example.com)
             </label>
           </div>
-          <div className="mb-4 relative">
+          <div className="relative">
             <Timer />
             <input
               disabled={validateState.confirmState}
