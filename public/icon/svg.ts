@@ -25,6 +25,8 @@ export { default as register_logo } from 'public/icon/register_logo.svg';
 export { default as setting } from 'public/icon/setting.svg';
 export { default as share } from 'public/icon/share.svg';
 export { default as star } from 'public/icon/star.svg';
+export { default as star_empty } from 'public/icon/star_empty.svg';
+export { default as star_half } from 'public/icon/star_half.svg';
 export { default as upload } from 'public/icon/upload.svg';
 export { default as user0 } from 'public/icon/user0.svg';
 export { default as user1 } from 'public/icon/user1.svg';
