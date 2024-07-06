@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { API_BASE_URL } from '@/constants/api';
+import { getCookie } from '@/utils/cookie';
 
 export const fetcher = axios.create({
   baseURL: API_BASE_URL,
@@ -9,7 +10,8 @@ export const fetcher = axios.create({
 fetcher.interceptors.request.use(
   (config) => {
     // Memo: 토큰 저장 위치에 따라 로직 변경해야함
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = getCookie('accessToken');
+
     if (accessToken) {
       config.headers['Authorization'] = `Bearer ${accessToken}`;
     }

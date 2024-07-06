@@ -31,7 +31,7 @@ export default function LoginForm() {
       })
     ).json();
     // console.log('Current Time = ', new Date(Date.now() + 60 * 60 * 1000));
-    Cookies.set('currentUser', result.accessToken, {
+    Cookies.set('accessToken', result.accessToken, {
       secure: true,
       expires: new Date(Date.now() + 60 * 60 * 1000),
     });

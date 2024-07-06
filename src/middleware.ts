@@ -1,8 +1,8 @@
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const currentUser = request.cookies.get('currentUser')?.value;
-  if (!currentUser && !request.nextUrl.pathname.startsWith('/login')) {
+  const accessToken = request.cookies.get('accessToken')?.value;
+  if (!accessToken && !request.nextUrl.pathname.startsWith('/login')) {
     return Response.redirect(new URL('/register', request.url));
   }
 }

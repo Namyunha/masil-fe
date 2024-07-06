@@ -6,9 +6,9 @@ import React, { useEffect } from 'react';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
 export default function Logout() {
-  const currentAccessToken = Cookies.get('currentUser');
+  const accessToken = Cookies.get('accessToken');
   const router = useRouter();
-  if (!currentAccessToken) {
+  if (!accessToken) {
     router.push('/');
   }
   useEffect(() => {
@@ -27,10 +27,10 @@ export default function Logout() {
         console.error('Logout error: ', error);
       }
     };
-    console.log('currentAccessToken = ', currentAccessToken);
-    Cookies.remove('currentUser');
+    console.log('accessToken = ', accessToken);
+    Cookies.remove('accessToken');
     logout();
-  }, [currentAccessToken]);
+  }, [accessToken]);
 
   return <LoadingSpinner />;
 }
