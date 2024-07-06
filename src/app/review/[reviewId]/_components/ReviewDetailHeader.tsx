@@ -11,7 +11,7 @@ export default function ReviewDetailHeader() {
     router.push(ROUTE_PATH.HOME);
   };
 
-  // Todo: 본인 리뷰일 경우 더보기 버튼 나타내기
+  // Todo: 유저 정보 유지 기능 완료되면 더보기(수정, 삭제) 기능 추가
   return (
     <header className="sticky top-0 flex justify-center items-center z-float py-12 bg-bg_white shadow-elevation1">
       <Button

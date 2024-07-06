@@ -11,6 +11,7 @@ export default function ReviewDetailCommentBubble({
 }: ReviewDetailCommentBubbleProps) {
   const { profileImageUrl, nickName, createdAt, comment } = commentInfo;
 
+  // Todo: 유저 정보 유지 기능 완료되면 더보기(수정, 삭제) 기능 추가
   return (
     <li className="flex items-center gap-16 px-16 py-12 rounded-full rounded-bl-none shadow-elevation2">
       <UserImage src={profileImageUrl} />
