@@ -1,6 +1,5 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-export { API_BASE_URL };
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+export const SERVER_API_BASE_URL = process.env.NEXT_SERVER_API_BASE_URL;
 
 export const SUCCESS_CODE = {
   OK: 200,
@@ -22,12 +21,13 @@ export const END_POINT = {
     SIGNUP: 'api/user',
   },
   REVIEW: {
-    LIST: 'review',
-    DETAIL: (id: string) => `review/${id}`,
-    LIKE: 'like',
+    LIST: '/review',
+    DETAIL: (reviewId: string) => `/api/review/${reviewId}`,
+    LIKE: '/like',
+    COMMENT: (reviewId: string) => `/review/comment/${reviewId}`,
   },
   CAFE: {
-    RECOMMEND: 'cafes/rec',
+    RECOMMEND: '/cafes/rec',
   },
 };
 

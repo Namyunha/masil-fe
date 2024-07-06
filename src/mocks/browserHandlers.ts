@@ -5,8 +5,13 @@ import {
   END_POINT,
   SUCCESS_CODE,
 } from '@/constants/api';
-import { ReviewLikeReqType, ReviewListReqType } from '@/types/review';
+import {
+  ReviewCommentReqType,
+  ReviewLikeReqType,
+  ReviewListReqType,
+} from '@/types/review';
 import { mockRecommendCafeList } from './data/recommendCafeList';
+import { mockReviewCommentList } from './data/reviewCommentList';
 import { mockReviewList } from './data/reviewList';
 
 export const browserHandlers = [
@@ -78,6 +83,16 @@ export const browserHandlers = [
           status: SUCCESS_CODE.OK,
         }
       );
+    }
+  ),
+
+  // Memo: 리뷰 댓글 리스트 조회
+  http.get<ReviewCommentReqType>(
+    END_POINT.REVIEW.COMMENT(':reviewId'),
+    async () => {
+      return HttpResponse.json(mockReviewCommentList, {
+        status: SUCCESS_CODE.OK,
+      });
     }
   ),
 ];

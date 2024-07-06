@@ -1,4 +1,5 @@
 import { LOCATION, SORTING, TAGS } from '@/constants/reviewFilter';
+import { DefaultResType } from '..';
 
 export type ReviewListReqType = {
   tags: TagsKey[];
@@ -10,9 +11,7 @@ export type ReviewListReqType = {
   };
 };
 
-export type ReviewListResType = {
-  status: number;
-  message: string;
+export type ReviewListResType = DefaultResType & {
   data: {
     reviews: ReviewItemType[];
     meta: ReviewListMetaType;
@@ -66,10 +65,35 @@ export type ReviewLikeReqType = {
   isLike: boolean;
 };
 
-export type ReviewLikeResType = {
-  status: number;
-  message: string;
+export type ReviewLikeResType = DefaultResType & {
   data: {
     isLike: boolean;
   };
+};
+
+export type ReviewDetailResType = DefaultResType & {
+  data: ReviewDetailType;
+};
+
+export type ReviewDetailType = ReviewItemType & {
+  tags: TagsKey[];
+};
+
+export type ReviewCommentReqType = {
+  reviewId: string;
+};
+
+export type ReviewCommentResType = DefaultResType & {
+  data: {
+    comments: ReviewCommentType[];
+  };
+};
+
+export type ReviewCommentType = {
+  commentId: number;
+  userId: number;
+  nickName: string;
+  profileImageUrl: string;
+  comment: string;
+  createdAt: string;
 };

@@ -1,5 +1,7 @@
 import { END_POINT } from '@/constants/api';
 import {
+  ReviewCommentReqType,
+  ReviewCommentResType,
   ReviewLikeReqType,
   ReviewLikeResType,
   ReviewListReqType,
@@ -30,6 +32,16 @@ export const patchReviewLike = async ({
   const { data } = await fetcher.patch<ReviewLikeResType>(
     END_POINT.REVIEW.LIKE,
     { reviewId, isLike }
+  );
+
+  return data;
+};
+
+export const getReviewCommentList = async ({
+  reviewId,
+}: ReviewCommentReqType) => {
+  const { data } = await fetcher.get<ReviewCommentResType>(
+    END_POINT.REVIEW.COMMENT(reviewId)
   );
 
   return data;
