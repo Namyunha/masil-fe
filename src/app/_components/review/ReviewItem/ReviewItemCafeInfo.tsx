@@ -1,3 +1,5 @@
+'use client';
+
 import clsx from 'clsx';
 import { useState } from 'react';
 import Icon from '@/components/Icon';
@@ -25,7 +27,7 @@ export default function ReviewItemCafeInfo({
         className={clsx(
           'flex items-center justify-center p-12 rounded-full border',
           {
-            ['border-stroke_focused bg-button_secondary_bg_clicked']: isLike,
+            ['border-stroke_focused bg-button_icon_only_bg']: isLike,
             ['border-stroke_grey']: !isLike,
           }
         )}
