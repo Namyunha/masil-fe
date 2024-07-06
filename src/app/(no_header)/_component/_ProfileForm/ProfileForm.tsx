@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import * as icons from 'public/icon/svg';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSignUpMutation } from '@/api/sign/queries';
@@ -112,7 +113,11 @@ export default function ProfileForm() {
                       userInfoState.profileImg === `user${index}`,
                   })}
                   onClick={() => userInfoState.setProfileImg(`user${index}`)}>
-                  <Icon key={index} name={`user${index}`} size={65} />
+                  <Icon
+                    key={index}
+                    name={`user${index}` as keyof typeof icons}
+                    size={65}
+                  />
                 </span>
               </div>
             ))}
