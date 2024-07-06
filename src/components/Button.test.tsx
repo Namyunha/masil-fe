@@ -28,7 +28,7 @@ describe('Button component', () => {
     expect(buttonElement).toBeInTheDocument();
     expect(buttonElement).toHaveClass('text-20', 'px-32', 'py-20', 'gap-8');
     expect(buttonElement).toHaveClass(
-      'bg-transparent',
+      'bg-button_secondary_bg',
       'border',
       'border-button_secondary_stroke',
       'text-button_secondary_text'
@@ -50,7 +50,7 @@ describe('Button component', () => {
     });
     expect(buttonElement).toBeInTheDocument();
     expect(buttonElement).toHaveClass('p-8');
-    expect(buttonElement).toHaveClass('bg-button_bg_default');
+    expect(buttonElement).toHaveClass('bg-button_icon_only_bg');
   });
 
   it('버튼 클릭 작동 테스트', () => {
