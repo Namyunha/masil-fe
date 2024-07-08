@@ -14,10 +14,7 @@ export function MockProvider({ children }: { children: React.ReactNode }) {
 
       isWorkerStarted.current = true;
 
-      if (typeof window === 'undefined') {
-        const { server } = await import('../mocks/server');
-        server.listen({ onUnhandledRequest: 'bypass' });
-      } else {
+      if (typeof window !== 'undefined') {
         const { worker } = await import('../mocks/browser');
         await worker.start({
           onUnhandledRequest: 'bypass',

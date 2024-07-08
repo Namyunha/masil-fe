@@ -1,8 +1,7 @@
+import { DefaultResType } from '..';
 import { LocationKey, TagsKey } from '../review';
 
-export type CafeRecommendResType = {
-  status: number;
-  message: string;
+export type CafeRecommendResType = DefaultResType & {
   data: {
     cafes: RecommendedCafeType[];
   };

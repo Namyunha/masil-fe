@@ -1,8 +1,12 @@
-import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 import { DEFAULT_CURSOR, DEFAULT_SIZE } from '@/constants/api';
-import { ReviewLikeReqType, ReviewListReqType } from '@/types/review';
+import {
+  ReviewCommentReqType,
+  ReviewLikeReqType,
+  ReviewListReqType,
+} from '@/types/review';
 import { reviewKeys } from './../queryKeys';
-import { patchReviewLike, postReviewList } from '.';
+import { getReviewCommentList, patchReviewLike, postReviewList } from '.';
 
 type ReviewListQueryType = Pick<
   ReviewListReqType,
@@ -58,5 +62,12 @@ export function useReviewLikeMutation({
       // Todo: 실패할 경우 토스트 팝업 띄우기
       console.log(error.message);
     },
+  });
+}
+
+export function useReviewCommentListQuery({ reviewId }: ReviewCommentReqType) {
+  return useQuery({
+    ...reviewKeys.reviewCommentList,
+    queryFn: () => getReviewCommentList({ reviewId }),
   });
 }

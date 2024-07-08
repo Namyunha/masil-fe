@@ -12,7 +12,6 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "coverage": "jest --coverage",
-    "mock": "npx tsx ./src/mocks/express.ts",
     "chromatic": "npx chromatic --project-token=chpt_ea73fc2ad80a23a"
   },
   "dependencies": {
@@ -69,7 +68,6 @@
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-storybook": "^0.8.0",
     "eslint-plugin-unused-imports": "^3.2.0",
-    "express": "^4.19.2",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "js-cookie": "^3.0.5",
