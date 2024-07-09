@@ -1,0 +1,109 @@
+'use client';
+
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import ErrorMessage from '@/app/(no_header)/_component/ErrorMessage';
+import Label from '@/app/(no_header)/_component/Label';
+import Button from '@/components/Button';
+import { email_regex, pw_regex } from '@/constants/validates';
+
+type Inputs = {
+  email: string;
+  pw: string;
+};
+
+export default function LoginForm() {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const [errorState, setErrorState] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
+  console.log('errors = ', errors);
+  console.log('watch = ', watch('email'));
+
+  useEffect(() => {
+    {
+      email_regex.value.test(watch('email')) && pw_regex.value.test(watch('pw'))
+        ? setErrorState(false)
+        : setErrorState(true);
+    }
+  }, [watch('email'), watch('pw')]);
+
+  const onLoginHandler = async (data: Inputs) => {
+    setIsLoading(true);
+    const result = await (
+      await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(data),
+      })
+    ).json();
+    // console.log('Current Time = ', new Date(Date.now() + 60 * 60 * 1000));
+    console.log('result = ', result);
+    result.status === 405
+      ? setErrorMessage(result.message)
+      : setErrorMessage('');
+    Cookies.set('currentUser', result.accessToken, {
+      secure: true,
+      expires: new Date(Date.now() + 60 * 60 * 1000),
+    });
+    // router.push('/');
+    setIsLoading(false);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit(onLoginHandler)}>
+        <div className="flex flex-col mt-10">
+          <div className="relative mb-2">
+            <input
+              id="small_filled"
+              {...register('email', { required: true })}
+              placeholder=""
+              className="peer block rounded-lg px-12 pt-4 pb-8 w-full border focus:outline-none"
+              type="text"
+            />
+            <Label labelName="이메일 (masil@naver.com)" />
+          </div>
+          <div className="relative mb-2">
+            <input
+              id="small_filled"
+              {...register('pw', { required: true })}
+              placeholder=""
+              className="peer block rounded-lg px-12 pt-4 pb-8 w-full border focus:outline-none"
+              type="password"
+            />
+            <Label
+              filed="pw_small_filed"
+              labelName="비밀번호 (5~20자 영문,숫자,특수기호)"
+            />
+            {errorMessage && <ErrorMessage message={errorMessage} />}
+          </div>
+
+          <div className="mt-5">
+            <Button
+              disabled={errorState}
+              type="submit"
+              className="w-full"
+              variant={errorState || isLoading ? 'gray' : 'primary'}
+              size="m"
+              text={!isLoading ? '로그인' : '로그인중...'}
+            />
+          </div>
+          <div className="flex justify-center mt-5 text-text_light_grey">
+            <span className="cursor-pointer">비밀번호 찾을래요</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}

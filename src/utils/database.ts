@@ -1,5 +1,6 @@
 import { MongoClient } from 'mongodb';
-import { dbUserData, dbUserProps } from '@/types/user';
+import { userList } from '@/mocks/data/userList';
+import { dbUserData, dbUserProps, userData } from '@/types/user';
 
 // Replace the following with your Atlas connection string
 const uri = process.env.DATABASE_URL as string;
@@ -14,27 +15,16 @@ const connectDB = async () => {
 };
 
 export async function findUser({ searchData, searchSource }: dbUserProps) {
-  try {
-    const col = await connectDB();
-    let insertInfo = {};
-    switch (searchSource) {
-      case 'email':
-        insertInfo = { email: searchData };
-        break;
-      case 'id':
-        insertInfo = { id: searchData };
-        break;
-      case 'nickName':
-        insertInfo = { nickName: searchData };
-        break;
-    }
-    const document = await col.findOne(insertInfo);
-    return document;
-  } catch (err) {
-    console.log(err);
-  } finally {
-    await dbClient.close();
+  let data: userData | undefined;
+  switch (searchSource) {
+    case 'email':
+      data = userList.find((user) => user.email === searchData);
+      break;
+    case 'nickName':
+      data = userList.find((user) => user.nickName === searchData);
+      break;
   }
+  return data;
 }
 
 export async function registerUser(newItem: dbUserData) {
@@ -54,10 +44,10 @@ export async function registerUser(newItem: dbUserData) {
   }
 }
 
-export async function updateUser({ id, data, key }: dbUserProps) {
+export async function updateUser({ emailid, data, key }: dbUserProps) {
   try {
     const col = await connectDB();
-    const query = { id };
+    const query = { emailid };
     const options = { upsert: true };
     let update = {};
     switch (key) {

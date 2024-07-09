@@ -6,7 +6,7 @@ import { cn } from '@/utils/className';
 import Icon from './Icon';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'gray';
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   childrenType?: 'textOnly' | 'leftIcon' | 'rightIcon' | 'iconOnly';
   iconName?: keyof typeof icons;
@@ -28,8 +28,9 @@ export default function Button({
   const iconFilter = {
     primary: 'WHITE',
     primaryI: 'WHITE',
-    secondary: 'PRIMARY',
+    secondary: 'PINK',
     secondaryI: 'BLACK',
+    gray: 'GRAY',
   } as const;
 
   const buttonVariant = (
@@ -39,8 +40,8 @@ export default function Button({
     childrenType === 'iconOnly' ? size + 'I' : size
   ) as ButtonSizeType;
 
-  const isSmallSize = size === 'm' || size === 's' || size === 'xs';
-  const iconSize = isSmallSize ? 16 : 24;
+  const isExtraSmall = size === 'xs';
+  const iconSize = isExtraSmall ? 16 : 24;
 
   return (
     <button
@@ -58,9 +59,7 @@ export default function Button({
       {iconName && (
         <Icon
           name={iconName}
-          filter={
-            props.disabled ? 'GRAY' : iconFilter[buttonVariant ?? 'primary']
-          }
+          filter={iconFilter[buttonVariant ?? 'primary']}
           size={iconSize}
         />
       )}
@@ -76,11 +75,11 @@ const buttonVariants = cva(
         primary:
           'bg-button_bg_default hover:bg-button_bg_clicked disabled:bg-button_bg_disabled text-button_text_default hover:text-button_text_clicked disabled:text-button_text_disabled',
         primaryI:
-          'bg-button_icon_only_bg hover:bg-button_icon_only_bg_clicked disabled:bg-button_icon_only_bg_disabled rounded-full',
+          'bg-button_bg_default hover:bg-button_bg_clicked disabled:bg-button_bg_disabled',
         secondary:
-          'bg-button_secondary_bg border border-button_secondary_stroke text-button_secondary_text hover:opacity-80 disabled:bg-button_secondary_bg_disabled disabled:text-button_secondary_text_disabled disabled:border-none',
-        secondaryI:
-          'bg-button_secondary_bg hover:opacity-50 disabled:opacity-10 rounded-full',
+          'bg-transparent border border-button_secondary_stroke text-button_secondary_text hover:opacity-50',
+        secondaryI: 'bg-transparent hover:opacity-50 disabled:opacity-10',
+        gray: 'bg-button_bg_disabled border border-fields_stroke text-button_text_disabled',
       },
       size: {
         xs: 'text-14 px-24 py-8 gap-6',
