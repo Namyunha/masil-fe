@@ -1,5 +1,12 @@
 export const ROUTE_PATH = {
   HOME: '/',
-  SIGNIN: '/SinIn',
-  SIGNUP: '/SignUp',
+  MY_PAGE: '/mypage',
+  WRITE: '/write',
+  CAFE: '/cafe',
+  SCRAP: '/scrap',
+  SIGNIN: '/login',
+  SIGNOUT: '/logout',
+  SIGNUP: '/register',
+  REVIEW_DETAIL: (reviewId: number) => `/review/${reviewId}`,
+  CAFE_DETAIL: (cafeId: number) => `/cafe/${cafeId}`,
 };

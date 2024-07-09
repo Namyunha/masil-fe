@@ -19,9 +19,6 @@ export function MockProvider({ children }: { children: React.ReactNode }) {
         await worker.start({
           onUnhandledRequest: 'bypass',
         });
-      } else {
-        const { server } = await import('../mocks/server');
-        server.listen({ onUnhandledRequest: 'bypass' });
       }
     }
 

@@ -1,8 +1,15 @@
 import './globals.css';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { Metadata } from 'next';
-import Header from '@/components/Header/Header';
+import { Nunito_Sans } from 'next/font/google';
 import { MockProvider } from '@/mocks/MockProvider';
 import QueryProvider from '@/store/QueryProvider';
+
+const nunitoSans = Nunito_Sans({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
+  adjustFontFallback: false,
+});
 
 export const metadata: Metadata = {
   title: 'masil',
@@ -15,13 +22,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body>
+    <html lang="ko" className={nunitoSans.className}>
+      <body className="flex items-center h-dvh bg-primary bg-opacity-80">
         <QueryProvider>
           <MockProvider>
-            <Header />
-            {children}
+            <div className="relative max-w-screen_max w-full h-full mx-auto my-0 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-primary scrollbar-track-bg_white bg-bg_white shadow-2xl main-screen">
+              {children}
+            </div>
           </MockProvider>
+          <ReactQueryDevtools
+            buttonPosition="bottom-left"
+            initialIsOpen={false}
+          />
         </QueryProvider>
       </body>
     </html>
