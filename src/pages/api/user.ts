@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { dbUserData } from '@/types/user';
+import { userData } from '@/types/user';
 import { findUser, registerUser } from '@/utils/database';
 
 type ResponseData = {
   message: string;
-  data?: dbUserData;
+  data?: userData;
 };
 
 export default async function handler(
@@ -29,10 +29,10 @@ export default async function handler(
     console.log('searchUser = ', searchUser);
     console.log('searchSource = ', searchSource);
 
-    const result = (await findUser({
+    const result = await findUser({
       searchData: searchUser,
       searchSource: searchSource,
-    })) as dbUserData;
+    });
 
     if (!result) {
       res

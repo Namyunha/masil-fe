@@ -47,7 +47,6 @@ export type dbUserData = {
 };
 
 export type userData = {
-  _id: number;
   email: string;
   pw: string;
   nickName: string;
