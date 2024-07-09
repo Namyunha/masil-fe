@@ -8,7 +8,7 @@ import Button from '@/components/Button';
 export default function RegisterForm() {
   const router = useRouter();
   return (
-    <div className="w-full absolute bottom-[70px] px-5">
+    <div className="w-full max:mt-[60px] mt-[90px]">
       <SignHeader>마실이 처음이라면?</SignHeader>
       <Button
         onClick={() => router.push('/register')}
