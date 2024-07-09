@@ -2,7 +2,7 @@
 
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ErrorMessage from '@/app/(no_header)/_component/ErrorMessage';
 import Label from '@/app/(no_header)/_component/Label';
@@ -18,15 +18,10 @@ export default function LoginForm() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, watch } = useForm<Inputs>();
-  const [errorState, setErrorState] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
-  useEffect(() => {
-    {
-      email_regex.value.test(watch('email')) && pw_regex.value.test(watch('pw'))
-        ? setErrorState(false)
-        : setErrorState(true);
-    }
-  }, [watch('email'), watch('pw')]);
+  const errorState = !(
+    email_regex.value.test(watch('email')) && pw_regex.value.test(watch('pw'))
+  );
 
   const onLoginHandler = async (data: Inputs) => {
     setIsLoading(true);
