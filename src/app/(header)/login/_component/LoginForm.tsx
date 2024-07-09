@@ -1,5 +1,5 @@
 'use client';
-
+import { cva } from 'class-variance-authority';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -8,6 +8,7 @@ import ErrorMessage from '@/app/(no_header)/_component/ErrorMessage';
 import Label from '@/app/(no_header)/_component/Label';
 import Button from '@/components/Button';
 import { email_regex, pw_regex } from '@/constants/validates';
+import { cn } from '@/utils/className';
 
 type Inputs = {
   email: string;
@@ -22,6 +23,18 @@ export default function LoginForm() {
   const errorState = !(
     email_regex.value.test(watch('email')) && pw_regex.value.test(watch('pw'))
   );
+  const activateButtonVariants = cva(``, {
+    variants: {
+      variant: {
+        primary:
+          'w-full bg-button_bg_default hover:bg-button_bg_clicked disabled:bg-button_bg_disabled text-button_text_default hover:text-button_text_clicked disabled:text-button_text_disabled',
+        gray: 'w-full bg-button_bg_disabled border border-fields_stroke text-button_text_disabled',
+      },
+    },
+    defaultVariants: {
+      variant: 'gray',
+    },
+  });
 
   const onLoginHandler = async (data: Inputs) => {
     setIsLoading(true);
@@ -71,7 +84,7 @@ export default function LoginForm() {
               type="password"
             />
             <Label
-              filed="pw_small_filed"
+              filled="pw_small_filed"
               labelName="비밀번호 (5~20자 영문,숫자,특수기호)"
             />
             {errorMessage && <ErrorMessage message={errorMessage} />}
@@ -81,8 +94,11 @@ export default function LoginForm() {
             <Button
               disabled={errorState}
               type="submit"
-              className="w-full"
-              variant={errorState || isLoading ? 'gray' : 'primary'}
+              className={cn(
+                activateButtonVariants({
+                  variant: errorState ? 'gray' : 'primary',
+                })
+              )}
               size="m"
               text={!isLoading ? '로그인' : '로그인중...'}
             />

@@ -6,7 +6,7 @@ import { cn } from '@/utils/className';
 import Icon from './Icon';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary' | 'secondary' | 'gray';
+  variant?: 'primary' | 'secondary';
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   childrenType?: 'textOnly' | 'leftIcon' | 'rightIcon' | 'iconOnly';
   iconName?: keyof typeof icons;
@@ -30,7 +30,6 @@ export default function Button({
     primaryI: 'WHITE',
     secondary: 'PINK',
     secondaryI: 'BLACK',
-    gray: 'GRAY',
   } as const;
 
   const buttonVariant = (
@@ -79,7 +78,6 @@ const buttonVariants = cva(
         secondary:
           'bg-transparent border border-button_secondary_stroke text-button_secondary_text hover:opacity-50',
         secondaryI: 'bg-transparent hover:opacity-50 disabled:opacity-10',
-        gray: 'bg-button_bg_disabled border border-fields_stroke text-button_text_disabled',
       },
       size: {
         xs: 'text-14 px-24 py-8 gap-6',
