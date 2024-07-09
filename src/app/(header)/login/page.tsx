@@ -12,9 +12,8 @@ export default async function page() {
           카패 추천 플렛폼 마실입니다.
         </SignHeader>
         <LoginForm />
+        <RegisterForm />
       </div>
-
-      <RegisterForm />
     </>
   );
 }
