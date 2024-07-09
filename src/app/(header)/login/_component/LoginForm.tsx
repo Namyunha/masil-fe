@@ -17,17 +17,9 @@ type Inputs = {
 export default function LoginForm() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const { register, handleSubmit, watch } = useForm<Inputs>();
   const [errorState, setErrorState] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
-  console.log('errors = ', errors);
-  console.log('watch = ', watch('email'));
-
   useEffect(() => {
     {
       email_regex.value.test(watch('email')) && pw_regex.value.test(watch('pw'))
@@ -47,15 +39,16 @@ export default function LoginForm() {
         body: JSON.stringify(data),
       })
     ).json();
-    // console.log('Current Time = ', new Date(Date.now() + 60 * 60 * 1000));
-    console.log('result = ', result);
-    result.status === 405
-      ? setErrorMessage(result.message)
-      : setErrorMessage('');
-    Cookies.set('currentUser', result.accessToken, {
-      secure: true,
-      expires: new Date(Date.now() + 60 * 60 * 1000),
-    });
+    if (result.status === 405) {
+      setErrorMessage(result.message);
+    } else {
+      setErrorMessage('');
+      Cookies.set('accessToken', result.accessToken, {
+        secure: true,
+        expires: new Date(Date.now() + 60 * 60 * 1000),
+      });
+      router.push('/');
+    }
     // router.push('/');
     setIsLoading(false);
   };
