@@ -1,5 +1,3 @@
-import { ObjectId } from 'mongodb';
-
 export type ModalState = {
   modalStatus: boolean;
   changeStatus: () => void;
@@ -36,16 +34,6 @@ export type useRegisterStoreProps = {
   resetProfile: () => void;
 };
 
-export type dbUserData = {
-  _id: ObjectId;
-  id: string;
-  pw: string;
-  nickName: string;
-  email: string;
-  fileName: string;
-  currentMessage: string;
-};
-
 export type userData = {
   email: string;
   pw: string;
@@ -53,6 +41,6 @@ export type userData = {
   profileImg: string;
 };
 
-export type dbUserProps = {
+export type userProps = {
   [key: string]: string;
 };
