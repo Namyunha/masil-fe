@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import ActiveButton from '@/app/_components/ActiveButton';
 import { email_regex } from '@/constants/validates';
 import { userRegisterStore, validateCondition } from '@/store/userStore';
 import ErrorMessage from '../../ErrorMessage';
 import Label from '../../Label';
-import PassButton from '../../PassButton';
 
 type Inputs = {
   email: string;
@@ -13,7 +13,7 @@ type Inputs = {
 };
 
 export default function ValidateEmailForm() {
-  const [errorState, setErrorState] = useState(true);
+  // const [errorState, setErrorState] = useState(true);
   const currentUserInfo = userRegisterStore();
   const {
     register,
@@ -35,8 +35,8 @@ export default function ValidateEmailForm() {
   const onContinueHandler: SubmitHandler<Inputs> = async (data) => {
     // 중복체크
     const result = await emailDuplicateCheck(data.email);
-    if (result.data) {
-      setDuplicateError(result.message);
+    if (!result.data) {
+      setDuplicateError('존재하는 이메일이 없습니다.');
       return;
     }
     currentUserInfo.setEmail(data.email);
@@ -48,11 +48,9 @@ export default function ValidateEmailForm() {
     validateState.setValidateNum(random());
   };
 
-  useEffect(() => {
-    email_regex.value.test(watch('email'))
-      ? setErrorState(false)
-      : setErrorState(true);
-  }, [watch('email')]);
+  let errorState = true;
+  errorState = email_regex.value.test(watch('email')) ? false : true;
+
   return (
     <form onSubmit={handleSubmit(onContinueHandler)} className="flex flex-col">
       <div className="relative mt-10">
@@ -80,7 +78,9 @@ export default function ValidateEmailForm() {
           <ErrorMessage message={duplicateError} />
         )}
       </div>
-      <PassButton errorState={errorState}>{'인증번호 전송'}</PassButton>
+      <ActiveButton errorState={errorState} activeClassName="mt-7">
+        인증번호 전송
+      </ActiveButton>
     </form>
   );
 }

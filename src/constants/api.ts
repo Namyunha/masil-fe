@@ -19,6 +19,7 @@ export const END_POINT = {
   USER: {
     SIGNIN: 'user/sign-in',
     SIGNUP: 'api/user',
+    UPDATEPW: 'api/user/password',
   },
   REVIEW: {
     LIST: '/review',

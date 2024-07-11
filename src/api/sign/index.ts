@@ -4,6 +4,12 @@ import { fetcher } from '../fetcher';
 
 export const postSignUp = async (userData: userData) => {
   const { data } = await fetcher.post(END_POINT.USER.SIGNUP, userData);
+  return data;
+};
 
+export const updatePassword = async (
+  userData: Pick<userData, 'email' | 'pw'>
+) => {
+  const { data } = await fetcher.patch(END_POINT.USER.UPDATEPW, userData);
   return data;
 };
