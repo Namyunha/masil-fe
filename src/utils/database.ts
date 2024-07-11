@@ -1,7 +1,7 @@
 import { userList } from '@/mocks/data/userList';
-import { dbUserProps, userData } from '@/types/user';
+import { userData, userProps } from '@/types/user';
 
-export async function findUser({ searchData, searchSource }: dbUserProps) {
+export async function findUser({ searchData, searchSource }: userProps) {
   let data: userData | undefined;
   switch (searchSource) {
     case 'email':
@@ -15,10 +15,7 @@ export async function findUser({ searchData, searchSource }: dbUserProps) {
 }
 
 export async function registerUser(userData: userData) {
-  console.log('userData = ', userData);
-  console.log('before add userList = ', userList);
   userList.push(userData);
-  console.log('after add userList = ', userList);
 }
 
-export async function updateUser({ emailid, data, key }: dbUserProps) {}
+export async function updateUser({ emailid, data, key }: userProps) {}
