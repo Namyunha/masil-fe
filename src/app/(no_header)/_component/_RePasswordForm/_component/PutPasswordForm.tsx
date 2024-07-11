@@ -20,7 +20,7 @@ export default function PutPasswordForm() {
   const currentUserInfo = userRegisterStore();
   !currentUserInfo.email && router.push('/re-password');
   const [errorState, setErrorState] = useState(true);
-  const { mutate, isPending, isSuccess } = useUpdatePasswordMutation();
+  const { mutate, isPending } = useUpdatePasswordMutation();
 
   const {
     register,
@@ -44,8 +44,6 @@ export default function PutPasswordForm() {
 
   useEffect(() => {
     isPending ? setErrorState(true) : setErrorState(false);
-    console.log('isPending = ', isPending);
-    console.log('isSuccess = ', isSuccess);
   }, [isPending]);
 
   return (
@@ -72,7 +70,7 @@ export default function PutPasswordForm() {
         {errors.password && <ErrorMessage message={errors.password.message} />}
       </div>
       <ActiveButton errorState={errorState} activeClassName="mt-7">
-        완료
+        {isPending ? '재설정중...' : '완료'}
       </ActiveButton>
     </form>
   );

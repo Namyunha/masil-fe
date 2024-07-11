@@ -1,15 +1,14 @@
 'use client';
 
 import React from 'react';
-import { validateCondition } from '@/store/userStore';
 import RePasswordForm from '../_component/_RePasswordForm/RePasswordForm';
+import BackBtnHead from '../_component/BackBtnHead';
 
 export default function page() {
-  const validateState = validateCondition();
-  console.log('validateState = ', validateState);
   return (
     <>
-      <RePasswordForm />;
+      <BackBtnHead />
+      <RePasswordForm />
     </>
   );
 }

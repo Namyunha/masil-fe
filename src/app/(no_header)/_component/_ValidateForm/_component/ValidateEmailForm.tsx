@@ -81,7 +81,6 @@ export default function ValidateEmailForm() {
           <ErrorMessage message={duplicateError} />
         )}
       </div>
-      {/* <PassButton errorState={errorState}>{'인증번호 전송'}</PassButton> */}
       <ActiveButton activeClassName="mt-5" errorState={errorState}>
         인증번호 전송
       </ActiveButton>

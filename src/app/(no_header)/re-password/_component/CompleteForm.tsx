@@ -4,9 +4,16 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import Button from '@/components/Button';
 import Icon from '@/components/Icon';
+import { userRegisterStore } from '@/store/userStore';
 
 export default function CompleteForm() {
   const router = useRouter();
+  const userState = userRegisterStore();
+
+  const onLoginHandler = () => {
+    userState.setEmail('');
+    router.push('/login');
+  };
 
   return (
     <div className="flex flex-col h-dvh justify-center">
@@ -16,11 +23,7 @@ export default function CompleteForm() {
       <div className="flex justify-center items-center h-60 m-11">
         <Icon name="register_logo" size={185} />
       </div>
-      <Button
-        onClick={() => router.push('/login')}
-        size="m"
-        text="로그인 하기"
-      />
+      <Button onClick={onLoginHandler} size="m" text="로그인 하기" />
     </div>
   );
 }
