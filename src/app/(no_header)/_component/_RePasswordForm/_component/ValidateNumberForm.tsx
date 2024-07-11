@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import ActiveButton from '@/app/_components/ActiveButton';
 import { userRegisterStore, validateCondition } from '@/store/userStore';
@@ -15,7 +15,7 @@ type Inputs = {
 };
 
 export default function ValidateNumberForm() {
-  const [errorState, setErrorState] = useState(true);
+  // const [errorState, setErrorState] = useState(true);
   const [modalOn, setModalOn] = useState(false);
   const {
     register,
@@ -31,15 +31,13 @@ export default function ValidateNumberForm() {
     return Math.random().toString(10).substr(2, length);
   };
 
-  const onsubmitHandler: SubmitHandler<Inputs> = async () => {
+  const onsubmitHandler: SubmitHandler<Inputs> = () => {
     router.push('/re-password/put');
   };
-  // 인증번호 입력 상태에 따른 에러 메시지 업데이트
-  useEffect(() => {
-    watch('validateNum') && watch('validateNum').length === 6
-      ? setErrorState(false)
-      : setErrorState(true);
-  }, [watch('validateNum'), validateState]);
+
+  let errorState = true;
+  errorState =
+    watch('validateNum') && watch('validateNum').length === 6 ? false : true;
 
   const resendValidateNum = () => {
     validateState.setValidateNum(random());

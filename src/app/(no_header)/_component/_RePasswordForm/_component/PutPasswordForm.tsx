@@ -2,7 +2,6 @@
 
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUpdatePasswordMutation } from '@/api/sign/queries';
 import ActiveButton from '@/app/_components/ActiveButton';
@@ -19,9 +18,7 @@ export default function PutPasswordForm() {
   const router = useRouter();
   const currentUserInfo = userRegisterStore();
   !currentUserInfo.email && router.push('/re-password');
-  const [errorState, setErrorState] = useState(true);
   const { mutate, isPending } = useUpdatePasswordMutation();
-
   const {
     register,
     handleSubmit,
@@ -36,15 +33,12 @@ export default function PutPasswordForm() {
     });
   };
 
-  useEffect(() => {
-    pw_regex.value.test(watch('password'))
-      ? setErrorState(false)
-      : setErrorState(true);
-  }, [watch('password')]);
-
-  useEffect(() => {
-    isPending ? setErrorState(true) : setErrorState(false);
-  }, [isPending]);
+  let errorState = true;
+  if (isPending || !pw_regex.value.test(watch('password'))) {
+    errorState = true;
+  } else {
+    errorState = false;
+  }
 
   return (
     <form onSubmit={handleSubmit(onsubmitHandler)} className="flex flex-col">
