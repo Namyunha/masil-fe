@@ -1,19 +1,32 @@
 import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import { progressCondition } from '@/store/userStore';
 import { userData } from '@/types/user';
-import { postSignUp } from '.';
+import { postSignUp, updatePassword } from '.';
 
 export function useSignUpMutation() {
   const progressStatus = progressCondition();
   return useMutation({
     mutationFn: (userData: userData) => postSignUp(userData),
     onSuccess: () => {
-      // Memo: 성공할 경우 로직 작성
-      console.log('회원가입 성공');
       progressStatus.setProgressCondition(5);
     },
     onError: (error) => {
-      // Memo: 실패할 경우 로직 작성
+      console.log(error.message);
+    },
+  });
+}
+
+export function useUpdatePasswordMutation() {
+  const router = useRouter();
+  return useMutation({
+    mutationFn: (userData: Pick<userData, 'email' | 'pw'>) =>
+      updatePassword(userData),
+    onSuccess: (data) => {
+      router.push('/re-password/complete');
+      return data;
+    },
+    onError: (error) => {
       console.log(error.message);
     },
   });

@@ -1,7 +1,7 @@
 import React from 'react';
 import SignHeader from '@/app/_components/sign/Header';
 import { userRegisterStore } from '@/store/userStore';
-import ValidateEmailForm from './_component/ValidataEmailForm';
+import ValidateEmailForm from './_component/ValidateEmailForm';
 import ValidateNumberForm from './_component/ValidateNumberForm';
 
 export default function ValidateForm() {

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
+import Button from '@/components/Button';
 import Icon from '@/components/Icon';
 import { userRegisterStore, validateCondition } from '@/store/userStore';
 
@@ -26,11 +27,7 @@ export default function CompleteForm() {
       <div className="flex justify-center items-center h-60 m-11">
         <Icon name="register_logo" size={185} />
       </div>
-      <button
-        onClick={homeHandlerButton}
-        className="bg-primary text-white rounded-lg  py-16 px-12 max:p-12 font-bold">
-        카페 구경하기
-      </button>
+      <Button size="m" onClick={homeHandlerButton} text="카페 구경하기" />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { userData } from '@/types/user';
 import { findUser, registerUser } from '@/utils/database';
@@ -45,10 +44,7 @@ export default async function handler(
   }
 
   if (req.method === 'POST') {
-    const hash = await bcrypt.hash(req.body.pw, 10);
-    req.body.pw = hash;
-    console.log('req = ', req.body);
-    registerUser(req.body).catch(console.dir);
+    await registerUser(req.body);
     res.status(200).json({ message: '회원가입 성공!' });
   }
 }

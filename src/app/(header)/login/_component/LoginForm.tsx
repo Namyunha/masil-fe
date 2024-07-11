@@ -1,14 +1,12 @@
 'use client';
-import { cva } from 'class-variance-authority';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import ActiveButton from '@/app/_components/ActiveButton';
 import ErrorMessage from '@/app/(no_header)/_component/ErrorMessage';
 import Label from '@/app/(no_header)/_component/Label';
-import Button from '@/components/Button';
 import { email_regex, pw_regex } from '@/constants/validates';
-import { cn } from '@/utils/className';
 
 type Inputs = {
   email: string;
@@ -23,18 +21,6 @@ export default function LoginForm() {
   const errorState = !(
     email_regex.value.test(watch('email')) && pw_regex.value.test(watch('pw'))
   );
-  const activateButtonVariants = cva(``, {
-    variants: {
-      variant: {
-        primary:
-          'w-full bg-button_bg_default hover:bg-button_bg_clicked disabled:bg-button_bg_disabled text-button_text_default hover:text-button_text_clicked disabled:text-button_text_disabled',
-        gray: 'w-full bg-button_bg_disabled border border-fields_stroke text-button_text_disabled',
-      },
-    },
-    defaultVariants: {
-      variant: 'gray',
-    },
-  });
 
   const onLoginHandler = async (data: Inputs) => {
     setIsLoading(true);
@@ -57,7 +43,7 @@ export default function LoginForm() {
       });
       router.push('/');
     }
-    // router.push('/');
+    router.push('/');
     setIsLoading(false);
   };
 
@@ -91,20 +77,16 @@ export default function LoginForm() {
           </div>
 
           <div className="mt-5">
-            <Button
-              disabled={errorState}
-              type="submit"
-              className={cn(
-                activateButtonVariants({
-                  variant: errorState ? 'gray' : 'primary',
-                })
-              )}
-              size="m"
-              text={!isLoading ? '로그인' : '로그인중...'}
-            />
+            <ActiveButton errorState={errorState} isLoading={isLoading}>
+              로그인
+            </ActiveButton>
           </div>
           <div className="flex justify-center mt-5 text-text_light_grey">
-            <span className="cursor-pointer">비밀번호 찾을래요</span>
+            <span
+              onClick={() => router.push('re-password')}
+              className="cursor-pointer">
+              비밀번호 찾을래요
+            </span>
           </div>
         </div>
       </form>

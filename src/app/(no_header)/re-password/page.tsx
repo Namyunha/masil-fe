@@ -1,14 +1,15 @@
 'use client';
 
 import React from 'react';
-import ProgressBarContainer from '../_component/_ProgressBar/ProgressBarContainer';
+import { validateCondition } from '@/store/userStore';
 import RePasswordForm from '../_component/_RePasswordForm/RePasswordForm';
 
 export default function page() {
+  const validateState = validateCondition();
+  console.log('validateState = ', validateState);
   return (
-    <div className="h-dvh w-full box-border flex flex-col">
-      <ProgressBarContainer />
-      <RePasswordForm />
-    </div>
+    <>
+      <RePasswordForm />;
+    </>
   );
 }
