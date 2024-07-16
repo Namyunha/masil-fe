@@ -6,7 +6,12 @@ import {
   ReviewListReqType,
 } from '@/types/review';
 import { reviewKeys } from './../queryKeys';
-import { getReviewCommentList, patchReviewLike, postReviewList } from '.';
+import {
+  getReviewCommentList,
+  patchReviewLike,
+  postMyReviewList,
+  postReviewList,
+} from '.';
 
 type ReviewListQueryType = Pick<
   ReviewListReqType,
@@ -14,6 +19,32 @@ type ReviewListQueryType = Pick<
 > & {
   pageSize?: number;
 };
+
+export function useMyReviewListInfiniteQuery({
+  userId,
+  pageSize = DEFAULT_SIZE,
+}: {
+  userId: number;
+  pageSize?: number;
+}) {
+  return useInfiniteQuery({
+    ...reviewKeys.myReviewList,
+    initialPageParam: DEFAULT_CURSOR,
+    queryFn: ({ pageParam }) =>
+      postMyReviewList({
+        userId,
+        pagingData: {
+          lastPostId: pageParam,
+          pageSize,
+        },
+      }),
+    getNextPageParam: (lastPage) => {
+      const lastReview = lastPage.data.reviews.at(-1);
+      const nextCursor = lastReview?.reviewId;
+      return lastPage.data.meta.hasNext ? nextCursor : undefined;
+    },
+  });
+}
 
 export function useReviewListInfiniteQuery({
   tags,

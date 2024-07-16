@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import {
+  ProfileTabState,
   ProgressState,
   useRegisterStoreProps,
   ValidateState,
@@ -19,6 +20,11 @@ export const validateCondition = create<ValidateState>((set) => ({
 export const progressCondition = create<ProgressState>((set) => ({
   currentProgress: 1,
   setProgressCondition: (data) => set(() => ({ currentProgress: data })),
+}));
+
+export const profileTabState = create<ProfileTabState>((set) => ({
+  tabState: '작성한 리뷰',
+  setTabState: (data) => set(() => ({ tabState: data })),
 }));
 
 export const userRegisterStore = create<useRegisterStoreProps>((set) => ({

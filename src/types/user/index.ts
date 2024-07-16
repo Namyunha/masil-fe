@@ -19,6 +19,11 @@ export type ProgressState = {
   setProgressCondition: (data: number) => void;
 };
 
+export type ProfileTabState = {
+  tabState: '작성한 리뷰' | '스크랩한 리뷰';
+  setTabState: (data: '작성한 리뷰' | '스크랩한 리뷰') => void;
+};
+
 export type userInfo = {
   pw: string;
   nickName: string;

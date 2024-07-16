@@ -25,6 +25,22 @@ export const postReviewList = async ({
   return data;
 };
 
+export const postMyReviewList = async ({
+  pagingData,
+  userId,
+}: Pick<ReviewListReqType, 'pagingData'> & { userId: number }) => {
+  // Todo: 쿼리키에 필터 추가
+  const { data } = await fetcher.post<ReviewListResType>(
+    END_POINT.REVIEW.MYLIST,
+    {
+      userId,
+      pagingData,
+    }
+  );
+
+  return data;
+};
+
 export const patchReviewLike = async ({
   reviewId,
   isLike,

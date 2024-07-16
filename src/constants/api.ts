@@ -23,6 +23,7 @@ export const END_POINT = {
   },
   REVIEW: {
     LIST: '/review',
+    MYLIST: '/api/review/mine',
     DETAIL: (reviewId: string) => `/api/review/${reviewId}`,
     LIKE: '/like',
     COMMENT: (reviewId: string) => `/review/comment/${reviewId}`,
