@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import Icon from '@/components/Icon';
+import SettingIcon from './SettingIcon';
 
 function ProfileInfo() {
   return (
@@ -20,9 +20,7 @@ function ProfileInfo() {
             seoui1217@gmail.com
           </span>
         </div>
-        <div className="w-1/6 flex justify-end items-center">
-          <Icon name="setting" />
-        </div>
+        <SettingIcon />
       </div>
     </>
   );
