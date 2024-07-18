@@ -5,6 +5,7 @@ import {
   END_POINT,
   SUCCESS_CODE,
 } from '@/constants/api';
+import { CafeLikeReqType } from '@/types/cafe';
 import {
   ReviewCommentReqType,
   ReviewLikeReqType,
@@ -67,7 +68,7 @@ export const browserHandlers = [
     });
   }),
 
-  // Memo: 좋아요 상태 변경
+  // Memo: 리뷰 좋아요 상태 변경
   http.patch<never, ReviewLikeReqType>(
     END_POINT.REVIEW.LIKE,
     async ({ request }) => {
@@ -77,7 +78,7 @@ export const browserHandlers = [
         {
           status: SUCCESS_CODE.OK,
           message: '좋아요 상태 변경 성공',
-          data: { isLike: !isLike },
+          data: { isLike },
         },
         {
           status: SUCCESS_CODE.OK,
@@ -93,6 +94,25 @@ export const browserHandlers = [
       return HttpResponse.json(mockReviewCommentList, {
         status: SUCCESS_CODE.OK,
       });
+    }
+  ),
+
+  // Memo: 카페 좋아요 상태 변경
+  http.patch<never, CafeLikeReqType>(
+    END_POINT.CAFE.LIKE,
+    async ({ request }) => {
+      const { isLike } = await request.json();
+
+      return HttpResponse.json(
+        {
+          status: SUCCESS_CODE.OK,
+          message: '좋아요 상태 변경 성공',
+          data: { isLike },
+        },
+        {
+          status: SUCCESS_CODE.OK,
+        }
+      );
     }
   ),
 ];

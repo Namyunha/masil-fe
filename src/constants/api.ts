@@ -29,6 +29,8 @@ export const END_POINT = {
   },
   CAFE: {
     RECOMMEND: '/cafes/rec',
+    DETAIL: (cafeId: string) => `/api/cafes/info/${cafeId}`,
+    LIKE: '/cafes/like',
   },
 };
 
