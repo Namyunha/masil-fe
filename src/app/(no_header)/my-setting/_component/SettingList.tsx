@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { SETTING_LIST } from '@/constants/setting';
 import { settingList } from '@/store/userStore';
