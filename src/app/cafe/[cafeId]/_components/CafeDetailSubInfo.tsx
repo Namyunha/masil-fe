@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Icon from '@/components/Icon';
 import { CafeDetailType } from '@/types/cafe';
 
@@ -23,13 +22,13 @@ export default function CafeDetailSubInfo({
           <Icon name="time" size={24} />
           {cafeTime}
         </div> */}
-        <div className="flex gap-6 items-center text-14">
+        <div className="flex gap-6 items-center text-14 text-text_grey">
           <Icon name="phone" size={24} />
           {cafePhone}
         </div>
-        <div className="flex gap-6 items-center text-14">
+        <div className="flex gap-6 items-center text-14 text-text_grey">
           <Icon name="internet" size={24} />
-          <Link href={cafeUrl}>{cafeUrl}</Link>
+          <a href={cafeUrl}>홈페이지 바로 가기</a>
         </div>
         <div className="flex gap-6 items-center text-14 break-keep">
           <Icon name="store" size={24} />

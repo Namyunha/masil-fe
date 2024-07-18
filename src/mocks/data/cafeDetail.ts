@@ -10,7 +10,7 @@ export const mockCafeDetail = {
       cafeLocay: 37.52418466271341,
       cafeTime: '월,화,수,목,일 09:00 ~ 21:00',
       cafePhone: '070-8888-0288',
-      cafeUrl: '카페홈페이지 URL',
+      cafeUrl: 'https://www.instagram.com/minute.papillon.official/?hl=ko',
       cafePR:
         '#도산공원 #압구정로데오카페 #압구정카페 #청담카페 #츄러스 #빈티지분위기 #카카오페이',
       cafeComment: '외국인들도 줄 서서 먹는다는 츄러스 ...',
