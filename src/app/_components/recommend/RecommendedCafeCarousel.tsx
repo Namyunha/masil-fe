@@ -43,7 +43,6 @@ export default function RecommendedCafeCarousel() {
           data.data.cafes.map((cafe, index) => (
             <RecommendedCafeCarouselIndicator
               key={cafe.cafeId}
-              cafeId={cafe.cafeId}
               index={index}
               currentIndex={currentIndex}
               clickHandler={() => clickHandler({ targetIndex: index })}

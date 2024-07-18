@@ -1,7 +1,6 @@
-import '@/app/globals.css';
 import Header from '@/components/Header/Header';
 
-export default function RootLayout({
+export default function HomeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

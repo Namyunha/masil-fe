@@ -15,7 +15,7 @@ export default function useLikeReview({
   // Todo: 좋아요 상태 변경시 리뷰 조회 캐싱 만료시키기
   const { mutate } = useReviewLikeMutation({
     reviewId,
-    isLike: likeState,
+    isLike: !likeState,
     setLikeState,
   });
 
