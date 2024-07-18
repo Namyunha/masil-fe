@@ -16,11 +16,11 @@ export default function CafeDetailMap({
 
   if (!mapKey) {
     return (
-      <div className="flex flex-col gap-16 items-center w-full h-[200px]">
+      <div className="flex flex-col gap-16 items-center justify-center w-full h-[200px]">
         <span className="text-16 font-bold text-text_error text-center">
           오류 !
         </span>
-        <div className="text-14 text-center">
+        <div className="flex flex-col gap-8 text-14 text-center">
           <span>카카오 맵 api key가 존재하지 않습니다</span>
           <span>페이지 관리자에게 연락주세요</span>
         </div>
