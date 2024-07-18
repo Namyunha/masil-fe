@@ -5,6 +5,8 @@ import * as icons from 'public/icon/svg';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSignUpMutation } from '@/api/sign/queries';
+import ErrorMessage from '@/app/_components/input/ErrorMessage';
+import Label from '@/app/_components/input/Label';
 import Icon from '@/components/Icon';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import {
@@ -12,8 +14,6 @@ import {
   userRegisterStore,
   validateCondition,
 } from '@/store/userStore';
-import ErrorMessage from '../ErrorMessage';
-import Label from '../Label';
 import PassButton from '../PassButton';
 
 type Inputs = {
@@ -95,7 +95,7 @@ export default function ProfileForm() {
             )}
             type="text"
           />
-          <Label labelName="닉네임(1~20 한,영,특수기호) " />
+          <Label labelName="닉네임(1~20 한,영,특수기호)" isDisabled={false} />
           {errors.nickName && (
             <ErrorMessage message={errors.nickName.message} />
           )}
