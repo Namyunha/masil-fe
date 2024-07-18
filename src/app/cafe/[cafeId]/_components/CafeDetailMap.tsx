@@ -6,14 +6,15 @@ import { CafeDetailType } from '@/types/cafe';
 
 const KakaoMapComponent = React.lazy(() => import('@/components/KakaoMap'));
 
-type CafeDetailMapProps = Pick<CafeDetailType, 'cafeLocax' | 'cafeLocay'>;
+type CafeDetailMapProps = Pick<CafeDetailType, 'cafeLocax' | 'cafeLocay'> & {
+  mapKey: string | undefined;
+};
 
 export default function CafeDetailMap({
   cafeLocax,
   cafeLocay,
+  mapKey,
 }: CafeDetailMapProps) {
-  const mapKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
-
   if (!mapKey) {
     return (
       <div className="flex flex-col gap-16 items-center justify-center w-full h-[200px]">

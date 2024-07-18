@@ -16,6 +16,7 @@ export default async function CafeDetail({ params }: CafeDetailProps) {
   const { cafeId } = params;
   const { data, error } = await getCafeDetail(cafeId);
   const cafeInfo = data!.data.cafeInfo;
+  const mapKey = process.env.KAKAO_MAP_KEY;
 
   if (error) {
     return <ErrorComponent errorMessage={error} />;
@@ -43,6 +44,7 @@ export default async function CafeDetail({ params }: CafeDetailProps) {
         <CafeDetailMap
           cafeLocax={cafeInfo.cafeLocax}
           cafeLocay={cafeInfo.cafeLocay}
+          mapKey={mapKey}
         />
       </main>
     </div>
