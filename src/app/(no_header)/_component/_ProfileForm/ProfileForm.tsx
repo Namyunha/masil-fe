@@ -103,8 +103,8 @@ export default function ProfileForm() {
             <ErrorMessage message={duplicateErrorMessage} />
           )}
         </div>
-        <div className="relative overflow-scroll h-[310px] max:h-72">
-          <div className="grid gap-4 grid-cols-3 grid-rows-3 pt-3 pb-10">
+        <div className="relative h-[310px] max:h-72 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-primary scrollbar-track-bg_white">
+          <div className="grid gap-4 grid-cols-3 grid-rows-3 pt-3 pb-10 ">
             {Array.from({ length: 21 }).map((_, index) => (
               <div key={index} className="flex justify-center relative">
                 <span
