@@ -1,5 +1,5 @@
 import React from 'react';
-import DeleteFormContent from './DeleteFormContet';
+import DeleteFormContent from './DeleteFormContent';
 
 export default function DeleteForm() {
   return (

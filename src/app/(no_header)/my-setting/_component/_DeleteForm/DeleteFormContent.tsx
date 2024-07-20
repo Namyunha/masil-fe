@@ -9,7 +9,6 @@ import DeleteModal from './DeleteModal';
 export default function DeleteFormContent() {
   const [deleteReason, setDeleteReason] = useState<string[]>([]);
   const [modal, setModal] = useState(false);
-  console.log('deleteReason = ', deleteReason);
   const onClickHandler = (data: string) => {
     const foundedReason = deleteReason.find((el) => el === data);
     !foundedReason
