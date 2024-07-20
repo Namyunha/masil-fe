@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import ActiveButton from '@/app/_components/ActiveButton';
-import ErrorMessage from '@/app/_components/input/ErrorMessage';
 import { userRegisterStore, validateCondition } from '@/store/userStore';
 import Timer from '../../_ValidateForm/_component/Timer';
 import AlertModal from '../../AlertModal';
+import ErrorMessage from '../../ErrorMessage';
 
 type Inputs = {
   validateNum: string;

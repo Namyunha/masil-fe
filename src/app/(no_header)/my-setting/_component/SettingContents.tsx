@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { settingList } from '@/store/userStore';
-import DeleteForm from './_DeleteForm/DeleteForm';
+import DeleteForm from './DeleteForm';
 import ProfileForm from './ProfileForm';
 import SettingList from './SettingList';
 

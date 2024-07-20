@@ -4,7 +4,6 @@ import Button from '@/components/Button';
 import { cn } from '@/utils/className';
 
 type ActiveButtonProps = {
-  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   activeClassName?: string;
   errorState: boolean;
   isLoading?: boolean;
@@ -12,7 +11,6 @@ type ActiveButtonProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function ActiveButton({
-  size = 'm',
   activeClassName,
   errorState,
   isLoading,
@@ -41,7 +39,7 @@ export default function ActiveButton({
         }),
         activeClassName
       )}
-      size={size}
+      size="m"
       text={children}
     />
   );

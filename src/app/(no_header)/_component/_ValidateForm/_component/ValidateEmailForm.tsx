@@ -2,10 +2,10 @@ import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import ActiveButton from '@/app/_components/ActiveButton';
-import ErrorMessage from '@/app/_components/input/ErrorMessage';
-import Label from '@/app/_components/input/Label';
 import { email_regex } from '@/constants/validates';
 import { userRegisterStore, validateCondition } from '@/store/userStore';
+import ErrorMessage from '../../ErrorMessage';
+import Label from '../../Label';
 
 type Inputs = {
   email: string;
@@ -75,7 +75,7 @@ export default function ValidateEmailForm() {
           )}
           type="text"
         />
-        <Label labelName="이메일 (example@example.com)" isDisabled={false} />
+        <Label labelName="이메일 (example@example.com)" />
         {errors.email && <ErrorMessage message={errors.email.message} />}
         {!errors.email && duplicateError && (
           <ErrorMessage message={duplicateError} />

@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import ErrorMessage from '@/app/_components/input/ErrorMessage';
-import Label from '@/app/_components/input/Label';
 import { pw_regex } from '@/constants/validates';
 import { progressCondition, userRegisterStore } from '@/store/userStore';
+import ErrorMessage from '../ErrorMessage';
+import Label from '../Label';
 import PassButton from '../PassButton';
 
 type Inputs = {
