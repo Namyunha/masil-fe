@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import ErrorMessage from '@/app/_components/input/ErrorMessage';
 import {
   progressCondition,
   userRegisterStore,
   validateCondition,
 } from '@/store/userStore';
 import AlertModal from '../../AlertModal';
-import ErrorMessage from '../../ErrorMessage';
 import PassButton from '../../PassButton';
 import Timer from './Timer';
 
