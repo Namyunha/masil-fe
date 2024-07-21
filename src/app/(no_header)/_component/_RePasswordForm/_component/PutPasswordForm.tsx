@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUpdatePasswordMutation } from '@/api/sign/queries';
 import ActiveButton from '@/app/_components/ActiveButton';
+import ErrorMessage from '@/app/_components/input/ErrorMessage';
+import Label from '@/app/_components/input/Label';
 import { pw_regex } from '@/constants/validates';
 import { userRegisterStore } from '@/store/userStore';
-import ErrorMessage from '../../ErrorMessage';
-import Label from '../../Label';
 
 type Inputs = {
   password: string;
@@ -60,7 +60,7 @@ export default function PutPasswordForm() {
           )}
           type="password"
         />
-        <Label labelName="영문,숫자,특수기호 포함 5~20자" />
+        <Label isDisabled={false} labelName="영문,숫자,특수기호 포함 5~20자" />
         {errors.password && <ErrorMessage message={errors.password.message} />}
       </div>
       <ActiveButton errorState={errorState} activeClassName="mt-7">

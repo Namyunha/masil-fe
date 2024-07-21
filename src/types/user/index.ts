@@ -19,6 +19,16 @@ export type ProgressState = {
   setProgressCondition: (data: number) => void;
 };
 
+export type ProfileTabState = {
+  tabState: '작성한 리뷰' | '스크랩한 리뷰';
+  setTabState: (data: '작성한 리뷰' | '스크랩한 리뷰') => void;
+};
+
+export type UserSettingState = {
+  currentSettingCategory: '설정' | '내 프로필' | '회원 탈퇴';
+  setSettingCategory: (data: '설정' | '내 프로필' | '회원 탈퇴') => void;
+};
+
 export type userInfo = {
   pw: string;
   nickName: string;

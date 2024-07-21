@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ActiveButton from '@/app/_components/ActiveButton';
-import ErrorMessage from '@/app/(no_header)/_component/ErrorMessage';
-import Label from '@/app/(no_header)/_component/Label';
+import ErrorMessage from '@/app/_components/input/ErrorMessage';
+import Label from '@/app/_components/input/Label';
 import { email_regex, pw_regex } from '@/constants/validates';
 
 type Inputs = {
@@ -59,7 +59,7 @@ export default function LoginForm() {
               className="peer block rounded-lg px-12 pt-4 pb-8 w-full border focus:outline-none"
               type="text"
             />
-            <Label labelName="이메일 (masil@naver.com)" />
+            <Label isDisabled={true} labelName="이메일 (masil@naver.com)" />
           </div>
           <div className="relative mb-2">
             <input
@@ -70,6 +70,7 @@ export default function LoginForm() {
               type="password"
             />
             <Label
+              isDisabled={false}
               filled="pw_small_filed"
               labelName="비밀번호 (5~20자 영문,숫자,특수기호)"
             />
