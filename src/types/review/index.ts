@@ -1,5 +1,5 @@
 import { LOCATION, SORTING, TAGS } from '@/constants/reviewFilter';
-import { DefaultResType } from '..';
+import { DefaultResType, InfinityScrollMetaType } from '..';
 
 export type ReviewListReqType = {
   tags: TagsKey[];
@@ -14,7 +14,7 @@ export type ReviewListReqType = {
 export type ReviewListResType = DefaultResType & {
   data: {
     reviews: ReviewItemType[];
-    meta: ReviewListMetaType;
+    meta: InfinityScrollMetaType;
   };
 };
 
@@ -43,17 +43,6 @@ export type CafeInfoType = {
   cafeName: string;
   cafeLoca: string;
   isLike: boolean;
-};
-
-export type ReviewListMetaType = {
-  hasNext: boolean;
-  pageable_count: number;
-  same_name: {
-    keyword: string;
-    region: string[];
-    selected_region: string;
-  };
-  total_count: number;
 };
 
 export type SortingKey = keyof typeof SORTING;

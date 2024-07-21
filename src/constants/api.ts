@@ -29,6 +29,7 @@ export const END_POINT = {
     COMMENT: (reviewId: string) => `/review/comment/${reviewId}`,
   },
   CAFE: {
+    LIST: '/cafes',
     RECOMMEND: '/cafes/rec',
     DETAIL: (cafeId: string) => `/api/cafes/info/${cafeId}`,
     LIKE: '/cafes/like',
