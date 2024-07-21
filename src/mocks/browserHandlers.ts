@@ -5,12 +5,13 @@ import {
   END_POINT,
   SUCCESS_CODE,
 } from '@/constants/api';
-import { CafeLikeReqType } from '@/types/cafe';
+import { CafeLikeReqType, CafeListReqType } from '@/types/cafe';
 import {
   ReviewCommentReqType,
   ReviewLikeReqType,
   ReviewListReqType,
 } from '@/types/review';
+import { mockCafeList } from './data/cafeList';
 import { mockRecommendCafeList } from './data/recommendCafeList';
 import { mockReviewCommentList } from './data/reviewCommentList';
 import { mockReviewList } from './data/reviewList';
@@ -113,6 +114,30 @@ export const browserHandlers = [
           status: SUCCESS_CODE.OK,
         }
       );
+    }
+  ),
+
+  http.post<never, CafeListReqType>(
+    END_POINT.CAFE.LIST,
+    async ({ request }) => {
+      const { pagingData } = await request.json();
+      const { lastPostId, pageSize } = pagingData;
+      const cursor = lastPostId ?? DEFAULT_CURSOR;
+      const size = pageSize ?? DEFAULT_SIZE;
+      const nextList = mockCafeList.slice(cursor, cursor + size);
+
+      const response = {
+        status: SUCCESS_CODE.OK,
+        message: '전체 카페 리스트 조회 성공',
+        data: {
+          cafeInfos: nextList,
+          meta: {
+            hasNext: nextList.length <= DEFAULT_SIZE,
+          },
+        },
+      };
+
+      return HttpResponse.json(response, { status: SUCCESS_CODE.OK });
     }
   ),
 ];
