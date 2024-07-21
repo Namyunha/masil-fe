@@ -17,6 +17,7 @@ export default function CafeDetailImages({
   const mainImage = cafeImages[0];
   const additionalImages = cafeImages.slice(1, MAX_IMAGE_COUNT);
   const extraCount = cafeImages.length - MAX_IMAGE_COUNT;
+  const lackingCount = MAX_IMAGE_COUNT - cafeImages.length;
 
   // Todo: 이미지 상세보기 커스텀 훅으로 구현 & 다른 이미지에도 적용시키기
   const imgClickHandler = (index: number) => {
@@ -44,23 +45,23 @@ export default function CafeDetailImages({
           <Image
             src={mainImage.url}
             alt="main"
-            width={500}
-            height={500}
+            width={250}
+            height={250}
             priority
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="grid grid-cols-2 grid-rows-2col-span-1">
+        <div className="grid grid-cols-2 grid-rows-2col h-full">
           {additionalImages.map((image, index) => (
             <div
               key={image.id}
               className="relative"
-              onClick={() => imgClickHandler(index)}>
+              onClick={() => imgClickHandler(index + 1)}>
               <Image
                 src={image.url}
-                alt={`additional-${index}`}
-                width={500}
-                height={500}
+                alt={`additional-${index + 1}`}
+                width={250}
+                height={250}
                 priority
                 className="w-full h-full object-cover"
               />
@@ -71,6 +72,21 @@ export default function CafeDetailImages({
               )}
             </div>
           ))}
+          {lackingCount > 0 &&
+            Array.from({ length: lackingCount }).map((_, index) => (
+              <div
+                key={index}
+                className="flex justify-center items-center bg-bg_disabled opacity-70">
+                <Image
+                  src="/icon/logo_secondary.svg"
+                  alt={`lack-${index + 1}`}
+                  width={50}
+                  height={50}
+                  priority
+                  className="w-48 h-48 object-cover"
+                />
+              </div>
+            ))}
         </div>
       </div>
       {selectedImgIdx !== null && (
@@ -80,8 +96,8 @@ export default function CafeDetailImages({
             <Image
               src={cafeImages[selectedImgIdx].url}
               alt={`image-${selectedImgIdx}`}
-              width={1000}
-              height={1000}
+              width={540}
+              height={540}
               priority
               className="max-w-full max-h-full object-cover"
             />
