@@ -1,20 +1,17 @@
 import { useState } from 'react';
-import { useReviewLikeMutation } from '@/api/review/queries';
+import { useCafeLikeMutation } from '@/api/cafe/queries';
 
-type UseLikeReviewProps = {
+type UseLikeCafeProps = {
   isLike: boolean;
-  reviewId: number;
+  cafeId: number;
 };
 
-export default function useLikeReview({
-  isLike,
-  reviewId,
-}: UseLikeReviewProps) {
+export default function useLikeCafe({ isLike, cafeId }: UseLikeCafeProps) {
   const [likeState, setLikeState] = useState(isLike);
 
   // Todo: 좋아요 상태 변경시 리뷰 조회 캐싱 만료시키기
-  const { mutate } = useReviewLikeMutation({
-    reviewId,
+  const { mutate } = useCafeLikeMutation({
+    cafeId,
     isLike: !likeState,
     setLikeState,
   });

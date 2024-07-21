@@ -1,5 +1,4 @@
 import ReviewDetailComment from './_components/ReviewDetailComment';
-import ReviewDetailHeader from './_components/ReviewDetailHeader';
 import ReviewDetailMain from './_components/ReviewDetailMain';
 
 type ReviewDetailProps = {
@@ -12,10 +11,9 @@ export default async function ReviewDetail({ params }: ReviewDetailProps) {
   const { reviewId } = params;
 
   return (
-    <>
-      <ReviewDetailHeader />
+    <div className="h-full">
       <ReviewDetailMain reviewId={reviewId} />
       <ReviewDetailComment reviewId={reviewId} />
-    </>
+    </div>
   );
 }
