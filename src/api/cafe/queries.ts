@@ -1,7 +1,8 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { CafeLikeReqType } from '@/types/cafe';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
+import { DEFAULT_CURSOR, DEFAULT_SIZE } from '@/constants/api';
+import { CafeLikeReqType, CafeListReqType } from '@/types/cafe';
 import { cafeKeys } from './../queryKeys';
-import { getRecommendedCafeList, patchCafeLike } from '.';
+import { getRecommendedCafeList, patchCafeLike, postCafeList } from '.';
 
 export function useRecommendedCafeListQuery() {
   return useQuery({
@@ -28,6 +29,36 @@ export function useCafeLikeMutation({
     onError: (error) => {
       // Todo: 실패할 경우 토스트 팝업 띄우기
       console.log(error.message);
+    },
+  });
+}
+
+type CafeListQueryType = Pick<CafeListReqType, 'tags' | 'location'> & {
+  pageSize?: number;
+};
+
+export function useCafeListInfiniteQuery({
+  tags,
+  location,
+  pageSize = DEFAULT_SIZE,
+}: CafeListQueryType) {
+  // Todo: 쿼리키에 필터 추가
+  return useInfiniteQuery({
+    ...cafeKeys.cafeList,
+    initialPageParam: DEFAULT_CURSOR,
+    queryFn: ({ pageParam }) =>
+      postCafeList({
+        tags,
+        location,
+        pagingData: {
+          lastPostId: pageParam,
+          pageSize,
+        },
+      }),
+    getNextPageParam: (lastPage) => {
+      const lastReview = lastPage.data.cafeInfos.at(-1);
+      const nextCursor = lastReview?.cafeId;
+      return lastPage.data.meta.hasNext ? nextCursor : undefined;
     },
   });
 }

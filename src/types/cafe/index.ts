@@ -1,4 +1,4 @@
-import { DefaultResType } from '..';
+import { DefaultResType, InfinityScrollMetaType } from '..';
 import { LocationKey, TagsKey } from '../review';
 
 export type CafeRecommendResType = DefaultResType & {
@@ -53,4 +53,33 @@ export type CafeLikeResType = DefaultResType & {
   data: {
     isLike: boolean;
   };
+};
+
+export type CafeListReqType = {
+  tags: TagsKey[];
+  location: LocationKey;
+  pagingData: {
+    lastPostId?: number;
+    pageSize?: number;
+  };
+};
+
+export type CafeListResType = DefaultResType & {
+  data: {
+    cafeInfos: CafeItemType[];
+    meta: InfinityScrollMetaType;
+  };
+};
+
+export type CafeItemType = {
+  cafeId: number;
+  cafeName: string;
+  cafeLoca: string;
+  rating: number;
+  reviewCount: number;
+  cafeImageUrls: {
+    id: number;
+    url: string;
+  }[];
+  tags: TagsKey[];
 };

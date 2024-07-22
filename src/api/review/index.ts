@@ -11,6 +11,8 @@ import { fetcher } from '../fetcher';
 
 export const postReviewList = async ({
   tags,
+  sorting,
+  location,
   pagingData,
 }: ReviewListReqType) => {
   // Todo: 쿼리키에 필터 추가
@@ -18,6 +20,8 @@ export const postReviewList = async ({
     END_POINT.REVIEW.LIST,
     {
       tags,
+      sorting,
+      location,
       pagingData,
     }
   );

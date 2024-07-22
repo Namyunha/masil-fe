@@ -8,4 +8,5 @@ export const reviewKeys = createQueryKeys('review', {
 
 export const cafeKeys = createQueryKeys('cafe', {
   recommendedCafeList: { queryKey: ['getRecommendedCafeList'] },
+  cafeList: { queryKey: ['getCafeList'] },
 });
