@@ -7,29 +7,35 @@ import ErrorMessage from './ErrorMessage';
 import Label from './Label';
 
 type LabelInputProps = {
-  inputValue: string;
+  inputValue?: string;
   isDisabled: boolean;
   inputValidate: inputValidate;
   register: UseFormRegister<formInputs>;
   errorMessage?: string;
+  filled?: string;
+  className?: string;
+  type?: string;
 };
 
 export default function LabelInput({
   inputValidate,
-  inputValue,
+  inputValue = '',
   isDisabled,
   register,
   errorMessage,
+  className,
+  filled = 'small_filled',
+  ...props
 }: LabelInputProps) {
   return (
-    <div className="relative">
+    <div className={clsx('relative', className)}>
       <input
         disabled={isDisabled}
         {...register(inputValidate.name, {
           ...inputValidate.validate,
           value: inputValue,
         })}
-        id="small_filled"
+        id={filled}
         placeholder={inputValue}
         className={clsx(
           'peer block rounded-lg px-12 pt-4 max:pt-3 pb-8 max:pb-6 w-full border-2 focus:outline-none',
@@ -37,9 +43,13 @@ export default function LabelInput({
             'bg-fields_bg_error border border-fields_stroke_error',
           isDisabled && 'text-text_grey'
         )}
-        type="text"
+        {...props}
       />
-      <Label labelName={inputValidate.labelName} isDisabled={isDisabled} />
+      <Label
+        filled={filled}
+        labelName={inputValidate.labelName}
+        isDisabled={isDisabled}
+      />
       {errorMessage && <ErrorMessage message={errorMessage} />}
     </div>
   );

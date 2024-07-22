@@ -1,30 +1,28 @@
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import ActiveButton from '@/app/_components/ActiveButton';
 import ErrorMessage from '@/app/_components/input/ErrorMessage';
+import LabelInput from '@/app/_components/input/LabelInput';
+import { emailInputValidate } from '@/constants/form';
 import {
   progressCondition,
   userRegisterStore,
   validateCondition,
 } from '@/store/userStore';
+import { formInputs } from '@/types/user/form';
 import AlertModal from '../../AlertModal';
-import PassButton from '../../PassButton';
 import Timer from './Timer';
-
-type Inputs = {
-  validateNum: string;
-};
 
 export default function ValidateNumberForm() {
   const [errorState, setErrorState] = useState(true);
   const [modalOn, setModalOn] = useState(false);
-
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<formInputs>();
   const progressStatus = progressCondition();
   const validateState = validateCondition();
   const currentUserInfo = userRegisterStore();
@@ -33,7 +31,7 @@ export default function ValidateNumberForm() {
     return Math.random().toString(10).substr(2, length);
   };
 
-  const onsubmitHandler: SubmitHandler<Inputs> = async () => {
+  const onsubmitHandler: SubmitHandler<formInputs> = async () => {
     progressStatus.setProgressCondition(2);
     validateState.setConfirmState(true);
     validateState.setValidateStatus();
@@ -53,21 +51,14 @@ export default function ValidateNumberForm() {
   return (
     <>
       <form onSubmit={handleSubmit(onsubmitHandler)} className="flex flex-col">
-        <div className="flex flex-col mt-10">
-          <div className="relative mb-2">
-            <input
-              disabled
-              id="small_filled"
-              placeholder={currentUserInfo.email}
-              className="peer block rounded-lg px-12 pt-4 pb-8 w-full border focus:outline-none"
-              type="text"
-            />
-            <label
-              htmlFor="small_filled"
-              className="absolute text-zinc-300 -translate-y-3 scale-75 top-4 z-10 origin-[0] start-3">
-              이메일 (example@example.com)
-            </label>
-          </div>
+        <div className="relative flex flex-col mt-10">
+          <LabelInput
+            inputValidate={emailInputValidate}
+            inputValue={currentUserInfo.email}
+            isDisabled={true}
+            register={register}
+            className="mb-2"
+          />
           <div className="relative">
             <Timer />
             <input
@@ -94,11 +85,13 @@ export default function ValidateNumberForm() {
               })}
             />
           </div>
-          {errors.validateNum && (
-            <ErrorMessage message={errors.validateNum.message} />
-          )}
         </div>
-        <PassButton errorState={errorState}>{'다음'}</PassButton>
+        {errors.validateNum && (
+          <ErrorMessage message={errors.validateNum.message} />
+        )}
+        <ActiveButton activeClassName="mt-5" errorState={errorState}>
+          다음
+        </ActiveButton>
       </form>
       <div className="flex justify-center mt-5 text-text_light_grey">
         <span className="cursor-pointer" onClick={resendValidateNum}>

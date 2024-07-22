@@ -12,6 +12,7 @@ export type ValidateState = {
   setValidateNum: (data: string) => void;
   setValidateStatus: () => void;
   setAgreement: (data: boolean) => void;
+  resetValidation: () => void;
 };
 
 export type ProgressState = {
@@ -30,17 +31,17 @@ export type UserSettingState = {
 };
 
 export type userInfo = {
-  pw: string;
+  profileImg: string;
   nickName: string;
 };
 
 export type useRegisterStoreProps = {
   email: string;
-  profileImg: string;
+  pw: string;
   userInfo: userInfo;
   setEmail: (emailData: string) => void;
   setUserInfo: (userData: userInfo) => void;
-  setProfileImg: (img: string) => void;
+  setPw: (img: string) => void;
   resetProfile: () => void;
 };
 
