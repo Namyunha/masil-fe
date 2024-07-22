@@ -5,25 +5,23 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ActiveButton from '@/app/_components/ActiveButton';
 import ErrorMessage from '@/app/_components/input/ErrorMessage';
-import Label from '@/app/_components/input/Label';
+import LabelInput from '@/app/_components/input/LabelInput';
+import { emailInputValidate, pwInputValidate } from '@/constants/form';
 import { email_regex, pw_regex } from '@/constants/validates';
-
-type Inputs = {
-  email: string;
-  pw: string;
-};
+import { formInputs } from '@/types/user/form';
 
 export default function LoginForm() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit, watch } = useForm<Inputs>();
+  const { register, handleSubmit, watch } = useForm<formInputs>();
   const [errorMessage, setErrorMessage] = useState('');
   const errorState = !(
     email_regex.value.test(watch('email')) && pw_regex.value.test(watch('pw'))
   );
 
-  const onLoginHandler = async (data: Inputs) => {
+  const onLoginHandler = async (data: formInputs) => {
     setIsLoading(true);
+    console.log('data = ', data);
     const result = await (
       await fetch('/api/auth/login', {
         method: 'POST',
@@ -43,7 +41,6 @@ export default function LoginForm() {
       });
       router.push('/');
     }
-    router.push('/');
     setIsLoading(false);
   };
 
@@ -51,31 +48,18 @@ export default function LoginForm() {
     <div>
       <form onSubmit={handleSubmit(onLoginHandler)}>
         <div className="flex flex-col mt-10">
-          <div className="relative mb-2">
-            <input
-              id="small_filled"
-              {...register('email', { required: true })}
-              placeholder=""
-              className="peer block rounded-lg px-12 pt-4 pb-8 w-full border focus:outline-none"
-              type="text"
-            />
-            <Label isDisabled={true} labelName="이메일 (masil@naver.com)" />
-          </div>
-          <div className="relative mb-2">
-            <input
-              id="small_filled"
-              {...register('pw', { required: true })}
-              placeholder=""
-              className="peer block rounded-lg px-12 pt-4 pb-8 w-full border focus:outline-none"
-              type="password"
-            />
-            <Label
-              isDisabled={false}
-              filled="pw_small_filed"
-              labelName="비밀번호 (5~20자 영문,숫자,특수기호)"
-            />
-            {errorMessage && <ErrorMessage message={errorMessage} />}
-          </div>
+          <LabelInput
+            register={register}
+            inputValidate={emailInputValidate}
+            className="mb-3"
+            isDisabled={false}
+          />
+          <LabelInput
+            register={register}
+            inputValidate={pwInputValidate}
+            isDisabled={false}
+          />
+          {errorMessage && <ErrorMessage message={errorMessage} />}
 
           <div className="mt-5">
             <ActiveButton errorState={errorState} isLoading={isLoading}>

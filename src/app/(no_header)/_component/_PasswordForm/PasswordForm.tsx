@@ -1,71 +1,47 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import ErrorMessage from '@/app/_components/input/ErrorMessage';
-import Label from '@/app/_components/input/Label';
+import ActiveButton from '@/app/_components/ActiveButton';
+import LabelInput from '@/app/_components/input/LabelInput';
+import SignHeader from '@/app/_components/sign/Header';
+import { pwInputValidate } from '@/constants/form';
 import { pw_regex } from '@/constants/validates';
 import { progressCondition, userRegisterStore } from '@/store/userStore';
-import PassButton from '../PassButton';
-
-type Inputs = {
-  password: string;
-};
+import { formInputs } from '@/types/user/form';
 
 export default function PasswordForm() {
-  const [errorState, setErrorState] = useState(true);
   const currentUserInfo = userRegisterStore();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<formInputs>();
   const progressStatus = progressCondition();
-
-  const onsubmitHandler: SubmitHandler<Inputs> = async (data) => {
-    currentUserInfo.setUserInfo({ pw: data.password, nickName: '' });
+  const onsubmitHandler: SubmitHandler<formInputs> = async (data) => {
+    currentUserInfo.setPw(data.pw);
     progressStatus.setProgressCondition(4);
   };
 
-  useEffect(() => {
-    pw_regex.value.test(watch('password'))
-      ? setErrorState(false)
-      : setErrorState(true);
-  }, [watch('password')]);
+  const errorCondition = pw_regex.value.test(watch('pw'));
 
   return (
     <div className="flex flex-col">
-      <div className="max:text-16 text-20">
-        <p className="font-bold">
-          로그인에 사용할 <br />
-          비밀번호를 입력해주세요
-        </p>
-      </div>
+      <SignHeader>
+        로그인에 사용할 <br />
+        비밀번호를 입력해주세요
+      </SignHeader>
       <form onSubmit={handleSubmit(onsubmitHandler)} className="flex flex-col">
-        <div className="relative mt-9">
-          <input
-            {...register('password', {
-              required: '비밀번호를 입력해주세요',
-              pattern: {
-                value: pw_regex.value,
-                message: pw_regex.message,
-              },
-            })}
-            id="small_filled"
-            placeholder=""
-            className={clsx(
-              'peer block rounded-lg px-12 pt-4 max:pt-3 pb-8 max:pb-6 w-full border-2 focus:outline-none',
-              errors.password &&
-                'bg-fields_bg_error border border-fields_stroke_error'
-            )}
-            type="password"
-          />
-          <Label isDisabled={true} labelName="영문,숫자,특수기호 포함 5~20자" />
-          {errors.password && (
-            <ErrorMessage message={errors.password.message} />
-          )}
-        </div>
-        <PassButton errorState={errorState}>{'다음'}</PassButton>
+        <LabelInput
+          type={'password'}
+          inputValue={currentUserInfo.pw}
+          register={register}
+          isDisabled={false}
+          inputValidate={pwInputValidate}
+          errorMessage={errors.pw?.message}
+          className={'mt-9'}
+        />
+        <ActiveButton activeClassName="mt-9" errorState={!errorCondition}>
+          다음
+        </ActiveButton>
       </form>
     </div>
   );

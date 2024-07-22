@@ -6,23 +6,21 @@ import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import ActiveButton from '@/app/_components/ActiveButton';
 import ErrorMessage from '@/app/_components/input/ErrorMessage';
+import LabelInput from '@/app/_components/input/LabelInput';
+import { emailInputValidate } from '@/constants/form';
 import { userRegisterStore, validateCondition } from '@/store/userStore';
+import { formInputs } from '@/types/user/form';
 import Timer from '../../_ValidateForm/_component/Timer';
 import AlertModal from '../../AlertModal';
 
-type Inputs = {
-  validateNum: string;
-};
-
 export default function ValidateNumberForm() {
-  // const [errorState, setErrorState] = useState(true);
   const [modalOn, setModalOn] = useState(false);
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<formInputs>();
 
   const validateState = validateCondition();
   const currentUserInfo = userRegisterStore();
@@ -31,7 +29,10 @@ export default function ValidateNumberForm() {
     return Math.random().toString(10).substr(2, length);
   };
 
-  const onsubmitHandler: SubmitHandler<Inputs> = () => {
+  console.log('validateState = ', validateState);
+
+  const onsubmitHandler: SubmitHandler<formInputs> = () => {
+    validateState.setConfirmState(true);
     router.push('/re-password/put');
   };
 
@@ -48,20 +49,13 @@ export default function ValidateNumberForm() {
     <>
       <form onSubmit={handleSubmit(onsubmitHandler)} className="flex flex-col">
         <div className="flex flex-col mt-10">
-          <div className="relative mb-2">
-            <input
-              disabled
-              id="small_filled"
-              placeholder={currentUserInfo.email}
-              className="peer block rounded-lg px-12 pt-4 pb-8 w-full border focus:outline-none"
-              type="text"
-            />
-            <label
-              htmlFor="small_filled"
-              className="absolute text-zinc-300 -translate-y-3 scale-75 top-4 z-10 origin-[0] start-3">
-              이메일 (example@example.com)
-            </label>
-          </div>
+          <LabelInput
+            inputValidate={emailInputValidate}
+            inputValue={currentUserInfo.email}
+            isDisabled={true}
+            register={register}
+            className="mb-2"
+          />
           <div className="relative">
             <Timer />
             <input

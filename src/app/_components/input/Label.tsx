@@ -12,7 +12,7 @@ export default function Label({
 }) {
   return (
     <label
-      htmlFor={filled ? filled : 'small_filled'}
+      htmlFor={filled}
       className={clsx(
         'absolute text-zinc-400 duration-300 -translate-y-3 scale-75 max:scale-50 top-4 max:top-3 z-5 origin-[0] start-3',
         !isDisabled &&

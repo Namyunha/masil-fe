@@ -16,6 +16,13 @@ export const validateCondition = create<ValidateState>((set) => ({
   setValidateNum: (data) => set(() => ({ validateNum: data })),
   setValidateStatus: () => set(() => ({ validateStatus: true })),
   setAgreement: (data) => set(() => ({ agreement: data })),
+  resetValidation: () =>
+    set(() => ({
+      confirmState: false,
+      validateNum: '',
+      validateStatus: false,
+      agreement: false,
+    })),
 }));
 
 export const progressCondition = create<ProgressState>((set) => ({
@@ -35,9 +42,9 @@ export const profileTabState = create<ProfileTabState>((set) => ({
 
 export const userRegisterStore = create<useRegisterStoreProps>((set) => ({
   email: '',
-  profileImg: '',
+  pw: '',
   userInfo: {
-    pw: '',
+    profileImg: '',
     nickName: '',
   },
   setEmail: (emailData) => set(() => ({ email: emailData })),
@@ -45,13 +52,13 @@ export const userRegisterStore = create<useRegisterStoreProps>((set) => ({
     set(() => ({
       userInfo: { ...userData },
     })),
-  setProfileImg: (img) => set(() => ({ profileImg: img })),
+  setPw: (pw) => set(() => ({ pw: pw })),
   resetProfile: () =>
     set(() => ({
       email: '',
-      profileImg: '',
+      pw: '',
       userInfo: {
-        pw: '',
+        profileImg: '',
         nickName: '',
       },
     })),

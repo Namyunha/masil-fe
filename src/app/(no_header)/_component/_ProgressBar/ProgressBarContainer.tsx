@@ -1,27 +1,17 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import Icon from '@/components/Icon';
-import {
-  progressCondition,
-  userRegisterStore,
-  validateCondition,
-} from '@/store/userStore';
+import { progressCondition } from '@/store/userStore';
 import ProgressBar from './_component/ProgressBar';
 
 type directionValue = 'prev' | 'next';
 
 export default function ProgressBarContainer() {
-  const validateState = validateCondition();
-  const userInfoState = userRegisterStore();
   const ProgressState = progressCondition();
   const router = useRouter();
 
   const onRouterHandler = (direction: directionValue) => {
     if (direction === 'prev' && ProgressState.currentProgress === 1) {
-      userInfoState.resetProfile();
-      validateState.setConfirmState(false);
-      validateState.setValidateNum('');
-      validateState.setAgreement(false);
       router.back();
       return;
     }

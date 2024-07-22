@@ -43,6 +43,7 @@ export default function ActiveButton({
       )}
       size={size}
       text={children}
+      {...props}
     />
   );
 }

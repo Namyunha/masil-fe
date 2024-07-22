@@ -4,7 +4,9 @@ export type formInputs = {
   email: string;
   nickName: string;
   pw: string;
+  profileImg: string;
   img: File[];
+  validateNum: string;
 };
 
 export type inputValidate = {
