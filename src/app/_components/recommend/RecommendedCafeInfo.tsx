@@ -1,5 +1,5 @@
 import FilterTab from '@/components/FilterTab';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { LOCATION, TAGS } from '@/constants/reviewFilter';
 import { RecommendedCafeType } from '@/types/cafe';
 

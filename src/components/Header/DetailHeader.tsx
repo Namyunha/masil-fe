@@ -1,8 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Button from '../Button';
-import HeaderIcon from './HeaderIcon';
+import Button from '../Button/Button';
+import HeaderLogo from './HeaderLogo';
 
 // Todo: 유저 정보 유지 기능 완료되면 더보기(수정, 삭제) 기능 추가 및 주석 해제
 // type DetailHeaderProps = {
@@ -26,7 +26,7 @@ export default function DetailHeader() {
         childrenType="iconOnly"
         iconName="arrow_left"
       />
-      <HeaderIcon />
+      <HeaderLogo />
     </header>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import Button from '@/components/Button';
+import Button from '@/components/Button/Button';
 import { settingList } from '@/store/userStore';
 
 export default function Header() {

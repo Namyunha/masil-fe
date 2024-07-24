@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 import React from 'react';
-import Button from '@/components/Button';
+import Button from '@/components/Button/Button';
 import { cn } from '@/utils/className';
 
 type ActiveButtonProps = {

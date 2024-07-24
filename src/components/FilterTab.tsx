@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { TAGS } from '@/constants/reviewFilter';
-import TagIcon from './TagIcon';
+import TagIcon from './Icon/TagIcon';
 
 type FilterTabProps = {
   isActive?: boolean;

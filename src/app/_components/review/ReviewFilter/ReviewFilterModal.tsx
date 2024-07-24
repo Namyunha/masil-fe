@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import Button from '@/components/Button';
+import Button from '@/components/Button/Button';
 import Dim from '@/components/Dim';
 import ReviewFilterModalLocation from './ReviewFilterModalLocation';
 import ReviewFilterModalSorting from './ReviewFilterModalSorting';

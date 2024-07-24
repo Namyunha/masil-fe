@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import CafeFilterList from './CafeFilterList';
 import CafeFilterModal from './CafeFilterModal';
 

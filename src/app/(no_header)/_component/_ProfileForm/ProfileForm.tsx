@@ -8,7 +8,7 @@ import { useSignUpMutation } from '@/api/sign/queries';
 import ActiveButton from '@/app/_components/ActiveButton';
 import LabelInput from '@/app/_components/input/LabelInput';
 import SignHeader from '@/app/_components/sign/Header';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { nickNameInputValidate } from '@/constants/form';
 import {
   progressCondition,

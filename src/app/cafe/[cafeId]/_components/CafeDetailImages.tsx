@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
 import Dim from '@/components/Dim';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { CafeDetailType } from '@/types/cafe';
 
 type CafeDetailImagesProps = Pick<CafeDetailType, 'cafeImages'>;

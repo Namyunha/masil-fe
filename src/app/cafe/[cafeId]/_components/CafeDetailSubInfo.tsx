@@ -1,4 +1,4 @@
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { CafeDetailType } from '@/types/cafe';
 
 type CafeDetailSubInfoProps = Pick<

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
-import Button from '@/components/Button';
-import Icon from '@/components/Icon';
+import Button from '@/components/Button/Button';
+import Icon from '@/components/Icon/Icon';
 import { userRegisterStore, validateCondition } from '@/store/userStore';
 
 export default function CompleteForm() {
