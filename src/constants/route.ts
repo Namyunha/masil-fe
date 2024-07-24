@@ -3,7 +3,6 @@ export const ROUTE_PATH = {
   MY_PAGE: '/mypage',
   WRITE: '/write',
   CAFE: '/cafe',
-  SCRAP: '/scrap',
   SIGNIN: '/login',
   SIGNOUT: '/logout',
   SIGNUP: '/register',
