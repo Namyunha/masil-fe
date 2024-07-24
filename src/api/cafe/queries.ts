@@ -1,4 +1,11 @@
-import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import ToastIcon from '@/components/Icon/ToastIcon';
 import { DEFAULT_CURSOR, DEFAULT_SIZE } from '@/constants/api';
 import { CafeLikeReqType, CafeListReqType } from '@/types/cafe';
 import { cafeKeys } from './../queryKeys';
@@ -11,7 +18,6 @@ export function useRecommendedCafeListQuery() {
   });
 }
 
-// Todo: 쿼리키 추가하기
 export function useCafeLikeMutation({
   cafeId,
   isLike,
@@ -19,16 +25,25 @@ export function useCafeLikeMutation({
 }: CafeLikeReqType & {
   setLikeState: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: () => patchCafeLike({ cafeId, isLike }),
     onSuccess: (data) => {
-      // Todo: 성공할 경우 토스트 팝업 띄우기
+      toast(data.message, {
+        icon: ToastIcon({ type: 'success' }),
+        className: 'border border-stroke_focused',
+      });
+
       const newLikeState = data.data.isLike;
       setLikeState(newLikeState);
+
+      queryClient.invalidateQueries(cafeKeys.cafeList);
     },
     onError: (error) => {
-      // Todo: 실패할 경우 토스트 팝업 띄우기
-      console.log(error.message);
+      toast(error.message, {
+        icon: ToastIcon({ type: 'error' }),
+      });
     },
   });
 }
@@ -42,7 +57,6 @@ export function useCafeListInfiniteQuery({
   location,
   pageSize = DEFAULT_SIZE,
 }: CafeListQueryType) {
-  // Todo: 쿼리키에 필터 추가
   return useInfiniteQuery({
     ...cafeKeys.cafeList,
     initialPageParam: DEFAULT_CURSOR,
