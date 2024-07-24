@@ -30,7 +30,6 @@ export const postCafeList = async ({
   location,
   pagingData,
 }: CafeListReqType) => {
-  // Todo: 쿼리키에 필터 추가
   const { data } = await fetcher.post<CafeListResType>(END_POINT.CAFE.LIST, {
     tags,
     location,

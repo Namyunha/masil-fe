@@ -9,7 +9,6 @@ import ReviewItem from './ReviewItem/ReviewItem';
 export default function ReviewList() {
   const { activeTags, activeSorting, activeLocation } = useFilterStore();
 
-  // Todo: 필터 변할 시 캐싱 제거하기
   const {
     data,
     error,

@@ -20,7 +20,6 @@ export default function ReviewDetailSubInfo({
   const postLikeCount = likeState ? likeCount + 1 : likeCount;
   const newLikeCount = isLike ? preLikeCount : postLikeCount;
 
-  // Todo: 공유하기 기능 추가?
   return (
     <div className="flex justify-between">
       <div className="flex items-center gap-8">

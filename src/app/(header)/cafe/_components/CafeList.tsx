@@ -9,7 +9,6 @@ import CafeItem from './CafeItem/CafeItem';
 export default function CafeList() {
   const { activeTags, activeLocation } = useCafeFilterStore();
 
-  // Todo: 필터 변할 시 캐싱 제거하기
   const {
     data,
     error,

@@ -14,7 +14,6 @@ export default function ReviewFilterModal({
   isOpen,
   closeHandler,
 }: ReviewFilterModalProps) {
-  // Todo: 확인 눌러야 적용시킬지 기획과 논의 필요
   return (
     <>
       {isOpen && <Dim closeHandler={closeHandler} />}
