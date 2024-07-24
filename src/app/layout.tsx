@@ -1,7 +1,9 @@
+import 'react-toastify/dist/ReactToastify.css';
 import './globals.css';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { Metadata } from 'next';
 import { Nunito_Sans } from 'next/font/google';
+import { Slide, ToastContainer } from 'react-toastify';
 import { MockProvider } from '@/mocks/MockProvider';
 import QueryProvider from '@/store/QueryProvider';
 
@@ -33,6 +35,17 @@ export default function RootLayout({
           <ReactQueryDevtools
             buttonPosition="bottom-left"
             initialIsOpen={false}
+          />
+          <ToastContainer
+            position="bottom-center"
+            limit={3}
+            autoClose={3000}
+            hideProgressBar
+            closeOnClick
+            pauseOnFocusLoss
+            draggable={false}
+            pauseOnHover={false}
+            transition={Slide}
           />
         </QueryProvider>
       </body>
