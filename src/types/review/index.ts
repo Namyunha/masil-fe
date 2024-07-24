@@ -86,3 +86,40 @@ export type ReviewCommentType = {
   comment: string;
   createdAt: string;
 };
+
+export type ReviewCommentWriteReqType = {
+  reviewId: string;
+  comment: string;
+};
+
+export type ReviewCommentWriteResType = DefaultResType & {
+  data: {
+    reviewId: string;
+    commentId: number;
+  };
+};
+
+export type ReviewCommentUpdateReqType = {
+  reviewId: string;
+  commentId: number;
+  comment: string;
+};
+
+export type ReviewCommentUpdateResType = DefaultResType & {
+  data: {
+    reviewId: string;
+    commentId: number;
+    comment: string;
+  };
+};
+
+export type ReviewCommentDeleteReqType = {
+  reviewId: string;
+  commentId: number;
+};
+
+export type ReviewCommentDeleteResType = DefaultResType & {
+  data: {
+    reviewId: string;
+  };
+};
