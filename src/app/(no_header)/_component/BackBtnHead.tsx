@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 
 export default function BackBtnHead() {
   const router = useRouter();

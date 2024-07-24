@@ -3,11 +3,15 @@ import {
   DEFAULT_CURSOR,
   DEFAULT_SIZE,
   END_POINT,
+  ERROR_CODE,
   SUCCESS_CODE,
 } from '@/constants/api';
 import { CafeLikeReqType, CafeListReqType } from '@/types/cafe';
 import {
+  ReviewCommentDeleteReqType,
   ReviewCommentReqType,
+  ReviewCommentUpdateReqType,
+  ReviewCommentWriteReqType,
   ReviewLikeReqType,
   ReviewListReqType,
 } from '@/types/review';
@@ -17,26 +21,6 @@ import { mockReviewCommentList } from './data/reviewCommentList';
 import { mockReviewList } from './data/reviewList';
 
 export const browserHandlers = [
-  // 회원가입
-  // http.post<never, { nickName: string; email: string; password: string }>(
-  //   END_POINT.USER.SIGNUP,
-  //   async ({ request }) => {
-  //     const { email } = await request.json();
-
-  //     if (email === 'error@gmail.com') {
-  //       return HttpResponse.json(
-  //         {
-  //           status: ERROR_CODE.BAD_REQUEST,
-  //           message: '회원가입에 실패했습니다',
-  //         },
-  //         { status: ERROR_CODE.BAD_REQUEST }
-  //       );
-  //     }
-
-  //     return HttpResponse.json(null, { status: SUCCESS_CODE.CREATED });
-  //   }
-  // ),
-
   // Memo: 리뷰 리스트 조회
   http.post<never, ReviewListReqType>(
     END_POINT.REVIEW.LIST,
@@ -138,6 +122,72 @@ export const browserHandlers = [
       };
 
       return HttpResponse.json(response, { status: SUCCESS_CODE.OK });
+    }
+  ),
+
+  http.post<never, ReviewCommentWriteReqType>(
+    END_POINT.REVIEW.COMMENT_WRITE,
+    async ({ request }) => {
+      const { reviewId } = await request.json();
+
+      return HttpResponse.json(
+        {
+          status: SUCCESS_CODE.OK,
+          message: '리뷰 댓글 작성 성공',
+          data: { reviewId },
+        },
+        {
+          status: SUCCESS_CODE.OK,
+        }
+      );
+    }
+  ),
+
+  http.patch<never, ReviewCommentUpdateReqType>(
+    END_POINT.REVIEW.COMMENT_UPDATE,
+    async ({ request }) => {
+      const { reviewId } = await request.json();
+
+      return HttpResponse.json(
+        {
+          status: SUCCESS_CODE.OK,
+          message: '리뷰 댓글 수정 성공',
+          data: { reviewId },
+        },
+        {
+          status: SUCCESS_CODE.OK,
+        }
+      );
+    }
+  ),
+
+  http.delete<never, ReviewCommentDeleteReqType>(
+    END_POINT.REVIEW.COMMENT_DELETE,
+    async ({ request }) => {
+      const { reviewId } = await request.json();
+
+      if (reviewId === '1') {
+        return HttpResponse.json(
+          {
+            status: ERROR_CODE.BAD_REQUEST,
+            message: '리뷰 댓글 삭제 실패',
+          },
+          {
+            status: ERROR_CODE.BAD_REQUEST,
+          }
+        );
+      }
+
+      return HttpResponse.json(
+        {
+          status: SUCCESS_CODE.OK,
+          message: '리뷰 댓글 삭제 성공',
+          data: { reviewId },
+        },
+        {
+          status: SUCCESS_CODE.OK,
+        }
+      );
     }
   ),
 ];

@@ -2,8 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import Button from '@/components/Button';
-import Icon from '@/components/Icon';
+import Button from '@/components/Button/Button';
+import Icon from '@/components/Icon/Icon';
 import { userRegisterStore } from '@/store/userStore';
 
 export default function CompleteForm() {

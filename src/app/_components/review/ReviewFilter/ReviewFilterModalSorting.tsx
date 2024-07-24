@@ -1,4 +1,4 @@
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { SORTING } from '@/constants/reviewFilter';
 import { useFilterStore } from '@/store/filterStore';
 import ReviewFilterModalFilterList from './ReviewFilterModalFilterList';

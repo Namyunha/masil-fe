@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import React from 'react';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { FILTER_COLOR } from '@/styles/filterColor';
 
 describe('Icon component', () => {

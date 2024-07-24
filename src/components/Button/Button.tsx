@@ -3,7 +3,7 @@
 import { cva, VariantProps } from 'class-variance-authority';
 import * as icons from 'public/icon/svg';
 import { cn } from '@/utils/className';
-import Icon from './Icon';
+import Icon from '../Icon/Icon';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'primary' | 'secondary';
@@ -74,13 +74,12 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-button_bg_default hover:bg-button_bg_clicked disabled:bg-button_bg_disabled text-button_text_default hover:text-button_text_clicked disabled:text-button_text_disabled',
+          'bg-button_bg_default disabled:bg-button_bg_disabled text-button_text_default disabled:text-button_text_disabled',
         primaryI:
-          'bg-button_icon_only_bg hover:bg-button_icon_only_bg_clicked disabled:bg-button_icon_only_bg_disabled rounded-full',
+          'bg-button_icon_only_bg disabled:bg-button_icon_only_bg_disabled rounded-full',
         secondary:
-          'bg-button_secondary_bg border border-button_secondary_stroke text-button_secondary_text hover:opacity-80 disabled:bg-button_secondary_bg_disabled disabled:text-button_secondary_text_disabled disabled:border-none',
-        secondaryI:
-          'bg-button_secondary_bg hover:opacity-50 disabled:opacity-10 rounded-full',
+          'bg-button_secondary_bg border border-button_secondary_stroke text-button_secondary_text disabled:bg-button_secondary_bg_disabled disabled:text-button_secondary_text_disabled disabled:border-none',
+        secondaryI: 'bg-button_secondary_bg disabled:opacity-10 rounded-full',
       },
       size: {
         xs: 'text-14 px-24 py-8 gap-6',

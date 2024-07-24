@@ -10,10 +10,6 @@ export const SIDE_NAV_LIST = [
     name: '카페',
   },
   {
-    routePath: ROUTE_PATH.SCRAP,
-    name: '스크랩',
-  },
-  {
     routePath: ROUTE_PATH.MY_PAGE,
     name: '마이페이지',
   },

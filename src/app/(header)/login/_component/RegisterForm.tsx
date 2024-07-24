@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import SignHeader from '@/app/_components/sign/Header';
-import Button from '@/components/Button';
+import Button from '@/components/Button/Button';
 
 export default function RegisterForm() {
   const router = useRouter();

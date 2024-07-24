@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import ActiveButton from '@/app/_components/ActiveButton';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { DELETE_REASON } from '@/constants/deleteReason';
 import DeleteModal from './DeleteModal';
 

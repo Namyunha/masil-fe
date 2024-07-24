@@ -1,4 +1,4 @@
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { CafeItemType } from '@/types/cafe';
 
 type CafeItemRatingProps = Pick<CafeItemType, 'rating' | 'reviewCount'>;

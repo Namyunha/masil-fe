@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import Button from '@/components/Button';
+import Button from '@/components/Button/Button';
 import Dim from '@/components/Dim';
 import CafeFilterModalLocation from './CafeFilterModalLocation';
 import CafeFilterModalTags from './CafeFilterModalTags';
@@ -13,7 +13,6 @@ export default function CafeFilterModal({
   isOpen,
   closeHandler,
 }: CafeFilterModalProps) {
-  // Todo: 확인 눌러야 적용시킬지 기획과 논의 필요
   return (
     <>
       {isOpen && <Dim closeHandler={closeHandler} />}

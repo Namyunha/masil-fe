@@ -17,7 +17,6 @@ export default function SideNavBarList({ closeHandler }: SideNavBarMainProps) {
     });
   };
 
-  // Todo: 다른 페이지 작업 완료되면 route 경로 변경
   // Todo: 유저 정보 작업 완료되면 비회원시 회원가입, 로그인 링크 추가
   return (
     <ul className="flex flex-col gap-1 text-20 text-right">

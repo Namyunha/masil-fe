@@ -27,6 +27,9 @@ export const END_POINT = {
     DETAIL: (reviewId: string) => `/api/review/${reviewId}`,
     LIKE: '/like',
     COMMENT: (reviewId: string) => `/review/comment/${reviewId}`,
+    COMMENT_WRITE: '/review/comment',
+    COMMENT_UPDATE: '/review/comment',
+    COMMENT_DELETE: '/review/comment',
   },
   CAFE: {
     LIST: '/cafes',

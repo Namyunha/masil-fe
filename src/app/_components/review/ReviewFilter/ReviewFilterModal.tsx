@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import Button from '@/components/Button';
+import Button from '@/components/Button/Button';
 import Dim from '@/components/Dim';
 import ReviewFilterModalLocation from './ReviewFilterModalLocation';
 import ReviewFilterModalSorting from './ReviewFilterModalSorting';
@@ -14,7 +14,6 @@ export default function ReviewFilterModal({
   isOpen,
   closeHandler,
 }: ReviewFilterModalProps) {
-  // Todo: 확인 눌러야 적용시킬지 기획과 논의 필요
   return (
     <>
       {isOpen && <Dim closeHandler={closeHandler} />}

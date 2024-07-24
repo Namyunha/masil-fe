@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { ROUTE_PATH } from '@/constants/route';
 import useLikeCafe from '@/hooks/useLikeCafe';
 import { ReviewItemType } from '@/types/review';

@@ -1,7 +1,13 @@
 import { END_POINT } from '@/constants/api';
 import {
+  ReviewCommentDeleteReqType,
+  ReviewCommentDeleteResType,
   ReviewCommentReqType,
   ReviewCommentResType,
+  ReviewCommentUpdateReqType,
+  ReviewCommentUpdateResType,
+  ReviewCommentWriteReqType,
+  ReviewCommentWriteResType,
   ReviewLikeReqType,
   ReviewLikeResType,
   ReviewListReqType,
@@ -15,7 +21,6 @@ export const postReviewList = async ({
   location,
   pagingData,
 }: ReviewListReqType) => {
-  // Todo: 쿼리키에 필터 추가
   const { data } = await fetcher.post<ReviewListResType>(
     END_POINT.REVIEW.LIST,
     {
@@ -33,7 +38,6 @@ export const postMyReviewList = async ({
   pagingData,
   userId,
 }: Pick<ReviewListReqType, 'pagingData'> & { userId: number }) => {
-  // Todo: 쿼리키에 필터 추가
   const { data } = await fetcher.post<ReviewListResType>(
     END_POINT.REVIEW.MYLIST,
     {
@@ -62,6 +66,55 @@ export const getReviewCommentList = async ({
 }: ReviewCommentReqType) => {
   const { data } = await fetcher.get<ReviewCommentResType>(
     END_POINT.REVIEW.COMMENT(reviewId)
+  );
+
+  return data;
+};
+
+export const postReviewComment = async ({
+  reviewId,
+  comment,
+}: ReviewCommentWriteReqType) => {
+  const { data } = await fetcher.post<ReviewCommentWriteResType>(
+    END_POINT.REVIEW.COMMENT_WRITE,
+    {
+      reviewId,
+      comment,
+    }
+  );
+
+  return data;
+};
+
+export const patchReviewComment = async ({
+  reviewId,
+  commentId,
+  comment,
+}: ReviewCommentUpdateReqType) => {
+  const { data } = await fetcher.patch<ReviewCommentUpdateResType>(
+    END_POINT.REVIEW.COMMENT_UPDATE,
+    {
+      reviewId,
+      commentId,
+      comment,
+    }
+  );
+
+  return data;
+};
+
+export const deleteReviewComment = async ({
+  reviewId,
+  commentId,
+}: ReviewCommentDeleteReqType) => {
+  const { data } = await fetcher.delete<ReviewCommentDeleteResType>(
+    END_POINT.REVIEW.COMMENT_DELETE,
+    {
+      data: {
+        reviewId,
+        commentId,
+      },
+    }
   );
 
   return data;

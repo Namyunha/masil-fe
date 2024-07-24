@@ -1,14 +1,21 @@
 'use client';
 
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import Icon from '@/components/Icon';
+import { reviewKeys } from '@/api/queryKeys';
+import Icon from '@/components/Icon/Icon';
 import ReviewFilterList from './ReviewFilterList';
 import ReviewFilterModal from './ReviewFilterModal';
 
 export default function ReviewFilter() {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const queryClient = useQueryClient();
 
   const toggleFilterModalHandler = () => {
+    if (isFilterModalOpen) {
+      queryClient.invalidateQueries(reviewKeys.reviewList);
+    }
+
     setIsFilterModalOpen((prev) => !prev);
   };
 

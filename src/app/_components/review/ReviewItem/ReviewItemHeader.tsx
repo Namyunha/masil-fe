@@ -1,4 +1,4 @@
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import UserImage from '@/components/UserImage';
 import { ReviewItemType } from '@/types/review';
 import { convertTime } from '@/utils/convertTime';
