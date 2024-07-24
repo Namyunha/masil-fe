@@ -1,6 +1,7 @@
 'use client';
 
-import Icon from '@/components/Icon';
+import ShareButton from '@/components/Button/ShareButton';
+import Icon from '@/components/Icon/Icon';
 import useLikeCafe from '@/hooks/useLikeCafe';
 import { CafeDetailType } from '@/types/cafe';
 
@@ -39,7 +40,7 @@ export default function CafeDetailMainInfo({
         <button onClick={likeClickHandler}>
           <Icon name={likeState ? 'bookmark_marked' : 'bookmark'} size={16} />
         </button>
-        <Icon name="upload" size={16} />
+        <ShareButton size="l" />
       </div>
     </div>
   );

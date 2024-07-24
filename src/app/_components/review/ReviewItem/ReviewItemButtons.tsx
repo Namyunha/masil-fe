@@ -1,4 +1,5 @@
-import Icon from '@/components/Icon';
+import ShareButton from '@/components/Button/ShareButton';
+import Icon from '@/components/Icon/Icon';
 import useLikeReview from '@/hooks/useLikeReview';
 import { ReviewItemType } from '@/types/review';
 
@@ -10,7 +11,6 @@ export default function ReviewItemButtons({
 }: ReviewItemButtonsProps) {
   const { likeState, likeClickHandler } = useLikeReview({ isLike, reviewId });
 
-  // Memo: 코멘트/공유 버튼 상호작용 여부 물어보기
   return (
     <div className="flex justify-between items-center px-8">
       <div className="flex items-center gap-16">
@@ -19,7 +19,7 @@ export default function ReviewItemButtons({
         </button>
         <Icon name="comment" />
       </div>
-      <Icon name="upload" />
+      <ShareButton size="l" />
     </div>
   );
 }
