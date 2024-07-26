@@ -132,6 +132,16 @@ const config: Config = {
         elevation2: '0 4px 12px rgba(0, 0, 0, 0.16)',
         elevation3: '0 8px 16px rgba(0, 0, 0, 0.12)',
         elevation4: '0 16px 24px rgba(0, 0, 0, 0.12)',
+        elevation5: '0 -4px 24px rgba(0, 0, 0, 0.16)',
+      },
+      keyframes: {
+        modalSlide: {
+          '0%': { transform: 'translateY(280px)' }, // 수정된 부분: translate-y-[280px] => translateY(280px)
+          '100%': { transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        modalSlide: 'modalSlide 0.2s ease-in-out forwards', // 수정된 부분: forward => forwards
       },
     },
   },
