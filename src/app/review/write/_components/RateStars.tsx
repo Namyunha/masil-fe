@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { reviewStore } from '@/store/userStore';
 
 const StarRating = () => {

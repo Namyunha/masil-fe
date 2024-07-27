@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useCafeListInfiniteQuery } from '@/api/cafe/queries';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { useFilterStore } from '@/store/filterStore';
 import { reviewStore } from '@/store/userStore';
 import { CafeItemType } from '@/types/cafe';
