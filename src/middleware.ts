@@ -11,7 +11,7 @@ export function middleware(request: NextRequest) {
   } else {
     // accessToken이 없고 로그인 페이지가 아닌 다른 페이지로 접근하려는 경우
     if (!request.nextUrl.pathname.startsWith('/login')) {
-      return Response.redirect(new URL('/login', request.url));
+      return Response.redirect(new URL('/protect', request.url));
     }
   }
 }

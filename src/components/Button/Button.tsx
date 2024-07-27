@@ -6,6 +6,7 @@ import { cn } from '@/utils/className';
 import Icon from '../Icon/Icon';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  onClick?: () => void;
   variant?: 'primary' | 'secondary';
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   childrenType?: 'textOnly' | 'leftIcon' | 'rightIcon' | 'iconOnly';
@@ -17,6 +18,7 @@ type ButtonVariantType = VariantProps<typeof buttonVariants>['variant'];
 type ButtonSizeType = VariantProps<typeof buttonVariants>['size'];
 
 export default function Button({
+  onClick,
   className,
   variant = 'primary',
   size = 'm',
@@ -44,6 +46,7 @@ export default function Button({
 
   return (
     <button
+      onClick={onClick}
       type={props.type ?? 'button'}
       {...props}
       className={cn(

@@ -35,6 +35,7 @@ export { default as star_half } from 'public/icon/star_half.svg';
 export { default as store } from 'public/icon/store.svg';
 export { default as success } from 'public/icon/success.svg';
 export { default as time } from 'public/icon/time.svg';
+export { default as triangle } from 'public/icon/triangle.svg';
 export { default as user0 } from 'public/icon/user0.svg';
 export { default as user1 } from 'public/icon/user1.svg';
 export { default as user2 } from 'public/icon/user2.svg';
