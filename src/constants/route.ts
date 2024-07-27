@@ -1,7 +1,7 @@
 export const ROUTE_PATH = {
   HOME: '/',
   MY_PAGE: '/mypage',
-  WRITE: '/write',
+  WRITE: '/review/write',
   CAFE: '/cafe',
   SCRAP: '/scrap',
   SIGNIN: '/login',
