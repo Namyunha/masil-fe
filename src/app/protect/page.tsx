@@ -17,16 +17,12 @@ export default function Page() {
           로그인이 필요한 서비스입니다.
         </div>
         <div className="flex gap-10">
-          <Button
-            onClick={() => router.back()}
-            variant="secondary"
-            text="이전으로"
-          />
-          <Button
-            onClick={() => router.push('/login')}
-            variant="primary"
-            text="로그인"
-          />
+          <span onClick={() => router.back()}>
+            <Button variant="secondary" text="이전으로" />
+          </span>
+          <span onClick={() => router.push('/login')}>
+            <Button variant="primary" text="로그인" />
+          </span>
         </div>
       </div>
     </div>
