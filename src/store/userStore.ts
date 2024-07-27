@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { TagsKey } from '@/types/review';
 import {
   ProfileTabState,
   ProgressState,
@@ -28,6 +29,64 @@ export const validateCondition = create<ValidateState>((set) => ({
 export const progressCondition = create<ProgressState>((set) => ({
   currentProgress: 1,
   setProgressCondition: (data) => set(() => ({ currentProgress: data })),
+}));
+
+type reviewState = {
+  content: string;
+  setContent: (data: string) => void;
+  rate: number;
+  setRate: (data: number) => void;
+  writeMode: boolean;
+  switchWriteMode: () => void;
+  cafeLoca: string;
+  setCafeLoca: (loca: string) => void;
+  likeCategory: TagsKey[];
+  setLikeCategory: (data: TagsKey[]) => void;
+  imgFiles: string[];
+  setImgFiles: (files: string[]) => void;
+  cafeName: string;
+  setCafeName: (loca: string) => void;
+  searchLoca: boolean;
+  switchSearchLoca: () => void;
+  modalState: boolean;
+  setModalState: () => void;
+  setResetPlaceState: () => void;
+  setResetReviewState: () => void;
+};
+
+export const reviewStore = create<reviewState>((set) => ({
+  content: '',
+  setContent: (data) => set(() => ({ content: data })),
+  rate: 0,
+  setRate: (data) => set(() => ({ rate: data })),
+  imgFiles: [],
+  setImgFiles: (data) => set(() => ({ imgFiles: data })),
+  likeCategory: [],
+  setLikeCategory: (data) => set(() => ({ likeCategory: data })),
+  writeMode: true,
+  switchWriteMode: () => set((state) => ({ writeMode: !state.writeMode })),
+  cafeName: '',
+  setCafeName: (data) => set(() => ({ cafeName: data })),
+  cafeLoca: '',
+  setCafeLoca: (data) => set(() => ({ cafeLoca: data })),
+  modalState: false,
+  setModalState: () => set((state) => ({ modalState: !state.modalState })),
+  searchLoca: false,
+  switchSearchLoca: () => set((state) => ({ searchLoca: !state.searchLoca })),
+  setResetPlaceState: () =>
+    set(() => ({ rate: 0, likeCategory: [], cafeLoca: '' })),
+  setResetReviewState: () =>
+    set(() => ({
+      content: '',
+      rate: 0,
+      imgFiles: [],
+      likeCategory: [],
+      writeMode: true,
+      cafeName: '',
+      cafeLoca: '',
+      modalState: false,
+      searchLoca: false,
+    })),
 }));
 
 export const settingList = create<UserSettingState>((set) => ({
