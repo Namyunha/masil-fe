@@ -2,7 +2,7 @@
 
 import React, { FocusEvent, useEffect, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { reviewStore } from '@/store/userStore';
 import { reviewFormInputs } from '@/types/user/form';
 import ReviewDetailRating from '../../[reviewId]/_components/ReviewDetailRating';

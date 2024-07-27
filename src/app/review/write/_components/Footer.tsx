@@ -1,6 +1,6 @@
 import React, { MutableRefObject } from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 import { reviewStore } from '@/store/userStore';
 import { reviewFormInputs } from '@/types/user/form';
 
