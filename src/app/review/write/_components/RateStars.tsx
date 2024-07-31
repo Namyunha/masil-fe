@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Icon from '@/components/Icon/Icon';
 import { reviewStore } from '@/store/userStore';
 
-const StarRating = () => {
+export default function RateStars() {
   const reviewState = reviewStore();
   const starArray = [1, 2, 3, 4, 5];
   const [coloredStar, setColoredStar] = useState(0);
@@ -37,6 +37,4 @@ const StarRating = () => {
       ))}
     </div>
   );
-};
-
-export default StarRating;
+}

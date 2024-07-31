@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FocusEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Icon from '@/components/Icon/Icon';
 import { reviewStore } from '@/store/userStore';
@@ -9,16 +9,15 @@ import ReviewDetailRating from '../../[reviewId]/_components/ReviewDetailRating'
 import ReviewDetailTags from '../../[reviewId]/_components/ReviewDetailTags';
 import Footer from './Footer';
 import Header from './Header';
-import RateStars from './RateStars';
 import ReviewImg from './ReviewImg';
-import ReviewWriteTags from './ReviewWriteTags';
+import ReviewModal from './ReviewModal';
 import SearchForm from './SearchForm';
+import TextArea from './TextArea';
 
 export default function Main() {
   const reviewStatus = reviewStore();
   // const imgUrls: string[] = [];
   const [urlList, setUrlList] = useState<string[]>();
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const imgRef = useRef<HTMLInputElement | null>(null);
 
   const { register, handleSubmit, watch } = useForm<reviewFormInputs>();
@@ -26,7 +25,6 @@ export default function Main() {
   const imgFiles = watch('img');
 
   useEffect(() => {
-    textAreaRef.current?.focus();
     const newUrl: string[] = [];
     for (let i = 0; i < imgFiles?.length; i++) {
       // 기존에 정의된 변수 사용
@@ -49,11 +47,6 @@ export default function Main() {
     reviewStatus.setCafeName('');
   };
 
-  const onBlurHandler = (e: FocusEvent<HTMLTextAreaElement, Element>) => {
-    reviewStatus.setContent(e.target.value);
-    reviewStatus.switchWriteMode();
-  };
-
   return reviewStatus.searchLoca ? (
     <SearchForm />
   ) : (
@@ -67,30 +60,7 @@ export default function Main() {
             <ReviewImg urlList={urlList} setList={setUrlList} />
           )}
         </div>
-        <div className="max-h-[80px] ">
-          {reviewStatus.writeMode ? (
-            <>
-              <div
-                onClick={() => reviewStatus.switchWriteMode()}
-                className="w-full h-full absolute left-0 top-0 z-dim opacity-20"
-              />
-              <textarea
-                onBlur={onBlurHandler}
-                ref={textAreaRef}
-                className="focus:outline-none relative z-modal resize-none w-full h-full max:h-[75px] scrollbar-thin scrollbar-thumb-primary scrollbar-track-bg_white mt-3"
-              />
-            </>
-          ) : (
-            <>
-              <div
-                className="w-full min-h-3 overflow-y-auto cursor-pointer break-words max-h-[70px] max:h-[60px] scrollbar-thin scrollbar-thumb-primary scrollbar-track-bg_white mt-3"
-                onClick={() => reviewStatus.switchWriteMode()}>
-                {reviewStatus.content}
-              </div>
-              <div className="border-[1px] border-stroke_grey my-3" />
-            </>
-          )}
-        </div>
+        <TextArea />
         {reviewStatus.likeCategory.length > 0 && reviewStatus.rate > 0 && (
           <div
             onClick={() => reviewStatus.setModalState()}
@@ -120,41 +90,7 @@ export default function Main() {
         )}
       </form>
 
-      {reviewStatus.modalState && (
-        <>
-          <div
-            onClick={() => reviewStatus.setModalState()}
-            className="w-full h-full absolute left-0 top-0 z-dim"
-          />
-          <div className="w-full animate-modalSlide px-5 pb-10 pt-[55px] absolute left-0 bottom-0 bg-white z-modal rounded-t-3xl shadow-elevation5">
-            <div className="flex justify-center text-18 text-primary font-bold">
-              '{reviewStatus.cafeName}'을 평가해주세요
-            </div>
-            <RateStars />
-            <div>
-              <div className="flex justify-center my-5">
-                어떤 게 좋았나요? (중복 가능)
-              </div>
-              <div className="w-full flex justify-center">
-                <div className="w-2/3">
-                  <ReviewWriteTags
-                    tags={[
-                      'COFFEE',
-                      'BEVERAGE',
-                      'DESSERT',
-                      'MANNER',
-                      'MONEY',
-                      'COZY',
-                      'QUIET',
-                      'ACCESSIBILITY',
-                    ]}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+      {reviewStatus.modalState && <ReviewModal />}
       <Footer
         clickHandler={() => imgRef.current?.click()}
         register={register}
