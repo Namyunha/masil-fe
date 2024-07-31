@@ -15,7 +15,7 @@ function Header() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex justify-between items-center mb-2 bg-bg_white shadow-elevation1 absolute px-7 py-3 top-0 left-0 w-full">
+      <div className="flex justify-between items-center mb-2 bg-bg_white shadow-elevation1 absolute px-7 py-3 top-0 left-0 z-modal w-full">
         <span
           onClick={backBtnHandler}
           className="text-16 text-text_light_grey hover:text-text_grey cursor-pointer">
