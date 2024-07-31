@@ -51,7 +51,7 @@ export default function ReviewImg({ urlList, setList }: ReviewImgProps) {
             priority
           />
           {extraCount > 0 ? (
-            <span className="absolute z-modal left-0 top-0 w-full h-full bg-black opacity-50 text-white flex justify-center items-center">
+            <span className="absolute z-modal left-0 top-0 w-full h-full bg-black bg-opacity-50 text-white flex justify-center items-center">
               +{extraCount}
             </span>
           ) : (
