@@ -53,6 +53,21 @@ export const browserHandlers = [
     });
   }),
 
+  http.get(END_POINT.USER.USERINFO, async ({ request }) => {
+    console.log('user-info request = ', request);
+
+    return HttpResponse.json({
+      status: SUCCESS_CODE.OK,
+      message: '유저 정보 조회 성공',
+      data: {
+        email: 'ajs998@naver.com',
+        pw: 'qwer1234!',
+        profileImg: '/user1',
+        nickName: 'yunha',
+      },
+    });
+  }),
+
   // Memo: 리뷰 좋아요 상태 변경
   http.patch<never, ReviewLikeReqType>(
     END_POINT.REVIEW.LIKE,

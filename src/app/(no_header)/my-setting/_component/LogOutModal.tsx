@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import Button from '@/components/Button/Button';
 
@@ -6,6 +7,22 @@ type LogOutModalProps = {
 };
 
 export default function LogOutModal({ closeHandler }: LogOutModalProps) {
+  const router = useRouter();
+  const onLogoutHandler = async () => {
+    const result = await (
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      })
+    ).json();
+    if (result.status === 200) {
+      router.push('/');
+    }
+    console.log('result = ', result);
+  };
+
   return (
     <div className="w-full h-full absolute top-0 left-0 flex justify-center items-center">
       <div className="relative w-3/4 h-44 z-modal bg-white rounded-lg flex flex-col justify-center items-center">
@@ -17,7 +34,12 @@ export default function LogOutModal({ closeHandler }: LogOutModalProps) {
             variant="secondary"
             text="취소"
           />
-          <Button size="s" variant="primary" text="로그아웃" />
+          <Button
+            onClick={onLogoutHandler}
+            size="s"
+            variant="primary"
+            text="로그아웃"
+          />
         </div>
       </div>
     </div>

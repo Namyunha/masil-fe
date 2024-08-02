@@ -18,6 +18,10 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
       } else {
         // 토큰 만들기
         const accessToken = await sign(email);
+        res.setHeader(
+          'Set-Cookie',
+          `accessToken=${accessToken}; HttpOnly; Max-Age=3600; Path=/;`
+        );
         res.status(200).json({ message: '로그인 성공', email, accessToken });
       }
       break;

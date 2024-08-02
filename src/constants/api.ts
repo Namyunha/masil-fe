@@ -20,6 +20,7 @@ export const END_POINT = {
     SIGNIN: 'user/sign-in',
     SIGNUP: 'api/user',
     UPDATEPW: 'api/user/password',
+    USERINFO: 'user/user-info',
   },
   REVIEW: {
     LIST: '/review',
