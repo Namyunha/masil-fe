@@ -11,7 +11,6 @@ type SideNavBarProps = {
 
 export default function SideNavBar({ isOpen, closeHandler }: SideNavBarProps) {
   useBlockScrollY({ isBlock: isOpen });
-
   return (
     <>
       {isOpen && <Dim closeHandler={closeHandler} />}

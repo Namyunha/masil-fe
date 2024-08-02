@@ -13,3 +13,8 @@ export const updatePassword = async (
   const { data } = await fetcher.patch(END_POINT.USER.UPDATEPW, userData);
   return data;
 };
+
+export const userCheck = async () => {
+  const { data } = await fetcher.get(`${END_POINT.USER.USERINFO}`);
+  return data;
+};

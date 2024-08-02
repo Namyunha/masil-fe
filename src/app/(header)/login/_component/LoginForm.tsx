@@ -1,5 +1,4 @@
 'use client';
-import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -35,10 +34,6 @@ export default function LoginForm() {
       setErrorMessage(result.message);
     } else {
       setErrorMessage('');
-      Cookies.set('accessToken', result.accessToken, {
-        secure: true,
-        expires: new Date(Date.now() + 60 * 60 * 1000),
-      });
       router.push('/');
     }
     setIsLoading(false);
