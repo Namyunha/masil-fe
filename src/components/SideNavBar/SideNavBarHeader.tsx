@@ -23,7 +23,7 @@ export default function SideNavBarHeader({
   // Todo: 유저 정보 저장 로직에 따라 재작업 필요
   const queryClient = useQueryClient();
   const data = queryClient.getQueryData<UserData>(['Me']);
-  console.log('data = ', data);
+
   return (
     <div className="flex justify-between items-center">
       <div className="flex gap-8">

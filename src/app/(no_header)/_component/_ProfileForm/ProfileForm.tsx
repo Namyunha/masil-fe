@@ -47,7 +47,6 @@ export default function ProfileForm() {
   const mutation = useSignUpMutation();
 
   const OnsubmitHandler: SubmitHandler<formInputs> = async (data) => {
-    console.log('data = ', data);
     userInfoState.setUserInfo({
       nickName: data.nickName,
       profileImg: userInfoState.userInfo.profileImg,
