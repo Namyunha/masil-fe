@@ -7,6 +7,7 @@ import { reviewStore } from '@/store/userStore';
 import { reviewFormInputs } from '@/types/user/form';
 import ReviewDetailRating from '../../[reviewId]/_components/ReviewDetailRating';
 import ReviewDetailTags from '../../[reviewId]/_components/ReviewDetailTags';
+import DetailReviewImg from './DetailReviewImg';
 import Footer from './Footer';
 import Header from './Header';
 import ReviewImg from './ReviewImg';
@@ -16,16 +17,17 @@ import TextArea from './TextArea';
 
 export default function Main() {
   const reviewStatus = reviewStore();
-  // const imgUrls: string[] = [];
   const [urlList, setUrlList] = useState<string[]>();
   const imgRef = useRef<HTMLInputElement | null>(null);
-
+  const [imgModal, setImgModal] = useState(false);
+  const [selectImgUrlIdx, setSelectImgUrlIdx] = useState(0);
   const { register, handleSubmit, watch } = useForm<reviewFormInputs>();
+  console.log('setSelectImgUrlIdx = ', setSelectImgUrlIdx);
 
   const imgFiles = watch('img');
 
   useEffect(() => {
-    const newUrl: string[] = [];
+    let newUrl: string[] = [];
     for (let i = 0; i < imgFiles?.length; i++) {
       // 기존에 정의된 변수 사용
       const binaryData = [imgFiles[i]];
@@ -33,6 +35,9 @@ export default function Main() {
         new Blob(binaryData, { type: 'image' })
       );
       newUrl.push(urlImage);
+    }
+    if (urlList) {
+      newUrl = [...urlList, ...newUrl];
     }
     setUrlList(newUrl);
     reviewStatus.setImgFiles(newUrl);
@@ -42,9 +47,25 @@ export default function Main() {
     // TO-DO: 데이터 전달하기
   };
 
+  const onRemoveImgUrlHandler = () => {
+    setUrlList(urlList?.filter((el) => el !== urlList[selectImgUrlIdx]));
+    setSelectImgUrlIdx((prev) => prev - 1);
+    selectImgUrlIdx === 0 && setImgModal((prev) => !prev);
+  };
+
   const onDeleteLocaHandler = () => {
     reviewStatus.setResetPlaceState();
     reviewStatus.setCafeName('');
+  };
+
+  const onMoveIndexHandler = (arrow: string) => {
+    if (arrow === 'left') {
+      selectImgUrlIdx !== 0 && setSelectImgUrlIdx((prev) => prev - 1);
+    } else {
+      urlList &&
+        selectImgUrlIdx !== urlList?.length - 1 &&
+        setSelectImgUrlIdx((prev) => prev + 1);
+    }
   };
 
   return reviewStatus.searchLoca ? (
@@ -57,7 +78,12 @@ export default function Main() {
         <div className="h-full">
           <Header />
           {urlList && urlList.length > 0 && (
-            <ReviewImg urlList={urlList} setList={setUrlList} />
+            <ReviewImg
+              setImgModal={setImgModal}
+              setSelectImgUrlIdx={setSelectImgUrlIdx}
+              urlList={urlList}
+              setList={setUrlList}
+            />
           )}
         </div>
         <TextArea />
@@ -91,6 +117,16 @@ export default function Main() {
       </form>
 
       {reviewStatus.modalState && <ReviewModal />}
+      {imgModal && urlList && urlList?.length > 0 && (
+        <DetailReviewImg
+          setImgModal={setImgModal}
+          onMoveIndexHandler={onMoveIndexHandler}
+          urlList={urlList}
+          selectImgUrlIdx={selectImgUrlIdx}
+          setSelectImgUrlIdx={setSelectImgUrlIdx}
+          onRemoveImgUrlHandler={onRemoveImgUrlHandler}
+        />
+      )}
       <Footer
         clickHandler={() => imgRef.current?.click()}
         register={register}
